@@ -1,9 +1,16 @@
+//////////////
+// IMPORTS //
+////////////
 require("dotenv").config();
 require("./mongoose.js");
 const express = require("express");
 const exphbs = require("express-handlebars");
+const signInRouter = require("./routes/sign-in-router");
+const signUpRouter = require("./routes/sign-up-router");
+////////////////
+// APP SETUP //
+//////////////
 const port = 80;
-
 const app = express();
 app.engine(
   "hbs",
@@ -16,14 +23,11 @@ app.engine(
 app.set("view engine", "hbs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-
-// app.use("/restaurants", require("./routes/restaurant-router"));
-// app.use("/reviews", require("./routes/review-router"));
-
+app.use("/sign-in", signInRouter);
+app.use("/sign-up", signUpRouter);
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.redirect("/sign-in");
 });
-
 app.listen(port, () => {
   console.log("http://localhost:" + port);
 });
