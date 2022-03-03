@@ -17,12 +17,12 @@ app.set("view engine", "hbs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-// app.use("/restaurants", require("./routes/restaurant-router"));
-// app.use("/reviews", require("./routes/review-router"));
+app.use("/restaurants", require("./routes/restaurant-router.js"));
+// app.use("/reviews", require("./routes/review-router.js"));
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.get("/", (req,res) => {
+    res.render("home", { title: "Home"})
+})
 
 app.listen(port, () => {
   console.log("http://localhost:" + port);

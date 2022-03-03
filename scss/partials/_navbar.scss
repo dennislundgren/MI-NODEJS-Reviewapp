@@ -1,0 +1,36 @@
+.navbar {
+    height: 100px;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        flex-grow: 1;
+        color: darkgrey;
+        box-sizing: border-box;
+        border: solid lightgray;
+        border-width: 2px 0 0;
+        text-decoration: none;
+        flex-direction: column;
+        transition: all 0.2s;
+        gap: 10px;
+
+        &--target {
+            border-color: black;
+            color: black;
+        }
+        &:hover {
+            border-color: black;
+            color: black;
+        }
+
+        i {
+            font-size: 2em;
+        }
+    }
+}
