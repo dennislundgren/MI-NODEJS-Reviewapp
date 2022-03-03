@@ -1,22 +1,24 @@
 const express = require("express");
 const RestaurantModel = require("../models/restaurant");
-const { generateID } = require("../utils");
+// const ReviweModel = require("./models/review.js")
 
 const router = express.Router();
 
 router.get("/:id", async (req, res) => {
     const restaurant = await RestaurantModel.findOne({id: req.params.id}).lean()
     console.log(restaurant)
-    res.send(restaurant)
+    res.render("restaurants/view", {
+        restaurant
+    })
 
 })
 
 router.get("/register", async (req, res) => {
     res.render("register-restaurant")
 })
-router.get("/edit/:id", async (req, res) => {
+router.get("/:id/edit", async (req, res) => {
     const restaurant = await RestaurantModel.findOne({id: req.params.id}).lean()
-    const reviews = await RevievModel.find({restaurantId: req.params.id}).lean()
+    // const reviews = await ReviewModel.find({restaurantId: req.params.id}).lean()
 
     res.render("edit-restaurant", {
         title: "Edit",
