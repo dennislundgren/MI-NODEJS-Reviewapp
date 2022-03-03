@@ -5,8 +5,8 @@ require("dotenv").config();
 require("./mongoose.js");
 const express = require("express");
 const exphbs = require("express-handlebars");
-const signInRouter = require("./routes/sign-in-router");
-const signUpRouter = require("./routes/sign-up-router");
+const loginRouter = require("./routes/login-router");
+const UsersModel = require("././models/UsersModel");
 ////////////////
 // APP SETUP //
 //////////////
@@ -23,10 +23,12 @@ app.engine(
 app.set("view engine", "hbs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.use("/sign-in", signInRouter);
-app.use("/sign-up", signUpRouter);
+app.use("/login", loginRouter);
 app.get("/", (req, res) => {
-  res.redirect("/sign-in");
+  //////////////////////////////////////////////////////////////////////////////////////
+  // REDIRECTAR FÖR ATT JAG INTE SKAPAT NÅGON FULLT FUNGERANDE ROUTE ÄNNU MVH DENNIS //
+  ////////////////////////////////////////////////////////////////////////////////////
+  res.redirect("/login");
 });
 app.listen(port, () => {
   console.log("http://localhost:" + port);

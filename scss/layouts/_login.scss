@@ -37,15 +37,11 @@ $transition: all 0.2s ease-out;
     // LOGO SECTION //
     /////////////////
     &--logo {
-      width: clamp(130px, 20vw, 250px);
+      width: clamp(130px, 20vw, 180px);
       .critic-logo {
         content: url("../assets/svg/Logo.svg");
         width: 100%;
         height: fit-content;
-        // path:nth-child(2),
-        // path:nth-child(3) {
-        //   transform: scale(0.7);
-        // }
       }
     }
     ///////////////////
@@ -75,13 +71,14 @@ $transition: all 0.2s ease-out;
           font-weight: 300;
         }
         &--btn {
-          padding: calc(var(--font-size) * 0.5);
-
           @include mixins.flex(column, center, center, 1rem);
+          transition: $transition;
+          padding: calc(var(--font-size) * 0.5);
           margin-top: 1.25rem;
           background-color: #d96422;
           color: white;
           font-size: 1.125rem;
+          cursor: pointer;
         }
         &--text:focus ~ .form__input--title,
         &--text:not(:placeholder-shown) ~ .form__input--title {
@@ -92,8 +89,10 @@ $transition: all 0.2s ease-out;
         &--text:focus {
           outline: none;
         }
-        &--btn:focus {
-          background-color: #000000;
+        &--btn:focus,
+        &--btn:hover {
+          transform: scale(1.05);
+          outline: none;
         }
       }
       a {

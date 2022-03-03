@@ -48,13 +48,18 @@
         <label for="confirmPassword" class="form__input--title">Repeat password</label>
       </div>
     {{/if}}
-    <div class="form__input"><button type="submit" class="form__input--btn">Sign
-        {{sign}}</button></div>
+    <div class="form__input">
+      {{#if signIn}}
+      <input type="submit" class="form__input--btn" value="Sign in"/>
+      {{else}}
+      <input type="submit" class="form__input--btn" value="Sign up"/>
+      {{/if}}
+        </div>
     {{#if signIn}}
-      <a href="/sign-up" class="font-size--small">Don't have an account?
+      <a href="/login/sign-up" class="font-size--small">Don't have an account?
         Sign-up</a>
     {{else}}
-      <a href="/sign-in" class="font-size--small">Already have an account?
+      <a href="/login" class="font-size--small">Already have an account?
         Sign-in</a>
     {{/if}}
   </form>
