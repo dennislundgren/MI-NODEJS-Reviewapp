@@ -1,0 +1,10 @@
+@import "variables";
+
+@import "partials/navbar";
+@import "partials/restaurant-info-box";
+
+@import "restaurants/view";
+body {
+    margin: 0;
+    font-family: "Pt Sans", sans-serif;
+}
