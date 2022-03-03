@@ -3,30 +3,36 @@
   display: flex;
   position: fixed;
   bottom: 0;
-  width: 100%; }
-  .navbar__button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    flex-grow: 1;
-    color: darkgrey;
-    box-sizing: border-box;
-    border: solid lightgray;
-    border-width: 2px 0 0;
-    text-decoration: none;
-    flex-direction: column;
-    transition: all 0.2s;
-    gap: 10px; }
-    .navbar__button--target {
-      border-color: black;
-      color: black; }
-    .navbar__button:hover {
-      border-color: black;
-      color: black; }
-    .navbar__button i {
-      font-size: 2em; }
+  width: 100%;
+}
+.navbar__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-grow: 1;
+  color: darkgrey;
+  box-sizing: border-box;
+  border: solid lightgray;
+  border-width: 2px 0 0;
+  text-decoration: none;
+  flex-direction: column;
+  transition: all 0.2s;
+  gap: 10px;
+}
+.navbar__button--target {
+  border-color: black;
+  color: black;
+}
+.navbar__button:hover {
+  border-color: black;
+  color: black;
+}
+.navbar__button i {
+  font-size: 2em;
+}
 
 body {
   margin: 0;
-  font-family: "Pt Sans", sans-serif; }
+  font-family: "Pt Sans", sans-serif;
+}
