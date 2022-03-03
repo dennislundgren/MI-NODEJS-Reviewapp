@@ -1,10 +1,13 @@
+@use "./base/root";
+@use "./base/typography";
+@use "./layouts/login";
 @import "variables";
 
 @import "partials/navbar";
 @import "partials/restaurant-info-box";
 
 @import "restaurants/view";
-body {
-    margin: 0;
-    font-family: "Pt Sans", sans-serif;
-}
+// Kolla i typography för en font mixin
+// body {
+//    font-family: "Pt Sans", sans-serif;
+// }
