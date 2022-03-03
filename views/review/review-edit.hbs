@@ -1,0 +1,11 @@
+{{!-- restaurantBox partial --}}
+
+<form class="reviewForm" action="/reviews/edit/{{_id}}" method="post">
+  <input class="reviewForm__title" type="text" name="title" value="{{title}}"/>
+  <input class="reviewForm__description" type="text" name="description" value="{{description}}"/>
+  <input class="reviewForm__btn" type="submit" value="Save" />
+</form>
+
+<form action="/reviews/delete/{{_id}}">
+    <input type="submit" value="Delete">
+</form>

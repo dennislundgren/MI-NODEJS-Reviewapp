@@ -1,4 +1,4 @@
-# Restaurant review app
+# Critic
 An Express restaurant review application.
 
 ***Under construction, nothing to see yet*** &nbsp; 👀
