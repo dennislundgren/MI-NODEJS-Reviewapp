@@ -1,3 +1,4 @@
-const mongoose = require("mongoose")
-
-mongoose.connect(process.env.DATABASE_CONNECTION)
+const mongoose = require('mongoose')
+// Ta bort kommentar för den text-sträng ni använder.
+// mongoose.connect(process.env.CONNECTION_STRING)
+// mongoose.connect(process.env.DATABASE_CONNECTION)

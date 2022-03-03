@@ -2,7 +2,9 @@ require("dotenv").config();
 require("./mongoose.js");
 const express = require("express");
 const exphbs = require("express-handlebars");
-const port = 80;
+// Ta bort kommentar för att sätta på din port.
+// const port = 8080;
+// const port = 80;
 
 const app = express();
 app.engine(
@@ -17,8 +19,8 @@ app.set("view engine", "hbs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/reviews", require("./routes/review-router"));
 app.use("/restaurants", require("./routes/restaurant-router.js"));
-// app.use("/reviews", require("./routes/review-router.js"));
 
 app.get("/", (req, res) => {
   res.render("home", { title: "Home" });
