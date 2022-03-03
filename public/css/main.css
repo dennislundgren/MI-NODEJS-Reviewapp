@@ -27,6 +27,7 @@
     .navbar__button i {
       font-size: 2em; }
 
+
 .restaurant-info-box {
   min-height: 200px;
   background-color: #f1f1f1;
@@ -74,4 +75,5 @@
 
 body {
   margin: 0;
-  font-family: "Pt Sans", sans-serif; }
+  font-family: "Pt Sans", sans-serif;
+}

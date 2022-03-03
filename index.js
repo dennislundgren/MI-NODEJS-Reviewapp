@@ -20,9 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/restaurants", require("./routes/restaurant-router.js"));
 // app.use("/reviews", require("./routes/review-router.js"));
 
-app.get("/", (req,res) => {
-    res.render("home", { title: "Home"})
-})
+app.get("/", (req, res) => {
+  res.render("home", { title: "Home" });
+});
 
 app.listen(port, () => {
   console.log("http://localhost:" + port);
