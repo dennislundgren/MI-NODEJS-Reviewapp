@@ -1,11 +1,12 @@
 const express = require("express");
 const RestaurantModel = require("../models/restaurant");
-// const ReviweModel = require("./models/review.js")
+//  const ReviewModel = require("./models/review.js")
 
 const router = express.Router();
 
 router.get("/:id", async (req, res) => {
     const restaurant = await RestaurantModel.findOne({id: req.params.id}).lean()
+    // const reviews = await ReviewModel.find({restaurantId: restaurant._id});
     console.log(restaurant)
     res.render("restaurants/view", {
         restaurant
