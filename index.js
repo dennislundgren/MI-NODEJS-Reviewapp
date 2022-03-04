@@ -13,10 +13,6 @@ const UsersModel = require("././models/UsersModel");
 // APP SETUP //
 //////////////
 // Ta bort kommentar för att sätta på din port.
-<<<<<<< HEAD
-=======
-const port = 8080;
->>>>>>> development
 // const port = 80;
 const port = 8080;
 const host = "localhost";
@@ -35,12 +31,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/login", loginRouter);
 app.use("/reviews", require("./routes/review-router"));
 app.use("/restaurants", require("./routes/restaurant-router.js"));
-
+app.use(cookieParser());
+app.use((req, res, next) => {
+  const { token } = req.cookies;
+  if (token && jwt.verify(token, process.env.JWT_SECRET)) {
+    const tokenData = jwt.decode(token, process.env.JWT_SECRET);
+    res.locals.loggedIn = true;
+    res.locals.username = tokenData.username;
+    console.log("Token accepted.");
+  } else {
+    console.log("No token.");
+    res.locals.loggedIn = false;
+  }
+  next();
+});
 app.get("/", (req, res) => {
   //////////////////////////////////////////////////////////////////////////////////////
   // REDIRECTAR FÖR ATT JAG INTE SKAPAT NÅGON FULLT FUNGERANDE ROUTE ÄNNU MVH DENNIS //
   ////////////////////////////////////////////////////////////////////////////////////
-  res.redirect("/login");
+  if (res.locals.loggedIn) {
+    res.render("home");
+  } else {
+    res.redirect("/login");
+  }
 });
 app.listen(port, host, () => {
   console.log(`Listening to http://${host}:${port}`);

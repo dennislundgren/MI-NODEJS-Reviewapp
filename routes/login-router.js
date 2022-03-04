@@ -5,60 +5,87 @@ const express = require("express");
 const router = express.Router();
 const cookieParser = require("cookie-parser");
 const UsersModel = require(".././models/UsersModel");
-const { getHashedPassword, generateAuthToken } = require(".././utils");
+const jwt = require("jsonwebtoken");
+const {
+  getHashedPassword,
+  generateAuthToken,
+  hashPassword,
+  comparePassword,
+} = require(".././utils");
 /////////////////////
 // ROUTE SETTINGS //
 ///////////////////
 router.use(cookieParser());
 const authTokens = {};
+//////////////////
+// MIDDLEWARES //
+////////////////
+const forceAuthorize = (req, res, next) => {
+  const { token } = req.cookes;
+  if (token && jwt.verify(token, process.env.JWT_SECRET)) {
+    const tokenData = jwt.decode(token, process.env.JWT_SECRET);
+    next();
+  } else {
+    res.sendStatus(401);
+  }
+};
 /////////////
 // ROUTES //
 ///////////
 router.get("/", async (req, res) => {
-  res.render("login", { signIn: true });
+  if (res.locals.loggedIn) {
+    res.redirect("/");
+  } else {
+    res.render("login", { signIn: true });
+  }
 }); // Sign-in page
 router.get("/sign-up", async (req, res) => {
   res.render("login", { signIn: false });
 }); // Sign-up page
+router.get("/secret", forceAuthorize, (req, res) => {
+  res.send("This is just a test.");
+});
 router.post("/sign-in", async (req, res) => {
   const { username, password } = req.body;
 
-  const hashedPassword = getHashedPassword(password);
-  console.log({ username, password, hashedPassword });
+  console.log(username, password);
 
-  UsersModel.findOne({ username, password: hashedPassword }, (err, user) => {
-    if (user) {
-      const authToken = generateAuthToken();
-      authTokens[authToken] = user;
-      res.cookie("AuthToken", authToken);
-      res.redirect("/protected");
+  UsersModel.findOne({ username }, (err, user) => {
+    if (user && comparePassword(password, user.password)) {
+      const userData = { users: user._id.toString(), username };
+      const accessToken = jwt.sign(userData, process.env.JWT_SECRET);
+
+      console.log({ userData });
+      console.log({ accessToken });
+
+      res.cookie("token", accessToken);
+      res.redirect("/");
     } else {
-      const loginFailed = true;
-      res.redirect("/login", { loginFailed });
+      res.render("login", { loginFailed: true });
     }
   });
-});
+}); // Sign in POST
 router.post("/sign-up", async (req, res) => {
   const { username, password, confirmPassword } = req.body;
-  const signIn = true;
 
   UsersModel.findOne({ username }, async (err, user) => {
     if (user) {
-      const userExists = true;
-      res.render("login", { signIn, userExists });
+      res.render("login", { signIn: false, userExists: true });
     } else if (password !== confirmPassword) {
-      const wrongPassword = true;
-      res.render("login", { signIn, wrongPassword });
+      res.render("login", { signIn: false, wrongPassword: true });
     } else {
       const newUser = new UsersModel({
         username,
-        password: getHashedPassword(password),
+        password: hashPassword(password),
       });
-      console.log(newUser);
       await newUser.save();
       res.redirect("/login");
     }
   });
+}); // Sign up POST
+router.post("/log-out", async (req, res) => {
+  res.cookie("token", "", { maxAge: 0 });
+  res.redirect("/");
 });
 //////////////
 // EXPORTS //
