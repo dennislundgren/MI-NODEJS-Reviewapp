@@ -13,6 +13,10 @@ const UsersModel = require("././models/UsersModel");
 // APP SETUP //
 //////////////
 // Ta bort kommentar för att sätta på din port.
+<<<<<<< HEAD
+=======
+const port = 8080;
+>>>>>>> development
 // const port = 80;
 const port = 8080;
 const host = "localhost";
