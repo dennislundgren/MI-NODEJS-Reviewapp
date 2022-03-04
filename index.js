@@ -5,13 +5,15 @@ require("dotenv").config();
 require("./mongoose.js");
 const express = require("express");
 const exphbs = require("express-handlebars");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const loginRouter = require("./routes/login-router");
 const UsersModel = require("././models/UsersModel");
 ////////////////
 // APP SETUP //
 //////////////
 // Ta bort kommentar för att sätta på din port.
-// const port = 8080;
+// const port = 80;
 const port = 8080;
 const host = "localhost";
 const app = express();
@@ -35,7 +37,6 @@ app.get("/", (req, res) => {
   // REDIRECTAR FÖR ATT JAG INTE SKAPAT NÅGON FULLT FUNGERANDE ROUTE ÄNNU MVH DENNIS //
   ////////////////////////////////////////////////////////////////////////////////////
   res.redirect("/login");
-  // res.render("home", { title: "Home" });
 });
 app.listen(port, host, () => {
   console.log(`Listening to http://${host}:${port}`);
