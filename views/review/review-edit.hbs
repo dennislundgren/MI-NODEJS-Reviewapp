@@ -1,12 +1,36 @@
-{{!-- restaurantBox partial --}}
+{{! restaurantBox partial }}
+<main class="review-page">
 
-<form class="reviewForm" action="/reviews/edit/{{_id}}" method="post">
-  <input class="reviewForm__title" type="text" name="title" value="{{title}}"/>
-  <input class="reviewForm__description" type="text" name="description" value="{{description}}"/>
-  <input class="reviewForm__btn" type="submit" value="Save" />
-</form>
+  <form
+    class="review-page__section review-page__section--form"
+    action="/reviews/edit/{{_id}}"
+    method="post"
+  >
+    <div class="form__input">
+      <input
+        class="form__input--text"
+        type="text"
+        name="title"
+        id="title"
+        value="{{title}}"
+      />
+    </div>
+    <div class="form__input">
+      <input
+        class="form__input--text"
+        type="text"
+        name="description"
+        id="description"
+        value="{{description}}"
+      />
+    </div>
+    <div class="form__input">
+      <input class="form__input--btn" type="submit" value="Save" />
+    </div>
+  </form>
 
-{{!-- Ändra till a-tagg och gör post till get i router --}}
-<form action="/reviews/delete/{{_id}}" method="post">
-    <input type="submit" value="Delete">
-</form>
+  {{! Ändra till a-tagg och gör post till get i router }}
+  <form action="/reviews/delete/{{_id}}" method="post">
+    <input type="submit" value="Delete" />
+  </form>
+</main>

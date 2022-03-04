@@ -1,18 +1,31 @@
+<main class="review-page">
+
 <h2>Write new review</h2>
 
-<form class="reviewForm" action="/reviews/write-new" method="post">
-  <select class="reviewForm__restaurant" name="restaurantId" id="restaurant">
+<form class="review-page__section review-page__section--form" action="/reviews/write-new" method="post">
+  <div class="form__select"> 
+  <select class="form__select--restaurant" name="restaurantId" id="restaurant">
     <option value="" disabled selected>Choose restaurant</option>
     {{!-- {{#each }} --}}
     <option value="restaurant">One restaurant</option>
     {{!-- {{/each}} --}}
   </select>
+  </div>
 
+  <div class="form__link">
     <a href="/restaurants/add">Register new restaurant</a>
-
-  <input class="reviewForm__title" type="text" name="title" />
-  <input class="reviewForm__description" type="text" name="description" rows="5" />
-  <input class="reviewForm__btn" type="submit" value="Publish" />
+  </div>
+  
+  <div class="form__input">
+    <input class="form__input--text" type="text" name="title" />
+  </div>
+  <div class="form__input">
+    <input class="form__input--text" type="text" name="description" rows="5" />
+  </div>
+  <div class="form__input">
+    <input class="form__input--btn" type="submit" value="Publish" />
+  </div>
 </form>
+</main>
 
 {{>navbar}}
