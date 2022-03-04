@@ -1,6 +1,7 @@
 <main class="review-page">
 
-<h2>Write new review</h2>
+  <h2 class="review-page__section review-page__section--heading">Write new review</h2>
+
 
 <form class="review-page__section review-page__section--form" action="/reviews/write-new" method="post">
   <div class="form__select"> 
@@ -17,15 +18,15 @@
   </div>
   
   <div class="form__input">
-    <input class="form__input--text" type="text" name="title" />
+    <input class="form__input--text" type="text" name="title" placeholder="Add title"/>
   </div>
   <div class="form__input">
-    <input class="form__input--text" type="text" name="description" rows="5" />
+    <input class="form__input--text" type="text" name="description" rows="5" placeholder="Write review"/>
   </div>
   <div class="form__input">
     <input class="form__input--btn" type="submit" value="Publish" />
   </div>
 </form>
-</main>
 
+</main>
 {{>navbar}}

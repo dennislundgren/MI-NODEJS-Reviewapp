@@ -151,6 +151,62 @@ body {
   color: #504f4f;
 }
 
+.review-page {
+  --font-size: clamp(1.125rem, 2.25vw, 1.75rem);
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 100vh;
+}
+.review-page__section--form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.125rem;
+}
+.review-page__section--form .form__input {
+  position: relative;
+}
+.review-page__section--form .form__input--text, .review-page__section--form .form__input--btn {
+  width: min(64vw, 350px);
+  height: 45px;
+  border-radius: 8px;
+  border: none;
+}
+.review-page__section--form .form__input--text {
+  font-size: 1rem;
+  padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+  font-weight: 300;
+  border: 1pt solid lightgray;
+}
+.review-page__section--form .form__input--btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease-out;
+  padding: calc(var(--font-size) * 0.5);
+  margin-top: 1.25rem;
+  background-color: #d96422;
+  color: white;
+  font-size: 1.125rem;
+  cursor: pointer;
+}
+.review-page__section--form .form__input a {
+  text-decoration: none;
+}
+.review-page__section--form .form__input a:hover,
+.review-page__section--form .form__input a:focus {
+  text-decoration: underline;
+}
+
 .navbar {
   height: 100px;
   display: flex;

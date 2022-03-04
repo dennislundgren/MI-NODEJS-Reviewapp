@@ -3,3 +3,73 @@
 //////////////////
 @use "../mixins";
 @use "../base/typography";
+///////////////////////////
+// NEW REVIEW VARIABLES //
+/////////////////////////
+$border-radius: 8px;
+$width: min(64vw, 350px);
+$transition: all 0.2s ease-out;
+////////////////////////
+// NEW REVIEW MIXINS //
+//////////////////////
+@mixin field-layout($height: auto, $border-radius: initial) {
+    width: $width;
+    height: $height;
+    border-radius: $border-radius;
+    border: none;
+  }
+
+/////////////////////////
+// NEW REVIEW STYLING //
+///////////////////////
+.review-page {
+  --font-size: clamp(1.125rem, 2.25vw, 1.75rem);
+
+  @include typography.noto();
+  @include mixins.flex(column, center, center, 2rem);
+
+  height: 100vh;
+
+  ///////////////
+  // SECTIONS //
+  /////////////
+  &__section {
+    ////////////////////
+    //HEADING SECTION//
+    //////////////////
+    &--form {
+      @include mixins.flex(column, center, center, 1.125rem);
+      .form__input {
+        position: relative;
+        &--text,
+        &--btn {
+          @include field-layout(45px, $border-radius);
+        }
+        &--text {
+          font-size: 1rem;
+          padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+          font-weight: 300;
+          border: 1pt solid lightgray;
+        }
+        &--btn {
+          @include mixins.flex(column, center, center, 1rem);
+          transition: $transition;
+          padding: calc(var(--font-size) * 0.5);
+          margin-top: 1.25rem;
+          background-color: #d96422;
+          color: white;
+          font-size: 1.125rem;
+          cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+          }
+          a:hover,
+          a:focus {
+            text-decoration: underline;
+          }
+      }
+    }
+  }
+}
