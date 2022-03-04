@@ -1,6 +1,6 @@
 <h2>Write new review</h2>
 
-<form class="reviewForm" action="/reviews" method="post">
+<form class="reviewForm" action="/reviews/write-new" method="post">
   <select class="reviewForm__restaurant" name="restaurantId" id="restaurant">
     <option value="" disabled selected>Choose restaurant</option>
     {{!-- {{#each }} --}}
@@ -14,3 +14,5 @@
   <input class="reviewForm__description" type="text" name="description" rows="5" />
   <input class="reviewForm__btn" type="submit" value="Publish" />
 </form>
+
+{{>navbar}}

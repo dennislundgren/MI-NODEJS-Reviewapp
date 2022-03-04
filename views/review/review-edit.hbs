@@ -6,6 +6,7 @@
   <input class="reviewForm__btn" type="submit" value="Save" />
 </form>
 
-<form action="/reviews/delete/{{_id}}">
+{{!-- Ändra till a-tagg och gör post till get i router --}}
+<form action="/reviews/delete/{{_id}}" method="post">
     <input type="submit" value="Delete">
 </form>

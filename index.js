@@ -11,7 +11,7 @@ const UsersModel = require("././models/UsersModel");
 // APP SETUP //
 //////////////
 // Ta bort kommentar för att sätta på din port.
-// const port = 8080;
+const port = 8080;
 // const port = 80;
 const app = express();
 app.engine(
@@ -33,8 +33,8 @@ app.get("/", (req, res) => {
   //////////////////////////////////////////////////////////////////////////////////////
   // REDIRECTAR FÖR ATT JAG INTE SKAPAT NÅGON FULLT FUNGERANDE ROUTE ÄNNU MVH DENNIS //
   ////////////////////////////////////////////////////////////////////////////////////
-  // res.redirect("/login");
-  res.render("home", { title: "Home" });
+  res.redirect("/login");
+  //res.render("home", { title: "Home" });
 });
 app.listen(port, () => {
   console.log("http://localhost:" + port);

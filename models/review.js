@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const { Schema, model} = require("mongoose")
 
-const reviewsSchema = new mongoose.Schema({
+const reviewsSchema = new Schema({
     restaurantId: {type: Schema.Types.ObjectId, ref: "Restaurants", required:true},
     userId: {type: Schema.Types.ObjectId, ref: "Users", required: true},
     title: {type: String, required: true},
@@ -9,6 +9,6 @@ const reviewsSchema = new mongoose.Schema({
     description: String,
 })
 
-const ReviewModel = mongoose.model('Review', reviewsSchema)
+const ReviewModel = model('Review', reviewsSchema)
 
 module.exports = ReviewModel
