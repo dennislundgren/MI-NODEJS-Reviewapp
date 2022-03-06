@@ -26,7 +26,6 @@ const generateAuthToken = () => {
 // GENERATE KEY //
 /////////////////
 const key = crypto.randomBytes(32).toString("hex");
-console.log(key);
 //////////////
 // EXPORTS //
 ////////////

@@ -7,7 +7,7 @@
 // LOGIN VARIABLES //
 ////////////////////
 $border-radius: 8px;
-$width: min(64vw, 350px);
+$width: clamp(270px, 64vw, 350px);
 $transition: all 0.2s ease-out;
 ///////////////////
 // LOGIN MIXINS //
