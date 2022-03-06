@@ -9,7 +9,6 @@ const exphbs = require("express-handlebars");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const loginRouter = require("./routes/login-router");
-const UsersModel = require("././models/UsersModel");
 const session = require("express-session");
 ////////////////
 // APP SETUP //
@@ -19,13 +18,6 @@ const session = require("express-session");
 const port = 8080;
 const host = "localhost";
 const app = express();
-app.use(
-  session({
-    secret: process.env.JWT_SECRET,
-    resave: true,
-    saveUninitialized: true,
-  })
-);
 app.engine(
   "hbs",
   exphbs.engine({
@@ -35,11 +27,18 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
+//////////////////
+// MIDDLEWARES //
+////////////////
+app.use(
+  session({
+    secret: process.env.JWT_SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.use("/login", loginRouter);
-app.use("/reviews", require("./routes/review-router"));
-app.use("/restaurants", require("./routes/restaurant-router.js"));
 app.use(cookieParser());
 app.use((req, res, next) => {
   const { token } = req.cookies;
@@ -52,6 +51,12 @@ app.use((req, res, next) => {
   }
   next();
 });
+/////////////
+// ROUTES //
+///////////
+app.use("/login", loginRouter);
+app.use("/reviews", require("./routes/review-router"));
+app.use("/restaurants", require("./routes/restaurant-router.js"));
 app.get("/", (req, res) => {
   if (res.locals.loggedIn) {
     res.render("home");
@@ -59,6 +64,9 @@ app.get("/", (req, res) => {
     res.redirect("/login");
   }
 });
+/////////////
+// LISTEN //
+///////////
 app.listen(port, host, () => {
   console.log(`Listening to http://${host}:${port}`);
 });

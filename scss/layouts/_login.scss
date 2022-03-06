@@ -120,16 +120,16 @@ $transition: all 0.2s ease-out;
             opacity: 1;
             border-radius: 8px;
             content: url(../assets/svg/checkbox.svg);
-          }
-          #rememberMe:focus,
-          #rememberMe:hover {
-            content: url(../assets/svg/checkbox-focus.svg);
-            ~ .checkbox-text {
-              color: #d96422;
+            &:focus,
+            &:hover {
+              content: url(../assets/svg/checkbox-focus.svg);
+              ~ .checkbox-text {
+                color: #d96422;
+              }
             }
-          }
-          #rememberMe:checked {
-            content: url(../assets/svg/checkbox-checked.svg);
+            &:checked {
+              content: url(../assets/svg/checkbox-checked.svg);
+            }
           }
           .checkbox-icon {
             display: none;

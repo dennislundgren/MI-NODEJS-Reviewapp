@@ -12,32 +12,14 @@ const {
 } = require(".././models/UsersModel");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
-const {
-  getHashedPassword,
-  generateAuthToken,
-  hashPassword,
-  comparePassword,
-} = require(".././utils");
+const { hashPassword, comparePassword } = require(".././utils");
 /////////////////////
 // ROUTE SETTINGS //
 ///////////////////
 router.use(cookieParser());
-const authTokens = {};
-//////////////////
-// MIDDLEWARES //
-////////////////
-const forceAuthorize = (req, res, next) => {
-  const { token } = req.cookes;
-  if (token && jwt.verify(token, process.env.JWT_SECRET)) {
-    const tokenData = jwt.decode(token, process.env.JWT_SECRET);
-    next();
-  } else {
-    res.sendStatus(401);
-  }
-};
-/////////////
-// ROUTES //
-///////////
+///////////////////
+// LOGIN ROUTES //
+/////////////////
 router.get("/", async (req, res) => {
   if (res.locals.loggedIn) {
     res.redirect("/");
@@ -48,19 +30,18 @@ router.get("/", async (req, res) => {
 router.get("/sign-up", async (req, res) => {
   res.render("login", { signIn: false });
 }); // Sign-up page
-router.get("/secret", forceAuthorize, (req, res) => {
-  res.send("This is just a test.");
-});
 router.post("/sign-in", async (req, res) => {
   const { username, password, rememberMe } = req.body;
 
   UsersModel.findOne({ username }, (err, user) => {
     if (user && comparePassword(password, user.password)) {
-      const userData = { users: user._id.toString(), username };
+      const userData = { displayName: user.displayName };
       const accessToken = jwt.sign(userData, process.env.JWT_SECRET);
 
       if (rememberMe) {
         res.cookie("token", accessToken, { maxAge: 3600000 });
+      } else {
+        res.cookie("token", accessToken);
       }
       res.redirect("/");
     } else if (user && !comparePassword(password, user.password)) {
@@ -92,11 +73,11 @@ router.post("/sign-up", async (req, res) => {
 router.post("/log-out", async (req, res) => {
   res.cookie("token", "", { maxAge: 0 });
   res.redirect("/");
-});
+}); // Log out
 router.get(
   "/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
-);
+); // Google auth.
 router.get(
   "/google/callback",
   passport.authenticate("google", {
@@ -123,11 +104,11 @@ router.get(
       res.redirect("/");
     });
   }
-);
+); // Google - get user.
 router.get(
   "/facebook",
   passport.authenticate("facebook", { scope: ["email", "public_profile"] })
-);
+); // Facebook auth.
 router.get(
   "/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/" }),
@@ -152,8 +133,8 @@ router.get(
       res.redirect("/");
     });
   }
-);
-router.get("/twitter", passport.authenticate("twitter", { scope: "email" }));
+); // Facebook - get user.
+router.get("/twitter", passport.authenticate("twitter", { scope: "email" })); // Twitter auth.
 router.get(
   "/twitter/callback",
   passport.authenticate("twitter", { failureRedirect: "/" }),
@@ -178,7 +159,7 @@ router.get(
       res.redirect("/");
     });
   }
-);
+); // Twitter - get user.
 //////////////
 // EXPORTS //
 ////////////
