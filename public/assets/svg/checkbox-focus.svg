@@ -8,8 +8,8 @@
     <circle cx="62.5" cy="62.5" r="62.5" stroke="none"/>
     <circle cx="62.5" cy="62.5" r="68" fill="none"/>
   </g>
-  <circle id="ellipse--orange" data-name="Unchecked" cx="51.5" cy="51.5" r="51.5" transform="translate(27.398 91.89)" fill="#f4a172"/>
+  <circle id="ellipse--orange" data-name="Unchecked" cx="51.5" cy="51.5" r="40" transform="translate(27.398 91.89)" fill="none" stroke="#f4a172" stroke-width="15"/>
   <g id="Mask_Group_1" data-name="Mask Group 1" transform="translate(-450.602 -232.11)" clip-path="url(#clip-path)">
-    <circle id="ellipse--white" data-name="Ellipse 1" cx="125.5" cy="125.5" r="125.5" transform="translate(406 250)" fill="#fff"/>
+    <circle id="ellipse--white" data-name="Ellipse 1" cx="125.5" cy="125.5" r="0" transform="translate(406 250)" fill="#fff"/>
   </g>
 </svg>

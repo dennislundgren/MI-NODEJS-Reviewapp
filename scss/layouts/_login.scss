@@ -110,39 +110,29 @@ $transition: all 0.2s ease-out;
           opacity: 0;
         }
         @supports not selector(:focus-visible) {
-          #rememberMe:focus ~ .checkbox-icon,
-          #rememberMe:hover ~ .checkbox-icon {
-            #ellipse--orange {
-              r: 40;
-              stroke-width: 15;
-              stroke: #f4a172;
-              fill: none;
-            }
+          #rememberMe {
+            outline: none;
+            width: 40px;
+            height: 40px;
+            margin-top: -15px;
+            margin-right: -8px;
+            appearance: none;
+            opacity: 1;
+            border-radius: 8px;
+            content: url(../assets/svg/checkbox.svg);
           }
-          #rememberMe:checked:focus {
-            ~ .checkbox-icon #Unchecked {
-              stroke: #d96422;
-            }
-          }
-          #rememberMe:checked ~ .checkbox-icon #ellipse--orange {
-            r: 50;
-            fill: #f4a172;
-            stroke-width: 0;
-          }
-          #rememberMe:checked ~ .checkbox-icon #ellipse--white {
-            r: 125.5;
-          }
-          #rememberMe:hover,
-          #rememberMe:focus {
-            ~ #ellipse--orange {
-              r: 40;
-              stroke-width: 15;
-              stroke: #f4a172;
-              fill: none;
-            }
+          #rememberMe:focus,
+          #rememberMe:hover {
+            content: url(../assets/svg/checkbox-focus.svg);
             ~ .checkbox-text {
               color: #d96422;
             }
+          }
+          #rememberMe:checked {
+            content: url(../assets/svg/checkbox-checked.svg);
+          }
+          .checkbox-icon {
+            display: none;
           }
         }
         #rememberMe:focus-visible ~ .checkbox-icon,

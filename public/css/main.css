@@ -124,34 +124,32 @@ body {
   opacity: 0;
 }
 @supports not selector(:focus-visible) {
-  .login-page__section--form .form__input #rememberMe:focus ~ .checkbox-icon #ellipse--orange,
-.login-page__section--form .form__input #rememberMe:hover ~ .checkbox-icon #ellipse--orange {
-    r: 40;
-    stroke-width: 15;
-    stroke: #f4a172;
-    fill: none;
+  .login-page__section--form .form__input #rememberMe {
+    outline: none;
+    width: 40px;
+    height: 40px;
+    margin-top: -15px;
+    margin-right: -8px;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    opacity: 1;
+    border-radius: 8px;
+    content: url(../assets/svg/checkbox.svg);
   }
-  .login-page__section--form .form__input #rememberMe:checked:focus ~ .checkbox-icon #Unchecked {
-    stroke: #d96422;
+  .login-page__section--form .form__input #rememberMe:focus,
+.login-page__section--form .form__input #rememberMe:hover {
+    content: url(../assets/svg/checkbox-focus.svg);
   }
-  .login-page__section--form .form__input #rememberMe:checked ~ .checkbox-icon #ellipse--orange {
-    r: 50;
-    fill: #f4a172;
-    stroke-width: 0;
-  }
-  .login-page__section--form .form__input #rememberMe:checked ~ .checkbox-icon #ellipse--white {
-    r: 125.5;
-  }
-  .login-page__section--form .form__input #rememberMe:hover ~ #ellipse--orange,
-.login-page__section--form .form__input #rememberMe:focus ~ #ellipse--orange {
-    r: 40;
-    stroke-width: 15;
-    stroke: #f4a172;
-    fill: none;
-  }
-  .login-page__section--form .form__input #rememberMe:hover ~ .checkbox-text,
-.login-page__section--form .form__input #rememberMe:focus ~ .checkbox-text {
+  .login-page__section--form .form__input #rememberMe:focus ~ .checkbox-text,
+.login-page__section--form .form__input #rememberMe:hover ~ .checkbox-text {
     color: #d96422;
+  }
+  .login-page__section--form .form__input #rememberMe:checked {
+    content: url(../assets/svg/checkbox-checked.svg);
+  }
+  .login-page__section--form .form__input .checkbox-icon {
+    display: none;
   }
 }
 .login-page__section--form .form__input #rememberMe:focus-visible ~ .checkbox-icon #ellipse--orange,
