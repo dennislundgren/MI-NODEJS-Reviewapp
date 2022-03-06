@@ -1,18 +1,24 @@
-
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>critic</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="https://kit.fontawesome.com/74168c2b5b.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
-    {{!-- Navbar behöver ligga i view eftersom login-sidan är beroende utav main.hbs --}}
+    <link rel="stylesheet" href="/css/main.css" />
+    <script src="/js/main.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/74168c2b5b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+
+    {{! Navbar behöver ligga i view eftersom login-sidan är beroende utav main.hbs }}
     {{!-- {{>navbar}} --}}
     {{{body}}}
-</body>
+  </body>
 </html>

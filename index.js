@@ -2,13 +2,15 @@
 // IMPORTS //
 ////////////
 require("dotenv").config();
-require("./mongoose.js");
+require("./mongoose");
+require("./passport");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const loginRouter = require("./routes/login-router");
 const UsersModel = require("././models/UsersModel");
+const session = require("express-session");
 ////////////////
 // APP SETUP //
 //////////////
@@ -17,6 +19,13 @@ const UsersModel = require("././models/UsersModel");
 const port = 8080;
 const host = "localhost";
 const app = express();
+app.use(
+  session({
+    secret: process.env.JWT_SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 app.engine(
   "hbs",
   exphbs.engine({
@@ -37,10 +46,8 @@ app.use((req, res, next) => {
   if (token && jwt.verify(token, process.env.JWT_SECRET)) {
     const tokenData = jwt.decode(token, process.env.JWT_SECRET);
     res.locals.loggedIn = true;
-    res.locals.username = tokenData.username;
-    console.log("Token accepted.");
+    res.locals.displayName = tokenData.displayName;
   } else {
-    console.log("No token.");
     res.locals.loggedIn = false;
   }
   next();

@@ -64,7 +64,7 @@ body {
           user-select: none;
 }
 .login-page__section--form .form__input--text, .login-page__section--form .form__input--btn {
-  width: min(64vw, 350px);
+  width: clamp(270px, 64vw, 350px);
   height: 45px;
   border-radius: 8px;
   border: none;
