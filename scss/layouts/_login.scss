@@ -109,6 +109,42 @@ $transition: all 0.2s ease-out;
           height: 25px;
           opacity: 0;
         }
+        @supports not selector(:focus-visible) {
+          #rememberMe:focus ~ .checkbox-icon,
+          #rememberMe:hover ~ .checkbox-icon {
+            #ellipse--orange {
+              r: 40;
+              stroke-width: 15;
+              stroke: #f4a172;
+              fill: none;
+            }
+          }
+          #rememberMe:checked:focus {
+            ~ .checkbox-icon #Unchecked {
+              stroke: #d96422;
+            }
+          }
+          #rememberMe:checked ~ .checkbox-icon #ellipse--orange {
+            r: 50;
+            fill: #f4a172;
+            stroke-width: 0;
+          }
+          #rememberMe:checked ~ .checkbox-icon #ellipse--white {
+            r: 125.5;
+          }
+          #rememberMe:hover,
+          #rememberMe:focus {
+            ~ #ellipse--orange {
+              r: 40;
+              stroke-width: 15;
+              stroke: #f4a172;
+              fill: none;
+            }
+            ~ .checkbox-text {
+              color: #d96422;
+            }
+          }
+        }
         #rememberMe:focus-visible ~ .checkbox-icon,
         #rememberMe:hover ~ .checkbox-icon {
           #ellipse--orange {
