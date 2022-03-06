@@ -46,11 +46,12 @@ router.get("/secret", forceAuthorize, (req, res) => {
   res.send("This is just a test.");
 });
 router.post("/sign-in", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, rememberMe } = req.body;
 
-  console.log(username, password);
+  console.log({ username, password, rememberMe });
 
   UsersModel.findOne({ username }, (err, user) => {
+    console.log({ user, username });
     if (user && comparePassword(password, user.password)) {
       const userData = { users: user._id.toString(), username };
       const accessToken = jwt.sign(userData, process.env.JWT_SECRET);
@@ -58,10 +59,14 @@ router.post("/sign-in", async (req, res) => {
       console.log({ userData });
       console.log({ accessToken });
 
-      res.cookie("token", accessToken);
+      if (rememberMe) {
+        res.cookie("token", accessToken, { maxAge: 3600000 });
+      }
       res.redirect("/");
+    } else if (user && !comparePassword(password, user.password)) {
+      res.render("login", { signIn: true, wrongPassword: true });
     } else {
-      res.render("login", { loginFailed: true });
+      res.render("login", { signIn: true, loginFailed: true });
     }
   });
 }); // Sign in POST
