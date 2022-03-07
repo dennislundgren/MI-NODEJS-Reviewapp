@@ -1,0 +1,345 @@
+@import url("https://use.typekit.net/zeg4rhy.css");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+.login-page {
+  --font-size: clamp(1.125rem, 2.25vw, 1.75rem);
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-image: linear-gradient(25deg, #fcdece, #f4a172 55%, #f65c05 110%);
+  height: 100vh;
+}
+.login-page__section--logo {
+  user-select: none;
+  width: clamp(130px, 20vw, 180px);
+}
+.login-page__section--logo .critic-logo {
+  content: url("../assets/svg/Logo.svg");
+  width: 100%;
+  height: fit-content;
+}
+.login-page__section--form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.125rem;
+}
+.login-page__section--form .form__input {
+  position: relative;
+}
+.login-page__section--form .form__input--title {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease-out;
+  width: 100%;
+  cursor: text;
+  user-select: none;
+}
+.login-page__section--form .form__input--text, .login-page__section--form .form__input--btn {
+  width: clamp(270px, 64vw, 350px);
+  height: 45px;
+  border-radius: 8px;
+  border: none;
+}
+.login-page__section--form .form__input--text {
+  font-size: 1rem;
+  padding: 0.75rem 0.75rem 0rem 0.75rem;
+  font-weight: 300;
+}
+.login-page__section--form .form__input--btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease-out;
+  padding: calc(var(--font-size) * 0.5);
+  margin-top: 1.25rem;
+  background-color: #d96422;
+  color: white;
+  font-size: 1.125rem;
+  cursor: pointer;
+}
+.login-page__section--form .form__input--text:focus ~ .form__input--title, .login-page__section--form .form__input--text:not(:placeholder-shown) ~ .form__input--title {
+  left: clamp(-2.5rem, -6vw, -0.5rem);
+  top: 0;
+  transform: scale(0.7);
+}
+.login-page__section--form .form__input--text:focus {
+  outline: none;
+}
+.login-page__section--form .form__input--btn:focus, .login-page__section--form .form__input--btn:hover {
+  transform: scale(1.05);
+  outline: none;
+}
+.login-page__section--form .form__input--checkbox {
+  margin-top: -0.5rem;
+  justify-self: flex-start;
+  width: 100%;
+}
+.login-page__section--form .form__input--checkbox > * {
+  cursor: pointer;
+}
+.login-page__section--form .form__input #rememberMe {
+  width: 25px;
+  height: 25px;
+  opacity: 0;
+}
+@supports not selector(:focus-visible) {
+  .login-page__section--form .form__input #rememberMe {
+    outline: none;
+    width: 40px;
+    height: 40px;
+    margin-top: -15px;
+    margin-right: -8px;
+    appearance: none;
+    opacity: 1;
+    border-radius: 8px;
+    content: url(../assets/svg/checkbox.svg);
+  }
+  .login-page__section--form .form__input #rememberMe:focus, .login-page__section--form .form__input #rememberMe:hover {
+    content: url(../assets/svg/checkbox-focus.svg);
+  }
+  .login-page__section--form .form__input #rememberMe:focus ~ .checkbox-text, .login-page__section--form .form__input #rememberMe:hover ~ .checkbox-text {
+    color: #d96422;
+  }
+  .login-page__section--form .form__input #rememberMe:checked {
+    content: url(../assets/svg/checkbox-checked.svg);
+  }
+  .login-page__section--form .form__input .checkbox-icon {
+    display: none;
+  }
+}
+.login-page__section--form .form__input #rememberMe:focus-visible ~ .checkbox-icon #ellipse--orange,
+.login-page__section--form .form__input #rememberMe:hover ~ .checkbox-icon #ellipse--orange {
+  r: 40;
+  stroke-width: 15;
+  stroke: #f4a172;
+  fill: none;
+}
+.login-page__section--form .form__input #rememberMe:checked:focus-visible ~ .checkbox-icon #Unchecked {
+  stroke: #d96422;
+}
+.login-page__section--form .form__input #rememberMe:checked ~ .checkbox-icon #ellipse--orange {
+  r: 50;
+  fill: #f4a172;
+  stroke-width: 0;
+}
+.login-page__section--form .form__input #rememberMe:checked ~ .checkbox-icon #ellipse--white {
+  r: 125.5;
+}
+.login-page__section--form .form__input #rememberMe:hover ~ #ellipse--orange,
+.login-page__section--form .form__input #rememberMe:focus-visible ~ #ellipse--orange {
+  r: 40;
+  stroke-width: 15;
+  stroke: #f4a172;
+  fill: none;
+}
+.login-page__section--form .form__input #rememberMe:hover ~ .checkbox-text,
+.login-page__section--form .form__input #rememberMe:focus-visible ~ .checkbox-text {
+  color: #d96422;
+}
+.login-page__section--form .form__input .checkbox-text {
+  font-size: 14px;
+  vertical-align: super;
+  margin-left: -6px;
+  padding-left: 9px;
+}
+.login-page__section--form .form__input .checkbox-icon {
+  pointer-events: none;
+  position: absolute;
+  top: -11px;
+  left: 0px;
+  width: 30px;
+  height: auto;
+  transition: all 0.2s ease-out;
+}
+.login-page__section--form .form__input .checkbox-icon * {
+  transition: all 0.2s ease-out;
+}
+.login-page__section--form a {
+  text-decoration: none;
+}
+.login-page__section--form a:hover,
+.login-page__section--form a:focus {
+  text-decoration: underline;
+}
+.login-page__section--form .error {
+  position: relative;
+  width: 100%;
+}
+.login-page__section--form .error__text {
+  background-color: #d92e22;
+  color: white;
+  position: absolute;
+  right: 0;
+  top: -0.5rem;
+  font-size: 8pt;
+  padding: 0.1rem 0.5rem;
+  border-radius: 5.28px;
+}
+.login-page__section--third-party {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1.25rem;
+  width: min(64vw, 270px);
+}
+.login-page__section--third-party span {
+  position: relative;
+}
+.login-page__section--third-party span::before, .login-page__section--third-party span::after {
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  content: "";
+  width: min(16vw, 90px);
+  height: 1px;
+}
+.login-page__section--third-party span::before {
+  background-image: linear-gradient(to left, black 20%, rgba(0, 0, 0, 0));
+  transform: translateX(-130%);
+}
+.login-page__section--third-party span::after {
+  background-image: linear-gradient(to right, black 20%, rgba(0, 0, 0, 0));
+  transform: translateX(30%);
+}
+.login-page__section--third-party .third-party {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+.login-page__section--third-party .third-party__logo {
+  font-size: 20pt;
+}
+.login-page__section--third-party .third-party__logo--facebook {
+  content: url(../assets/svg/facebook.svg);
+}
+.login-page__section--third-party .third-party__logo--google {
+  content: url(../assets/svg/Google.svg);
+}
+.login-page__section--third-party .third-party__logo--twitter {
+  content: url(../assets/svg/Twitter.svg);
+}
+.login-page *::selection {
+  background-color: #504f4f;
+  color: white;
+}
+
+.font-size--small {
+  font-size: 14px;
+  color: #504f4f;
+}
+
+.navbar {
+  height: 100px;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.navbar__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 25%;
+  color: darkgrey;
+  box-sizing: border-box;
+  border: solid lightgray;
+  border-width: 2px 0 0;
+  text-decoration: none;
+  flex-direction: column;
+  transition: all 0.2s;
+  gap: 10px;
+}
+.navbar__button--target {
+  border-color: black;
+  color: black;
+}
+.navbar__button:hover {
+  border-color: black;
+  color: black;
+}
+.navbar__button i {
+  font-size: 2em;
+}
+
+.restaurant-info-box {
+  min-height: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #c7c7c7;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+.restaurant-info-box .name-type-container {
+  display: flex;
+  align-items: center;
+  justify-content: space;
+  gap: 20px;
+}
+.restaurant-info-box .name-type-container .sphere {
+  margin: 0 0 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ECAB6F;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.restaurant-info-box .name-type-container span {
+  font-size: 35pt;
+}
+.restaurant-info-box .star-container {
+  font-size: 2em;
+}
+.restaurant-info-box .reviews-container {
+  font-size: 1.5em;
+}
+.restaurant-info-box .address-container {
+  margin: 10px 0 0;
+  font-size: 2em;
+}
+
+.restaurants-view {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 20px;
+  gap: 20px;
+}
+.restaurants-view .filter-container {
+  align-self: center;
+  font-size: 2.3em;
+  display: flex;
+  gap: 40px;
+}
