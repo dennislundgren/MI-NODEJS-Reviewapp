@@ -4,8 +4,8 @@
 
 
 <form class="review-page__section review-page__section--form" action="/reviews/write-new" method="post">
-  <div class="form__select"> 
-  <select class="form__select--restaurant" name="restaurantId" id="restaurant">
+  <div class="form__input"> 
+  <select class="form__input--select" name="restaurantId" id="restaurant">
     <option value="" disabled selected>Choose restaurant</option>
     {{!-- {{#each }} --}}
     <option value="restaurant">One restaurant</option>
@@ -14,19 +14,29 @@
   </div>
 
   <div class="form__link">
-    <a href="/restaurants/add">Register new restaurant</a>
+    <a href="/restaurants/add">Add new restaurant <span class="form__link--add">+</span></a>
+  </div>
+
+  <div class="form__input">
+    <input
+    class="rating"
+    max="5"
+    oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
+    style="--value:1"
+    type="range"
+    value="1">
   </div>
   
   <div class="form__input">
     <input class="form__input--text" type="text" name="title" placeholder="Add title"/>
   </div>
   <div class="form__input">
-    <input class="form__input--text" type="text" name="description" rows="5" placeholder="Write review"/>
+    <textarea class="form__input--textarea" type="text" name="description" placeholder="Write review"/></textarea>
   </div>
   <div class="form__input">
     <input class="form__input--btn" type="submit" value="Publish" />
   </div>
 </form>
 
-</main>
 {{>navbar}}
+</main>

@@ -3,6 +3,7 @@
 //////////////////
 @use "../mixins";
 @use "../base/typography";
+
 ///////////////////////////
 // NEW REVIEW VARIABLES //
 /////////////////////////
@@ -39,17 +40,46 @@ $transition: all 0.2s ease-out;
     //////////////////
     &--form {
       @include mixins.flex(column, center, center, 1.125rem);
+      .form__link{
+        
+        a {
+          text-decoration: none;
+          color: gray;
+        }
+        &--add{
+          display: inline-block;
+          text-align: center;
+          color: white;
+          width: 1.23rem;
+          height: 1.23rem;
+          border-radius: 50%;
+          background: #ECAB6F;
+        }
+      
+      }
       .form__input {
         position: relative;
         &--text,
         &--btn {
           @include field-layout(45px, $border-radius);
         }
-        &--text {
+        &--textarea{
+          @include field-layout(145px, $border-radius);
+          @include typography.noto();
+        }
+        &--text, &--textarea {
           font-size: 1rem;
-          padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+          padding: 0.75rem;
           font-weight: 300;
           border: 1pt solid lightgray;
+        }
+        &--select{
+          background: rgb(235, 233, 233);
+          border: 1pt solid lightgray;
+          border-radius: $border-radius;
+          padding: 0.75rem;
+          height: 45px;
+          width: 200px;
         }
         &--btn {
           @include mixins.flex(column, center, center, 1rem);
@@ -64,11 +94,65 @@ $transition: all 0.2s ease-out;
 
         a {
             text-decoration: none;
-          }
-          a:hover,
-          a:focus {
-            text-decoration: underline;
-          }
+        }
+        
+        a:hover, a:focus {
+          text-decoration: underline;
+        }
+        ////////////////////////
+        //STAR RATING SECTION//
+        //////////////////////
+        .rating {
+          --dir: right;
+          --fill: black;
+          --fillbg: rgba(100, 100, 100, 0.15);
+          --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
+          --stars: 5;
+          --starsize: 2.5rem;
+          --symbol: var(--star);
+          --value: 1;
+          --w: calc(var(--stars) * var(--starsize));
+          --x: calc(100% * (var(--value) / var(--stars)));
+          block-size: var(--starsize);
+          inline-size: var(--w);
+          position: relative;
+          touch-action: manipulation;
+          -webkit-appearance: none;
+          cursor: pointer;
+        }
+        [dir="rtl"] .rating {
+          --dir: left;
+        }
+        .rating::-moz-range-track {
+          background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+          block-size: 100%;
+          mask: repeat left center/var(--starsize) var(--symbol);
+        }
+        .rating::-webkit-slider-runnable-track {
+          background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+          block-size: 100%;
+          mask: repeat left center/var(--starsize) var(--symbol);
+          -webkit-mask: repeat left center/var(--starsize) var(--symbol);
+        }
+        .rating::-moz-range-thumb {
+          height: var(--starsize);
+          opacity: 0;
+          width: var(--starsize);
+        }
+        .rating::-webkit-slider-thumb {
+          height: var(--starsize);
+          opacity: 0;
+          width: var(--starsize);
+          -webkit-appearance: none;
+        }
+        .rating, .rating-label {
+          display: block;
+          font-family: ui-sans-serif, system-ui, sans-serif;
+        }
+        .rating-label {
+          margin-block-end: 1rem;
+        }
+
       }
     }
   }
