@@ -3,11 +3,11 @@ const ReviewModel = require("../models/review.js");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/write-new", async (req, res) => {
   res.render("review/write-new");
 });
 
-router.post("/", async (req, res) => {
+router.post("/write-new", async (req, res) => {
   //const user = UsersModel.find(req.cookies.något med user)
   const newReview = new ReviewModel({
     restaurantId: req.body.restaurantId,
