@@ -62,7 +62,6 @@ router.post("/sign-up", async (req, res) => {
         username,
         password: hashPassword(password),
         displayName: username,
-        facebookId: Date.now(),
       });
       await newUser.save();
       res.redirect("/login");
@@ -92,7 +91,6 @@ router.get(
         const newUser = new UsersModel({
           googleId: req.user.id,
           displayName: req.user.displayName,
-          facebookId: Date.now(),
         });
         const result = await newUser.save();
         userData.id = result._id;
@@ -148,7 +146,6 @@ router.get(
         const newUser = new UsersModel({
           twitterId: req.user.id,
           displayName: req.user.displayName,
-          facebookId: Date.now(),
         });
         const result = await newUser.save();
         userData.id = result._id;
