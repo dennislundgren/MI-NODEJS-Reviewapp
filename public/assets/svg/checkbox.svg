@@ -1,0 +1,15 @@
+<svg id="Round_checkbox" data-name="Round checkbox" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="183.024" height="216.89" viewBox="0 0 183.024 216.89">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_3" data-name="Path 3" d="M-15.748-10.815,9.7,3.989,6.528,73.92,140.385,59.734,108.233,91.886-3.151,84.059Z" transform="translate(469.385 339.025) rotate(-45)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Unchecked" transform="translate(16.398 80.89)" fill="#fff" stroke="#838383" stroke-width="11">
+    <circle cx="62.5" cy="62.5" r="62.5" stroke="none"/>
+    <circle cx="62.5" cy="62.5" r="68" fill="none"/>
+  </g>
+  <circle id="ellipse--orange" data-name="Unchecked" cx="51.5" cy="51.5" r="0" transform="translate(27.398 91.89)" fill="#f4a172"/>
+  <g id="Mask_Group_1" data-name="Mask Group 1" transform="translate(-450.602 -232.11)" clip-path="url(#clip-path)">
+    <circle id="ellipse--white" data-name="Ellipse 1" cx="125.5" cy="125.5" r="0" transform="translate(406 250)" fill="#fff"/>
+  </g>
+</svg>
