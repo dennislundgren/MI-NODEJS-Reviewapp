@@ -46,6 +46,8 @@ app.use((req, res, next) => {
     const tokenData = jwt.decode(token, process.env.JWT_SECRET);
     res.locals.loggedIn = true;
     res.locals.displayName = tokenData.displayName;
+    res.locals.id = tokenData.id;
+    console.log(tokenData)
   } else {
     res.locals.loggedIn = false;
   }
