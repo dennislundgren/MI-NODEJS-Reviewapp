@@ -5,7 +5,12 @@ require("../passport");
 const express = require("express");
 const router = express.Router();
 const cookieParser = require("cookie-parser");
-const { UsersModel } = require(".././models/UsersModel");
+const {
+  UsersModel,
+  GooglesModel,
+  FacebooksModel,
+  TwittersModel,
+} = require(".././models/UsersModel");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const { hashPassword, comparePassword } = require(".././utils");
@@ -82,13 +87,13 @@ router.get(
     failureRedirect: "/",
   }),
   async (req, res) => {
-    UsersModel.findOne({ googleId: req.user.id }, async (err, user) => {
+    GooglesModel.findOne({ googleId: req.user.id }, async (err, user) => {
       const userData = { displayName: req.user.displayName };
 
       if (user) {
         userData.id = user._id;
       } else {
-        const newUser = new UsersModel({
+        const newUser = new GooglesModel({
           googleId: req.user.id,
           displayName: req.user.displayName,
         });
@@ -111,13 +116,13 @@ router.get(
   "/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/" }),
   async (req, res) => {
-    UsersModel.findOne({ facebookId: req.user.id }, async (err, user) => {
+    FacebooksModel.findOne({ facebookId: req.user.id }, async (err, user) => {
       const userData = { displayName: req.user.displayName };
 
       if (user) {
         userData.id = user._id;
       } else {
-        const newUser = new UsersModel({
+        const newUser = new FacebooksModel({
           facebookId: req.user.id,
           displayName: req.user.displayName,
         });
@@ -137,13 +142,13 @@ router.get(
   "/twitter/callback",
   passport.authenticate("twitter", { failureRedirect: "/" }),
   async (req, res) => {
-    UsersModel.findOne({ twitterId: req.user.id }, async (err, user) => {
+    TwittersModel.findOne({ twitterId: req.user.id }, async (err, user) => {
       const userData = { displayName: req.user.displayName };
 
       if (user) {
         userData.id = user._id;
       } else {
-        const newUser = new UsersModel({
+        const newUser = new TwittersModel({
           twitterId: req.user.id,
           displayName: req.user.displayName,
         });
