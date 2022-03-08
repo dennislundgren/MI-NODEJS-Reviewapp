@@ -8,7 +8,8 @@
 <form action="/search" method="POST" class="form">
 <input type="text" name="searchText" id="searchText" class="form__input">
 <label for="searchText" class="form__lable">Search for restaurants</label>
-<input type="submit" class="form__submit" value="Search">
+<label for="submitBtn" class="form__searchBtn"><i class="fa-solid fa-magnifying-glass"></i></label>
+<input type="submit" class="form__submit" value="Search" id="searchBtn" hidden>
 </form>
 </section>
 
@@ -22,8 +23,18 @@
 <div class="container container--restaurant">
 <div class="card">
 <span class="restaurant-icon restaurant-icon--restaurant" data-restaurant-icon="{{!-- {{<variabel> för restaurang ikon}} --}}"></span>
-<h4 class="title">{{!-- {{<variable> för restaurang titel}} --}}Bastard Burgers</h4>
-<span class="rating rating--restaurant" data-restaurant-rating="{{!-- {{<variabel> för restaurang rating}} --}}">RATING</span>
+<h5 class="title">{{!-- {{<variable> för restaurang titel}} --}}1. Bastard Burgers</h5>
+<span class="rating rating--restaurant" data-restaurant-rating="{{!-- {{<variabel> för restaurang rating}} --}}4.3"></span>
+</div>
+<div class="card">
+<span class="restaurant-icon restaurant-icon--restaurant" data-restaurant-icon="{{!-- {{<variabel> för restaurang ikon}} --}}"></span>
+<h5 class="title">{{!-- {{<variable> för restaurang titel}} --}}2. A.I Ramen</h5>
+<span class="rating rating--restaurant" data-restaurant-rating="{{!-- {{<variabel> för restaurang rating}} --}}3.8"></span>
+</div>
+<div class="card">
+<span class="restaurant-icon restaurant-icon--restaurant" data-restaurant-icon="{{!-- {{<variabel> för restaurang ikon}} --}}"></span>
+<h5 class="title">{{!-- {{<variable> för restaurang titel}} --}}3. Max</h5>
+<span class="rating rating--restaurant" data-restaurant-rating="{{!-- {{<variabel> för restaurang rating}} --}}2.3"></span>
 </div>
 </div>
 
@@ -40,12 +51,12 @@
 
 <div class="container container--review">
 <span class="restaurant-icon restaurant-icon--review" data-restaurant-icon="{{!-- {{<variabel> för restaurang ikon}} --}}"></span>
-<div>
-<h4 class="title">{{!-- {{<variable> för restaurang titel}} --}}Bastard Burgers</h4>
-<span class="rating rating--review">RATING</span>
+<div class="block">
+<h5 class="title">{{!-- {{<variable> för restaurang titel}} --}}Bastard Burgers</h5>
+<span class="rating rating--review" data-review-rating="{{!-- {{<variabel> för review rating}} --}}4"></span>
 <span class="faded-text">User</span>
 </div>
-<a href="/reviews/{{!-- {{<variabel> för id till review}} --}}" class="faded-text" title="Review Link"></a>
+<a href="/reviews/{{!-- {{<variabel> för id till review}} --}}" class="faded-text" title="Review Link">Read review &rt;</a>
 </div>
 
 {{!-- {{/each}} Ta bort kommentar när recensioner kan hämtas --}}
