@@ -1,27 +1,40 @@
-{{! restaurantBox partial }}
 <main class="review-page">
+{{>restaurant-info-box}}
+
+<h2>{{restaurant.name}}</h2>
 
   <form
     class="review-page__section review-page__section--form"
-    action="/reviews/edit/{{_id}}"
+    action="/reviews/edit/{{review._id}}"
     method="post"
   >
+    <div class="form__input">
+      <input
+      name="rating"
+      class="rating"
+      max="5"
+      oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
+      style="--value:{{review.rating}}"
+      type="range"
+      value="{{review.rating}}">
+    </div>
+
     <div class="form__input">
       <input
         class="form__input--text"
         type="text"
         name="title"
         id="title"
-        value="{{title}}"
+        value="{{review.title}}"
       />
     </div>
     <div class="form__input">
       <input
-        class="form__input--text"
+        class="form__input--textarea"
         type="text"
         name="description"
         id="description"
-        value="{{description}}"
+        value="{{review.description}}"
       />
     </div>
     <div class="form__input">
@@ -29,8 +42,6 @@
     </div>
   </form>
 
-  {{! Ändra till a-tagg och gör post till get i router }}
-  <form action="/reviews/delete/{{_id}}" method="post">
-    <input type="submit" value="Delete" />
-  </form>
+  <a class="form__input--btn" href="/reviews/delete/{{_id}}">Delete</a>
+{{>navbar}}
 </main>
