@@ -1,59 +1,59 @@
 <p style="position:fixed;top:0;left:0;">logged in as {{displayName}}</p>
 
 <main class="explore-page">
-  
-  {{!-- FORM FÖR SÖKNING AV RESTAURANGER --}}
 
-  <section class="container container--search">
-    <form action="/search" method="POST" class="form">
-      <input type="text" name="searchText" id="searchText" class="form__input">
-      <label for="searchText" class="form__lable">Search for restaurants</label>
-      <input type="submit" class="form__submit" value="Search">
-    </form>
-  </section>
-  
-  {{!-- VISA TOP 5 RESTAURANGER --}}
-  
-  <section class="wrapper wrapper--restaurants">
-    <h2 class="heading">Top 5 restaurants</h2>
-  
-    {{!-- {{#each <variabel>}} Ta bort kommentar när restauranger kan hämtas --}}
-  
-      <div class="container container--restaurant">
-        <div class="card">
-          <span class="restaurant-icon restaurant-icon--restaurant" data-restaurant-icon="{{!-- {{<variabel> för restaurang ikon}} --}}"></span>
-          <h4 class="title">{{!-- {{<variable> för restaurang titel}} --}}Bastard Burgers</h4>
-          <span class="rating rating--restaurant" data-restaurant-rating="{{!-- {{<variabel> för restaurang rating}} --}}">RATING</span>
-        </div>
-      </div>
-  
-    {{!-- {{/each}} Ta bort kommentar när restauranger kan hämtas --}}
-  
-  </section>
-  
-  {{!-- SENASTE RECENSIONERNA FRÅN ANDRA ANVÄNDARE --}}
-  
-  <section class="wrapper wrapper--reviews">
-    <h2 class="heading">Recent reviews</h2>
-  
-    {{!-- {{#each <variabel>}} Ta bort kommentar när recensioner kan hämtas --}}
-  
-      <div class="container container--review">
-        <span class="restaurant-icon restaurant-icon--review" data-restaurant-icon="{{!-- {{<variabel> för restaurang ikon}} --}}"></span>
-        <div>
-          <h4 class="title">{{!-- {{<variable> för restaurang titel}} --}}Bastard Burgers</h4>
-          <span class="rating rating--review">RATING</span>
-          <span class="faded-text">User</span>
-        </div>
-        <a href="/reviews/{{!-- {{<variabel> för id till review}} --}}" class="faded-text" title="Review Link"></a>
-      </div>
-  
-    {{!-- {{/each}} Ta bort kommentar när recensioner kan hämtas --}}
-  
-  </section>
+{{!-- FORM FÖR SÖKNING AV RESTAURANGER --}}
+
+<section class="container container--search">
+<form action="/search" method="POST" class="form">
+<input type="text" name="searchText" id="searchText" class="form__input">
+<label for="searchText" class="form__lable">Search for restaurants</label>
+<input type="submit" class="form__submit" value="Search">
+</form>
+</section>
+
+{{!-- VISA TOP 5 RESTAURANGER --}}
+
+<section class="wrapper wrapper--restaurants">
+<h2 class="heading">Top 5 restaurants</h2>
+
+{{!-- {{#each <variabel>}} Ta bort kommentar när restauranger kan hämtas --}}
+
+<div class="container container--restaurant">
+<div class="card">
+<span class="restaurant-icon restaurant-icon--restaurant" data-restaurant-icon="{{!-- {{<variabel> för restaurang ikon}} --}}"></span>
+<h4 class="title">{{!-- {{<variable> för restaurang titel}} --}}Bastard Burgers</h4>
+<span class="rating rating--restaurant" data-restaurant-rating="{{!-- {{<variabel> för restaurang rating}} --}}">RATING</span>
+</div>
+</div>
+
+{{!-- {{/each}} Ta bort kommentar när restauranger kan hämtas --}}
+
+</section>
+
+{{!-- SENASTE RECENSIONERNA FRÅN ANDRA ANVÄNDARE --}}
+
+<section class="wrapper wrapper--reviews">
+<h2 class="heading">Recent reviews</h2>
+
+{{!-- {{#each <variabel>}} Ta bort kommentar när recensioner kan hämtas --}}
+
+<div class="container container--review">
+<span class="restaurant-icon restaurant-icon--review" data-restaurant-icon="{{!-- {{<variabel> för restaurang ikon}} --}}"></span>
+<div>
+<h4 class="title">{{!-- {{<variable> för restaurang titel}} --}}Bastard Burgers</h4>
+<span class="rating rating--review">RATING</span>
+<span class="faded-text">User</span>
+</div>
+<a href="/reviews/{{!-- {{<variabel> för id till review}} --}}" class="faded-text" title="Review Link"></a>
+</div>
+
+{{!-- {{/each}} Ta bort kommentar när recensioner kan hämtas --}}
+
+</section>
 </main>
 
 <form action="/login/log-out" method="post">
-  <input type="submit" value="Log Out - temporärt här" style="position:fixed;top:0;right:0;"/>
+<input type="submit" value="Log Out - temporärt här" style="position:fixed;top:0;right:0;"/>
 </form>
 {{>navbar}}
