@@ -280,6 +280,142 @@ body {
   color: #504f4f;
 }
 
+.review-page {
+  --font-size: clamp(1.125rem, 2.25vw, 1.75rem);
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 100vh;
+}
+.review-page__section--form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.125rem;
+}
+.review-page__section--form .form__link a {
+  text-decoration: none;
+  color: gray;
+}
+.review-page__section--form .form__link--add {
+  display: inline-block;
+  text-align: center;
+  color: white;
+  width: 1.23rem;
+  height: 1.23rem;
+  border-radius: 50%;
+  background: #ECAB6F;
+}
+.review-page__section--form .form__input {
+  position: relative;
+}
+.review-page__section--form .form__input--text, .review-page__section--form .form__input--btn {
+  width: min(64vw, 350px);
+  height: 45px;
+  border-radius: 8px;
+  border: none;
+}
+.review-page__section--form .form__input--textarea {
+  width: min(64vw, 350px);
+  height: 145px;
+  border-radius: 8px;
+  border: none;
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.review-page__section--form .form__input--text, .review-page__section--form .form__input--textarea {
+  font-size: 1rem;
+  padding: 0.75rem;
+  font-weight: 300;
+  border: 1pt solid lightgray;
+}
+.review-page__section--form .form__input--select {
+  background: #ebe9e9;
+  border: 1pt solid lightgray;
+  border-radius: 8px;
+  padding: 0.75rem;
+  height: 45px;
+  width: 200px;
+}
+.review-page__section--form .form__input--btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease-out;
+  padding: calc(var(--font-size) * 0.5);
+  margin-top: 1.25rem;
+  background-color: #d96422;
+  color: white;
+  font-size: 1.125rem;
+  cursor: pointer;
+}
+.review-page__section--form .form__input a {
+  text-decoration: none;
+}
+.review-page__section--form .form__input a:hover, .review-page__section--form .form__input a:focus {
+  text-decoration: underline;
+}
+.review-page__section--form .form__input .rating {
+  --dir: right;
+  --fill: black;
+  --fillbg: rgba(100, 100, 100, 0.15);
+  --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
+  --stars: 5;
+  --starsize: 2.5rem;
+  --symbol: var(--star);
+  --value: 1;
+  --w: calc(var(--stars) * var(--starsize));
+  --x: calc(100% * (var(--value) / var(--stars)));
+  block-size: var(--starsize);
+  inline-size: var(--w);
+  position: relative;
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.review-page__section--form .form__input [dir=rtl] .rating {
+  --dir: left;
+}
+.review-page__section--form .form__input .rating::-moz-range-track {
+  background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+  block-size: 100%;
+  mask: repeat left center/var(--starsize) var(--symbol);
+}
+.review-page__section--form .form__input .rating::-webkit-slider-runnable-track {
+  background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+  block-size: 100%;
+  mask: repeat left center/var(--starsize) var(--symbol);
+  -webkit-mask: repeat left center/var(--starsize) var(--symbol);
+}
+.review-page__section--form .form__input .rating::-moz-range-thumb {
+  height: var(--starsize);
+  opacity: 0;
+  width: var(--starsize);
+}
+.review-page__section--form .form__input .rating::-webkit-slider-thumb {
+  height: var(--starsize);
+  opacity: 0;
+  width: var(--starsize);
+  -webkit-appearance: none;
+}
+.review-page__section--form .form__input .rating, .review-page__section--form .form__input .rating-label {
+  display: block;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+.review-page__section--form .form__input .rating-label {
+  -webkit-margin-after: 1rem;
+          margin-block-end: 1rem;
+}
+
 .explore-page {
   font-family: "noto-sans", sans-serif;
   font-weight: 400;
