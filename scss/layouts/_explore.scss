@@ -1,0 +1,139 @@
+////////////////////
+// IMPORTS & USE //
+//////////////////
+@use "../mixins";
+@use "../base/typography";
+///////////////////////
+// EXPLORE VARIABLE //
+/////////////////////
+$width: clamp(270px, 90%, 400px);
+$border: 1px solid #d9d4d4;
+$border-radius: 10px;
+$border-radius-round: 999px;
+$color-text-dim-1: #838383;
+$color-text-dim-2: #9f9f9f;
+//////////////////////////
+// EXPLORE-PAGE MIXINS //
+////////////////////////
+@mixin icon-small {
+  width: 4rem;
+  height: 4rem;
+  &::after {
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+}
+@mixin icon-big {
+  width: 6rem;
+  height: 6rem;
+  &::after {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+///////////////////////////
+// EXPLORE PAGE STYLING //
+/////////////////////////
+.explore-page {
+  @include typography.noto();
+  @include mixins.flex(column, unset, center, 3rem);
+
+  height: 100vh;
+
+  .wrapper {
+    @include mixins.flex(column, unset, center, 3rem);
+    width: 100%;
+    .heading {
+      @include typography.lust();
+    }
+    &--restaurants {
+    }
+    &--reviews {
+    }
+  }
+
+  .container {
+    width: $width;
+    .restaurant-icon {
+      @include mixins.flex(row, center, center);
+      background-color: #ecab6f;
+      border-radius: $border-radius-round;
+      &::after {
+        content: url(../assets/svg/american.svg);
+      }
+      &--restaurant {
+        // width: 6rem;
+        // height: 6rem;
+        // &::after {
+        //   width: 6rem;
+        //   height: 6rem;
+        // }
+        @include icon-big();
+      }
+      &--review {
+        @include icon-small();
+      }
+    }
+
+    .title {
+      @include typography.lust();
+    }
+
+    .rating {
+      &--restaurant {
+      }
+      &--review {
+      }
+    }
+
+    &--search {
+      margin-top: 5rem;
+      @include mixins.flex(row, center, center);
+      .form {
+        @include mixins.flex(row, center, center);
+        position: relative;
+        width: 100%;
+        &__input {
+          width: 100%;
+          height: 59px;
+          border: $border;
+          border-radius: $border-radius;
+        }
+
+        &__lable {
+          position: absolute;
+          color: $color-text-dim-1;
+        }
+
+        &__submit {
+          position: absolute;
+          left: 0;
+        }
+      }
+    }
+
+    &--restaurant {
+      .card {
+        @include mixins.flex(column, center, center, 0.5rem);
+        padding: 2rem;
+        width: fit-content;
+        flex-wrap: nowrap;
+        border: $border;
+        border-radius: $border-radius;
+      }
+    }
+
+    &--review {
+      border: $border;
+      border-radius: $border-radius;
+    }
+  }
+
+  .faded-text {
+  }
+
+  *::selection {
+    background-color: #504f4f;
+    color: white;
+  }
+}

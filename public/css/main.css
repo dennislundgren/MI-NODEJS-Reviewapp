@@ -416,6 +416,124 @@ body {
           margin-block-end: 1rem;
 }
 
+.explore-page {
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  align-items: center;
+  gap: 3rem;
+  height: 100vh;
+}
+.explore-page .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
+}
+.explore-page .wrapper .heading {
+  font-family: "lust", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.explore-page .container {
+  width: clamp(270px, 90%, 400px);
+}
+.explore-page .container .restaurant-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  background-color: #ecab6f;
+  border-radius: 999px;
+}
+.explore-page .container .restaurant-icon::after {
+  content: url(../assets/svg/american.svg);
+}
+.explore-page .container .restaurant-icon--restaurant {
+  width: 6rem;
+  height: 6rem;
+}
+.explore-page .container .restaurant-icon--restaurant::after {
+  height: 4rem;
+  width: 4rem;
+}
+.explore-page .container .restaurant-icon--review {
+  width: 4rem;
+  height: 4rem;
+}
+.explore-page .container .restaurant-icon--review::after {
+  height: 2.75rem;
+  width: 2.75rem;
+}
+.explore-page .container .title {
+  font-family: "lust", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.explore-page .container--search {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.explore-page .container--search .form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  width: 100%;
+}
+.explore-page .container--search .form__input {
+  width: 100%;
+  height: 59px;
+  border: 1px solid #d9d4d4;
+  border-radius: 10px;
+}
+.explore-page .container--search .form__lable {
+  position: absolute;
+  color: #838383;
+}
+.explore-page .container--search .form__submit {
+  position: absolute;
+  left: 0;
+}
+.explore-page .container--restaurant .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  flex-wrap: nowrap;
+  border: 1px solid #d9d4d4;
+  border-radius: 10px;
+}
+.explore-page .container--review {
+  border: 1px solid #d9d4d4;
+  border-radius: 10px;
+}
+.explore-page *::-moz-selection {
+  background-color: #504f4f;
+  color: white;
+}
+.explore-page *::selection {
+  background-color: #504f4f;
+  color: white;
+}
+
 .navbar {
   height: 100px;
   display: flex;
