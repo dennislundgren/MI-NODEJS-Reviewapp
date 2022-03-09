@@ -1,26 +1,15 @@
 //////////////
 // IMPORTS //
 ////////////
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 ///////////////////////
 // MODELS & SCHEMAS //
 /////////////////////
-const filter = {
-  type: String,
-  require: true,
-  index: true,
-  unique: true,
-  sparse: true,
-};
-const usersSchema = new mongoose.Schema({
-  username: filter,
-  password: filter,
-  displayName: filter,
-  facebookId: filter,
-  googleId: filter,
-  twitterId: filter,
-});
-const UsersModel = mongoose.model("Users", usersSchema);
+const usersSchema = new Schema(
+  { displayName: { type: String, required: true } },
+  { strict: false }
+);
+const UsersModel = model("Users", usersSchema);
 //////////////
 // EXPORTS //
 ////////////
