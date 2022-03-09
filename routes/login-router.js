@@ -68,10 +68,6 @@ router.post("/sign-up", async (req, res) => {
     }
   });
 }); // Sign up POST
-router.post("/log-out", async (req, res) => {
-  res.cookie("token", "", { maxAge: 0 });
-  res.redirect("/");
-}); // Log out
 router.get(
   "/google",
   passport.authenticate("google", { scope: ["email", "profile"] })

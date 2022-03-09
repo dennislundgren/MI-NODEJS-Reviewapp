@@ -1,0 +1,158 @@
+////////////////////
+// IMPORTS & USE //
+//////////////////
+@use "../mixins";
+@use "../base/typography";
+////////////////////////
+// PROFILE VARIABLES //
+//////////////////////
+$width: clamp(270px, 90%, 400px);
+$border: 1px solid #d9d4d4;
+$border-radius: 10px;
+$border-radius-round: 999px;
+$color-text-dim-1: #838383;
+$color-text-dim-2: #9f9f9f;
+$color-background-bright: #fbfbfb;
+$transition: all 0.2s ease-out;
+/////////////////////
+// PROFILE MIXINS //
+///////////////////
+@mixin icon-small {
+  width: 3.75rem;
+  height: 3.75rem;
+  &::after {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
+@mixin icon-big {
+  width: 8rem;
+  height: 8rem;
+  &::after {
+    height: 5.5rem;
+    width: 5.5rem;
+  }
+}
+///////////////////////
+// PROFILE STYLING  //
+/////////////////////
+.profile-page {
+  @include typography.noto();
+
+  height: 100vh;
+
+  .wrapper {
+    // @include mixins.flex(column, center, center);
+    // Wrapper modifier
+    &--header {
+      @include mixins.flex(row, space-between, center);
+      background-color: $color-background-bright;
+      border-bottom: $border;
+      height: 150px;
+    }
+    // Wrapper modifier
+    &--menu {
+      @include mixins.flex(row, space-evenly, center);
+      border-bottom: $border;
+      height: 80px;
+    }
+    // Wrapper modifier
+    &--reviews {
+      @include mixins.flex(column, center, center, 1rem);
+    }
+    // Wrapper modifier
+    &--restaurants {
+      @include mixins.flex(column, center, center, 1rem);
+    }
+    // Wrapper modifier
+    &--settings {
+    }
+
+    .container {
+      // Container modifier
+      &--header {
+        @include mixins.flex(column, flex-start, center);
+      }
+      // Container modifier
+      &--menu {
+      }
+      // Container modifier
+      &--review {
+      }
+      // Container modifier
+      &--restaurant {
+      }
+      // Container modifier
+      &--settings {
+      }
+
+      .profile-picture {
+      }
+
+      .username {
+      }
+
+      .reviews-amount {
+        &--header {
+        }
+        &--restaurant {
+        }
+      }
+
+      .rating {
+        &--header {
+        }
+        &--review {
+        }
+        &--restaurant {
+        }
+      }
+
+      .restaurant-icon {
+        &--review {
+        }
+        &--restaurant {
+        }
+      }
+
+      .restaurant-title {
+        &--review {
+        }
+        &--restaurant {
+        }
+      }
+
+      .edit {
+        &--review {
+        }
+        &--restaurant {
+        }
+      }
+
+      .review-title {
+      }
+
+      .description {
+      }
+
+      .date {
+      }
+
+      .dropdown {
+      }
+
+      .address {
+      }
+
+      .account-button {
+        &--log-out {
+        }
+        &--delete {
+        }
+      }
+    }
+
+    .faded-text {
+    }
+  }
+}

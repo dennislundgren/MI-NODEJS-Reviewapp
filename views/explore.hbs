@@ -1,16 +1,15 @@
-<p style="position:fixed;top:0;left:0;">logged in as {{displayName}} {{id}}</p>
-
+<a href="/profile/{{id}}">Profile</a>
 <main class="explore-page">
 
 {{!-- FORM FÖR SÖKNING AV RESTAURANGER --}}
 
 <section class="container container--search">
-<form action="/search" method="POST" class="form">
-<input type="text" name="searchText" id="searchText" class="form__input">
-<label for="searchText" class="form__lable">Search for restaurants</label>
-<label for="submitBtn" class="form__searchBtn"><i class="fa-solid fa-magnifying-glass"></i></label>
-<input type="submit" class="form__submit" value="Search" id="searchBtn" hidden>
-</form>
+    <form action="/search" method="POST" class="form">
+        <input type="text" name="searchText" id="searchText" class="form__input">
+        <label for="searchText" class="form__lable">Search for restaurants</label>
+        <label for="submitBtn" class="form__searchBtn"><i class="fa-solid fa-magnifying-glass"></i></label>
+        <input type="submit" class="form__submit" value="Search" id="searchBtn" hidden>
+    </form>
 </section>
 
 {{!-- VISA TOP 5 RESTAURANGER --}}
@@ -83,7 +82,3 @@
 
 </section>
 </main>
-
-<form action="/login/log-out" method="post">
-<input type="submit" value="Log Out - temporärt här" style="position:fixed;top:0;right:0;"/>
-</form>

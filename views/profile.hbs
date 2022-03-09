@@ -1,0 +1,108 @@
+<main class="profile-page">
+
+  {{! HEADER FÖR PROFILLAYOUT }}
+
+  <section class="wrapper wrapper--header">
+    <div class="container container--header">
+      <img src="" alt="Glad gubbe" class="profile-picture" />
+    </div>
+    <div class="container container--header">
+      <span class="username">{{displayName}}</span>
+      <span class="reviews-amount reviews-amount--header">1239 reviews</span>
+      <span class="rating rating--header">Average rating: 2.6
+        {{!-- {{<variabel>}} för average rating, matten görs i route --}}</span>
+    </div>
+  </section>
+
+  {{! MENYBAR FÖR PROFILLAYOUT, SETTINGS VISAS ENDAST IFALL INLOGGAD }}
+
+  <section class="wrapper wrapper--menu">
+    <a href="/profile/{{id}}/reviews" title="Reviews" class="faded-text">My
+      Reviews</a>
+    <a
+      href="/profile/{{id}}/restaurants"
+      title="Restaurants"
+      class="faded-text"
+    >My Restaurants</a>
+    <a href="/profile/settings" title="Settings" class="faded-text">Settings</a>
+  </section>
+
+  {{! REVIEWS }}
+
+  <section class="wrapper wrapper--reviews">
+    <div class="container container--review">
+      <span class="restaurant-icon restaurant-icon--review">ICON</span>
+      <span class="restaurant-title restaurant-title--review">Bastard burgers</span>
+      <span class="edit edit--review">PENNA</span>
+      <span class="review-title">Supergoda hamburgare!</span>
+      <span class="rating rating--review" data-review-rating="4"></span>
+      <span class="description">
+        Detta var dom bästa hamburgarna jag någonsin ätit. Ska äta här varje
+        dag!
+      </span>
+      <span class="date">9 mars 2022</span>
+      <span class="dropdown">PIL</span>
+    </div>
+    <div class="container container--review">
+      <span class="restaurant-icon restaurant-icon--review">ICON</span>
+      <span class="restaurant-title restaurant-title--review">Bastard burgers</span>
+      <span class="edit edit--review">PENNA</span>
+      <span class="review-title">Supergoda hamburgare!</span>
+      <span class="rating rating--review" data-review-rating="4"></span>
+      <span class="description">
+        Detta var dom bästa hamburgarna jag någonsin ätit. Ska äta här varje
+        dag!
+      </span>
+      <span class="date">9 mars 2022</span>
+      <span class="dropdown">PIL</span>
+    </div>
+  </section>
+
+  {{! RESTAURANTS }}
+
+  <section class="wrapper wrapper--restaurants">
+    <div class="container container--restaurant">
+      <span class="restaurant-icon restaurant-icon--restaurant"></span>
+      <span class="edit edit--restaurant"></span>
+      <span class="restaurant-title restaurant-title--restaurant"></span>
+      <span
+        class="rating rating--restaurant"
+        data-restaurant-rating="2.3"
+      ></span>
+      <span class="reviews-amount reviews-amount--restaurant"></span>
+      <span class="address"></span>
+    </div>
+    <div class="container container--restaurant">
+      <span class="restaurant-icon restaurant-icon--restaurant"></span>
+      <span class="edit edit--restaurant"></span>
+      <span class="restaurant-title restaurant-title--restaurant"></span>
+      <span
+        class="rating rating--restaurant"
+        data-restaurant-rating="2.3"
+      ></span>
+      <span class="reviews-amount reviews-amount--restaurant"></span>
+      <span class="address"></span>
+    </div>
+  </section>
+
+  {{! SETTINGS }}
+
+  <section class="wrapper wrapper--settings">
+    <div class="container container--settings">
+      <a
+        href="/profile/log-out"
+        class="account-button account-button--log-out"
+      ></a>
+      <a
+        href="/profile/delete"
+        class="account-button account-button--delete"
+      ></a>
+    </div>
+    <div class="container">
+      <span class="faded-text"></span>
+      <span class="faded-text"></span>
+      <span class="faded-text"></span>
+    </div>
+  </section>
+
+</main>

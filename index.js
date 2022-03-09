@@ -9,6 +9,7 @@ const exphbs = require("express-handlebars");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const loginRouter = require("./routes/login-router");
+const profileRouter = require("./routes/profile-router");
 const session = require("express-session");
 ////////////////
 // APP SETUP //
@@ -56,6 +57,7 @@ app.use((req, res, next) => {
 // ROUTES //
 ///////////
 app.use("/login", loginRouter);
+app.use("/profile", profileRouter);
 app.use("/reviews", require("./routes/review-router"));
 app.use("/restaurants", require("./routes/restaurant-router.js"));
 app.get("/", (req, res) => {

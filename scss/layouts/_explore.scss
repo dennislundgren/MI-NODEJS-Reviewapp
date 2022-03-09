@@ -6,7 +6,7 @@
 ///////////////////////
 // EXPLORE VARIABLE //
 /////////////////////
-$width: clamp(270px, 90%, 400px);
+$width: clamp(270px, 90%, 450px);
 $border: 1px solid #d9d4d4;
 $border-radius: 10px;
 $border-radius-round: 999px;
@@ -129,7 +129,7 @@ $transition: all 0.2s ease-out;
     // Container modifiers
     &--restaurant {
       @include mixins.flex(row, flex-start, center, 1rem);
-      width: min(100%, 400px);
+      width: min(100%, 450px);
       padding-top: 3.5rem;
       margin-top: -3.5rem;
 
@@ -148,12 +148,12 @@ $transition: all 0.2s ease-out;
         border-radius: $border-radius;
         transition: $transition;
         &:first-child {
-          @media screen and (max-width: 400px) {
+          @media screen and (max-width: 450px) {
             margin-left: 5%;
           }
         }
         &:last-child {
-          @media screen and (max-width: 400px) {
+          @media screen and (max-width: 450px) {
             margin-right: 5%;
           }
         }

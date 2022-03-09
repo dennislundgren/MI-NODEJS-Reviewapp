@@ -448,7 +448,7 @@ body::-webkit-scrollbar {
   gap: 1rem;
 }
 .explore-page .container {
-  width: clamp(270px, 90%, 400px);
+  width: clamp(270px, 90%, 450px);
 }
 .explore-page .container .restaurant-icon {
   display: flex;
@@ -533,7 +533,7 @@ body::-webkit-scrollbar {
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
-  width: min(100%, 400px);
+  width: min(100%, 450px);
   padding-top: 3.5rem;
   margin-top: -3.5rem;
   overflow-x: scroll;
@@ -556,12 +556,12 @@ body::-webkit-scrollbar {
   border-radius: 10px;
   transition: all 0.2s ease-out;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .explore-page .container--restaurant .card:first-child {
     margin-left: 5%;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .explore-page .container--restaurant .card:last-child {
     margin-right: 5%;
   }
@@ -596,6 +596,52 @@ body::-webkit-scrollbar {
   color: white;
 }
 
+.profile-page {
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  height: 100vh;
+}
+.profile-page .wrapper--header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  background-color: #fbfbfb;
+  border-bottom: 1px solid #d9d4d4;
+  height: 150px;
+}
+.profile-page .wrapper--menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid #d9d4d4;
+  height: 80px;
+}
+.profile-page .wrapper--reviews {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.profile-page .wrapper--restaurants {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.profile-page .wrapper .container--header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0;
+}
 .navbar {
   height: 100px;
   display: flex;

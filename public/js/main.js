@@ -24,6 +24,7 @@ function getRating(entity, type) {
     }
   }
 }
+
 getRating(restaurantRating, "restaurant");
 getRating(reviewRating, "review");
 
