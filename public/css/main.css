@@ -333,7 +333,7 @@ body::-webkit-scrollbar {
 }
 .review-page__section--form .form__input--textarea {
   width: min(64vw, 350px);
-  height: 145px;
+  height: 125px;
   border-radius: 8px;
   border: none;
   font-family: "noto-sans", sans-serif;

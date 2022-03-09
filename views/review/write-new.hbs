@@ -5,7 +5,9 @@
 <form class="review-page__section review-page__section--form" action="/reviews/write-new" method="post">
   <div class="form__input"> 
   <select class="form__input--select" name="restaurantId" id="restaurant">
+  
     <option value="" disabled selected>Choose restaurant</option>
+   
     {{#each restaurants}}
     <option value="{{_id}}">{{name}}</option>
     {{/each}}

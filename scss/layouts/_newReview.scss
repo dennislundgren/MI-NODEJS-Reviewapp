@@ -43,9 +43,9 @@ $transition: all 0.2s ease-out;
       width: 90%
     }
 
-    ////////////////////
-    //HEADING SECTION//
-    //////////////////
+    /////////////////
+    //FORM SECTION//
+    ///////////////
     &--form {
       @include mixins.flex(column, center, center, 1.125rem);
       .form__link{
@@ -72,7 +72,7 @@ $transition: all 0.2s ease-out;
           @include field-layout(45px, $border-radius);
         }
         &--textarea{
-          @include field-layout(145px, $border-radius);
+          @include field-layout(125px, $border-radius);
           @include typography.noto();
           resize: none;
         }

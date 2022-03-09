@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/write-new", async (req, res) => {
   if (res.locals.loggedIn) {
     const restaurants = await RestaurantModel.find().lean();
-    
+
     res.render("review/write-new", { restaurants });
   } else {
     res.redirect("/login");
