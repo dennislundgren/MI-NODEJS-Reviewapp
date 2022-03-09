@@ -8,8 +8,8 @@
 @import "partials/navbar";
 @import "partials/restaurant-info-box";
 
-@import "restaurants/view";
-@import "restaurants/register";
+@import "./restaurants/view";
+@import "./restaurants/register";
 // Kolla i typography för en font mixin
 // body {
 //    font-family: "Pt Sans", sans-serif;

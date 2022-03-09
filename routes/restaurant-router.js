@@ -22,6 +22,11 @@ router.get("/:id", async (req, res) => {
     let reviews = await ReviewModel.find({restairantId: req.params.id})
     reviews = [1,2,3]
     console.log(restaurant)
+    console.log(res.locals)
+
+    let isMine = false;
+    if (res.locals.id)
+
     res.render("restaurants/view", {
         restaurant,
         reviews
@@ -69,7 +74,7 @@ router.post("/register", async (req,res) => {
     } catch (err) {
         console.log(err.code, err.message)
     }
-    res.redirect(`/restaurants/${newRestaurant._id}?restaurant=${newRestaurant.userId}`)
+    res.redirect(`/reviews/write-new?restaurant=${newRestaurant._id}`)
 })
 
 module.exports = router
