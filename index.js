@@ -47,7 +47,6 @@ app.use((req, res, next) => {
     res.locals.loggedIn = true;
     res.locals.displayName = tokenData.displayName;
     res.locals.id = tokenData.id;
-    console.log(tokenData)
   } else {
     res.locals.loggedIn = false;
   }
@@ -61,7 +60,7 @@ app.use("/reviews", require("./routes/review-router"));
 app.use("/restaurants", require("./routes/restaurant-router.js"));
 app.get("/", (req, res) => {
   if (res.locals.loggedIn) {
-    res.render("home");
+    res.render("explore");
   } else {
     res.redirect("/login");
   }
