@@ -1,26 +1,18 @@
 <main class="register-restaurant">
-    <form action="/restaurants/register" method="post">
-        <p>Register Restaurant</p>
-        <label>Restaurant Name:</label>
+    <form class="register-form" action="/restaurants/register" method="post">
+        <p class="title">Register New Restaurant</p>
+        <label>Name</label>
         <input type="text" placeholder="Name" name="name"><br>
-        <label>Restaurant Address:</label>
+        <label>Address</label>
         <input type="text" placeholder="Address" name="address"><br>
-        <label>Rating:</label>
-        <select name="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select><br>
-        <label>Kitchen:</label>
+        <label>Choose Kitchen</label>
         <select name="kitchenType">
             <option value="american">American</option>
             <option value="chinese">Chinese</option>
             <option value="italian">Italian</option>
             <option value="japanese">Japanese</option>
             <option value="other">Other</option>
-        </select>
+        </select><br>
         <input type="submit">
 
     </form>

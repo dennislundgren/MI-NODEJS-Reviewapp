@@ -1,5 +1,7 @@
 {{#if loggedIn}}
   <p>logged in as {{displayName}}</p>
+  <a href="/restaurants">restaurants</a>
+  <a href="/restaurants/register">restaurants register</a>
   <form action="/login/log-out" method="post">
     <input type="submit" value="Log Out" />
   </form>
