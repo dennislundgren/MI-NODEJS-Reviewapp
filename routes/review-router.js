@@ -1,6 +1,7 @@
 const express = require("express");
 const ReviewModel = require("../models/review.js");
 const RestaurantModel = require("../models/restaurant.js");
+const { validateReview } = require(".././utils");
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get("/write-new", async (req, res) => {
 });
 
 router.post("/write-new/:id", async (req, res) => {
-  const id = req.params.id;
+  const id = req.params.id; //Här är req.params.id = inloggad användare
   const newReview = new ReviewModel({
     restaurantId: req.body.restaurantId,
     userId: id,
@@ -31,16 +32,21 @@ router.post("/write-new/:id", async (req, res) => {
 
 router.get("/edit/:id", async (req, res, next) => {
   let review = undefined;
-  let restaurant = undefined;
-  try {
-    review = await ReviewModel.findById(req.params.id).lean();
-    restaurant = await RestaurantModel.findById(review.restaurantId).lean();
-  } catch (error) {
-    console.log(error.message);
-    next(); //Fixa allmän error sida
-  }
 
-  res.render("review/review-edit", { review, restaurant });
+  try {
+    //Kollar om det finns en review med det id:t
+    review = await ReviewModel.findById(req.params.id).lean();
+  } catch{
+    res.sendStatus(404)
+    //Skriva in ett errormeddelande istället
+  }
+  
+  if (res.locals.id == review.userId) {
+    let restaurant = await RestaurantModel.findById(review.restaurantId).lean();
+    res.render("review/review-edit", { review, restaurant });
+  }else{
+    res.sendStatus(401)
+  }
 });
 
 router.post("/edit/:id", async (req, res, next) => {
@@ -51,7 +57,7 @@ router.post("/edit/:id", async (req, res, next) => {
   review.rating = req.body.rating;
 
   await review.save();
-  res.redirect("/")
+  res.redirect("/");
 });
 
 module.exports = router;
