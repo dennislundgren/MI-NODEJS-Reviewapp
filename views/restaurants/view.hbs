@@ -16,5 +16,31 @@
             <i class="fa fa-close"></i>
         </div>
     </div>
-
+    <div class="reviews-wrapper">
+        {{#each reviews}}
+        <div class="review">
+            <div class="top-bottom-container">
+                <span>{{title}}</span>
+                <div>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div>
+            <div class="text-container">
+                <span>TEXT</span>
+            </div>
+            <div class="top-bottom-container">
+                <span class="timestamp">09 March 2022</span>
+                <i class="fa fa-chevron-down"></i>
+            </div>
+            <span class="username">{{userId.username}}</span>
+            <a href="/reviews/edit"><i class="fa fa-pencil pen"></i></a>
+        </div>
+        {{/each}}
+        
+    </div>
 </main>
+{{>navbar}}

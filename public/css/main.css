@@ -602,6 +602,7 @@ body::-webkit-scrollbar {
   position: fixed;
   bottom: 0;
   width: 100%;
+  background-color: white;
 }
 .navbar__button {
   display: flex;
@@ -648,7 +649,6 @@ body::-webkit-scrollbar {
   gap: 20px;
 }
 .restaurant-info-box .name-type-container .sphere {
-  margin: 0 0 0 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -676,10 +676,112 @@ body::-webkit-scrollbar {
   flex-direction: column;
   padding: 50px 20px;
   gap: 20px;
+  margin: 0 0 70px;
 }
 .restaurants-view .filter-container {
   align-self: center;
   font-size: 2.3em;
   display: flex;
   gap: 40px;
+}
+.restaurants-view .reviews-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.restaurants-view .review {
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #c8c8c8;
+}
+.restaurants-view .review .top-bottom-container {
+  display: flex;
+}
+.restaurants-view .review .top-bottom-container span {
+  flex-grow: 1;
+}
+.restaurants-view .review .text-container {
+  margin: 10px 0;
+}
+.restaurants-view .review .username {
+  position: absolute;
+  top: 0;
+  transform: translate(0, -50%);
+  stroke: white 2px;
+  background-color: white;
+  font-size: 1.5em;
+  padding: 0 10px;
+}
+.restaurants-view .review .pen {
+  background-color: white;
+  padding: 0 10px;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  transform: translate(0, -50%);
+}
+
+.register-restaurant {
+  margin: 30px 0 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.register-restaurant .register-form {
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.register-restaurant .register-form .title {
+  align-self: center;
+}
+.register-restaurant .register-form div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.register-restaurant .register-form .radio-container {
+  display: flex;
+  flex-direction: row;
+}
+.register-restaurant .register-form input[type=text] {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #c7c7c7;
+}
+.register-restaurant .register-form input[type=submit] {
+  background-color: #D96422;
+  padding: 10px;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  width: 50%;
+  align-self: center;
+}
+.register-restaurant .register-form .radio-container input[type=radio] {
+  display: none;
+}
+.register-restaurant .register-form .radio-container input[type=radio]:checked + label {
+  background-color: #D96422;
+  transform: scale(1.1);
+}
+.register-restaurant .register-form .radio-container label {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  background-color: #ECAB6F;
+  transition: all 0.2s;
+}
+.register-restaurant .register-form .radio-container label:hover {
+  background-color: #D96422;
+}
+.register-restaurant .title {
+  font-size: 2em;
 }
