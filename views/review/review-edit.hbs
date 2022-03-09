@@ -1,5 +1,7 @@
 <main class="review-page">
+  <div class="review-page__section review-page__section--restaurant">
 {{>restaurant-info-box}}
+  </div>
 
   <form
     class="review-page__section review-page__section--form"
@@ -28,18 +30,18 @@
       />
     </div>
     <div class="form__input">
-      <input
+      <textarea
         class="form__input--textarea"
         type="text"
         name="description"
         id="description"
         value="{{review.description}}"
-      />
+      >{{review.description}}</textarea>
     </div>
     <div class="form__input">
       <input class="form__input--btn" type="submit" value="Save" />
 
-      <a class="form__input--btn delete-btn" href="/reviews/delete/{{_id}}">Delete</a>
+      <a class="form__input--btn delete-btn" href="/reviews/edit/{{review._id}}/remove">Delete</a>
     </div>
     
   </form>
