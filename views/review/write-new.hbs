@@ -2,24 +2,26 @@
 
   <h2 class="review-page__section review-page__section--heading">Write new review</h2>
 
-
-<form class="review-page__section review-page__section--form" action="/reviews/write-new" method="post">
+<form class="review-page__section review-page__section--form" action="/reviews/write-new/{{id}}" method="post">
   <div class="form__input"> 
   <select class="form__input--select" name="restaurantId" id="restaurant">
     <option value="" disabled selected>Choose restaurant</option>
-    {{!-- {{#each }} --}}
-    <option value="restaurant">One restaurant</option>
-    {{!-- {{/each}} --}}
+    {{#each restaurants}}
+    <option value="{{_id}}">{{name}}</option>
+    {{/each}}
   </select>
   </div>
 
   <div class="form__link">
-    <a href="/restaurants/add">Add new restaurant <span class="form__link--add">+</span></a>
+    <a href="/restaurants/register">Add new restaurant <span class="form__link--add">+</span></a>
   </div>
 
+  {{!-- https://dev.to/madsstoumann/star-rating-using-a-single-input-i0l --}}
   <div class="form__input">
     <input
+    name="rating"
     class="rating"
+    min="1"
     max="5"
     oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
     style="--value:1"
