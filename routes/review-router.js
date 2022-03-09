@@ -27,25 +27,30 @@ router.post("/write-new/:id", async (req, res) => {
   });
 
   await newReview.save();
-  res.redirect("/reviews"); //Välj rätt senare
+  res.redirect("/"); //Välj rätt senare
 });
 
 router.get("/edit/:id", async (req, res, next) => {
-  let review = undefined;
+  if (res.locals.loggedIn) {
+    let review = undefined;
+    try {
+      //Kollar om det finns en review med det id:t
+      review = await ReviewModel.findById(req.params.id).lean();
+    } catch {
+      res.sendStatus(404);
+      //Skriva in ett errormeddelande istället
+    }
 
-  try {
-    //Kollar om det finns en review med det id:t
-    review = await ReviewModel.findById(req.params.id).lean();
-  } catch{
-    res.sendStatus(404)
-    //Skriva in ett errormeddelande istället
-  }
-  
-  if (res.locals.id == review.userId) {
-    let restaurant = await RestaurantModel.findById(review.restaurantId).lean();
-    res.render("review/review-edit", { review, restaurant });
-  }else{
-    res.sendStatus(401)
+    if (res.locals.id == review.userId) {
+      let restaurant = await RestaurantModel.findById(
+        review.restaurantId
+      ).lean();
+      res.render("review/review-edit", { review, restaurant });
+    } else {
+      res.sendStatus(401);
+    }
+  } else {
+    res.redirect("/login");
   }
 });
 
