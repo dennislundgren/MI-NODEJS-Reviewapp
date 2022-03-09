@@ -1,20 +1,34 @@
 <main class="register-restaurant">
-    <form class="register-form" action="/restaurants/register" method="post">
+    <form class="register-form" action="/restaurants/register" method="post" autocomplete="off">
         <p class="title">Register New Restaurant</p>
-        <label>Name</label>
-        <input type="text" placeholder="Name" name="name"><br>
-        <label>Address</label>
-        <input type="text" placeholder="Address" name="address"><br>
-        <label>Choose Kitchen</label>
-        <select name="kitchenType">
-            <option value="american">American</option>
-            <option value="chinese">Chinese</option>
-            <option value="italian">Italian</option>
-            <option value="japanese">Japanese</option>
-            <option value="other">Other</option>
-        </select><br>
-        <input type="submit">
+        <div>
+            <label>Name</label>
+            <input type="text" placeholder="Restaurant Name" name="name">
+        </div>
+        <div>
+            <label>Address</label>
+            <input type="text" placeholder="Placeholder Street 123" name="address">
+        </div>
+        <div>
+            <label>Choose Kitchen</label>
+            <div class="radio-container">
+                <input type="radio" name="kitchenType" id="rAmerican" value="american" placeholder="American">
+                <label for="rAmerican" class="type-icon">American</label>
 
+                <input type="radio" name="kitchenType" id="rChinese" value="chinese">
+                <label for="rChinese" class="type-icon">Chinese</label>
+
+                <input type="radio" name="kitchenType" id="rJapanese" value="japanese">
+                <label for="rJapanese" class="type-icon">Japanese</label>
+
+                <input type="radio" name="kitchenType" id="rItalian" value="italian">
+                <label for="rItalian" class="type-icon">Italian</label>
+
+                <input type="radio" name="kitchenType" id="rOther" value="other">
+                <label for="rOther" class="type-icon">Other</label>
+            </div>
+        </div>
+        <input type="submit" value="Register">
     </form>
 </main>
 {{>navbar}}

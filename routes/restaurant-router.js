@@ -19,10 +19,12 @@ router.get("/:id", async (req, res) => {
         res.redirect("/login")
     const restaurant = await RestaurantModel.findOne({_id: req.params.id}).lean()
     // const reviews = await ReviewModel.find({restaurantId: restaurant._id});
-    const reviews = await ReviewModel.find({restairantId: req.params.id})
+    let reviews = await ReviewModel.find({restairantId: req.params.id})
+    reviews = [1,2,3]
     console.log(restaurant)
     res.render("restaurants/view", {
-        restaurant
+        restaurant,
+        reviews
     })
 
 
@@ -67,7 +69,7 @@ router.post("/register", async (req,res) => {
     } catch (err) {
         console.log(err.code, err.message)
     }
-    res.redirect(`/restaurants/${newRestaurant._id}`)
+    res.redirect(`/restaurants/${newRestaurant._id}?restaurant=${newRestaurant.userId}`)
 })
 
 module.exports = router
