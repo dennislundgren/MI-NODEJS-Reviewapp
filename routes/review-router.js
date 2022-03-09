@@ -8,39 +8,45 @@ const router = express.Router();
 router.get("/write-new", async (req, res) => {
   if (res.locals.loggedIn) {
     const restaurants = await RestaurantModel.find().lean();
-    console.log(restaurants);
+    
     res.render("review/write-new", { restaurants });
   } else {
     res.redirect("/login");
   }
 });
 
-router.post("/write-new/:id", async (req, res) => {
-  const id = req.params.id; //Här är req.params.id = inloggad användare
+router.post("/write-new", async (req, res) => {
+  
   const newReview = new ReviewModel({
     restaurantId: req.body.restaurantId,
-    userId: id,
+    userId: res.locals.id,
     title: req.body.title,
     rating: req.body.rating,
-    date: Date.now(),
     description: req.body.description,
+    date: Date.now(),
   });
 
-  await newReview.save();
-  res.redirect("/"); //Välj rätt senare
+  // if(validateReview(newReview)){
+    await newReview.save();
+    res.redirect("/"); //Välj rätt senare
+  // }else{
+  //   const restaurants = await RestaurantModel.find().lean();
+  //   res.render("review/write-new", {
+  //     error: "Make sure to enter valid data!",
+  //     restaurants
+  //   })
+  // }
 });
 
 router.get("/edit/:id", async (req, res) => {
   if (res.locals.loggedIn) {
     let review = undefined;
     try {
-      //Kollar om det finns en review med det id:t
       review = await ReviewModel.findById(req.params.id).lean();
     } catch {
       res.sendStatus(404);
-      //Skriva in ett errormeddelande istället
     }
-
+  
     if (res.locals.id == review.userId) {
       let restaurant = await RestaurantModel.findById(
         review.restaurantId

@@ -1,5 +1,8 @@
+@use "../base/typography";
+
 .navbar {
-    height: 100px;
+    @include typography.noto();
+    height: 80px;
     display: flex;
     position: fixed;
     bottom: 0;
@@ -30,7 +33,11 @@
         }
 
         i {
-            font-size: 2em;
+            font-size: 1.3em;
+        }
+
+        span{
+            font-size: 0.9em;
         }
     }
 }
