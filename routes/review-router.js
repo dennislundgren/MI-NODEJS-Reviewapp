@@ -30,7 +30,7 @@ router.post("/write-new/:id", async (req, res) => {
   res.redirect("/"); //Välj rätt senare
 });
 
-router.get("/edit/:id", async (req, res, next) => {
+router.get("/edit/:id", async (req, res) => {
   if (res.locals.loggedIn) {
     let review = undefined;
     try {
@@ -54,7 +54,7 @@ router.get("/edit/:id", async (req, res, next) => {
   }
 });
 
-router.post("/edit/:id", async (req, res, next) => {
+router.post("/edit/:id", async (req, res) => {
   const review = await ReviewModel.findById(req.params.id);
 
   review.title = req.body.title;
@@ -64,5 +64,27 @@ router.post("/edit/:id", async (req, res, next) => {
   await review.save();
   res.redirect("/");
 });
+
+router.get("/edit/:id/remove", async (req,res) => {
+  if (res.locals.loggedIn){
+    let review = undefined;
+
+    try {
+      review = await ReviewModel.findById(req.params.id).lean();
+    } catch {
+      res.sendStatus(404);
+    }
+
+    if(res.locals.id == review.userId){
+      await ReviewModel.findByIdAndDelete(req.params.id);
+      res.redirect("/")
+    }else {
+      res.sendStatus(401);
+    }
+    
+  }else{
+    res.redirect("/login")
+  }
+})
 
 module.exports = router;
