@@ -14,41 +14,51 @@ router.get("/write-new", async (req, res) => {
   }
 });
 
-router.post("/write-new/:id", async (req, res) => {
-  const id = req.params.id; //Här är req.params.id = inloggad användare
+router.post("/write-new", async (req, res) => {
   const newReview = new ReviewModel({
     restaurantId: req.body.restaurantId,
-    userId: id,
+    userId: res.locals.id,
     title: req.body.title,
     rating: req.body.rating,
-    date: Date.now(),
     description: req.body.description,
+    date: Date.now(),
   });
 
+  // if(validateReview(newReview)){
   await newReview.save();
   res.redirect("/"); //Välj rätt senare
+  // }else{
+  //   const restaurants = await RestaurantModel.find().lean();
+  //   res.render("review/write-new", {
+  //     error: "Make sure to enter valid data!",
+  //     restaurants
+  //   })
+  // }
 });
 
-router.get("/edit/:id", async (req, res, next) => {
-  let review = undefined;
+router.get("/edit/:id", async (req, res) => {
+  if (res.locals.loggedIn) {
+    let review = undefined;
+    try {
+      review = await ReviewModel.findById(req.params.id).lean();
+    } catch {
+      res.sendStatus(404);
+    }
 
-  try {
-    //Kollar om det finns en review med det id:t
-    review = await ReviewModel.findById(req.params.id).lean();
-  } catch {
-    res.sendStatus(404);
-    //Skriva in ett errormeddelande istället
-  }
-
-  if (res.locals.id == review.userId) {
-    let restaurant = await RestaurantModel.findById(review.restaurantId).lean();
-    res.render("review/review-edit", { review, restaurant });
+    if (res.locals.id == review.userId) {
+      let restaurant = await RestaurantModel.findById(
+        review.restaurantId
+      ).lean();
+      res.render("review/review-edit", { review, restaurant });
+    } else {
+      res.sendStatus(401);
+    }
   } else {
-    res.sendStatus(401);
+    res.redirect("/login");
   }
 });
 
-router.post("/edit/:id", async (req, res, next) => {
+router.post("/edit/:id", async (req, res) => {
   const review = await ReviewModel.findById(req.params.id);
 
   review.title = req.body.title;
@@ -57,6 +67,27 @@ router.post("/edit/:id", async (req, res, next) => {
 
   await review.save();
   res.redirect("/");
+});
+
+router.get("/edit/:id/remove", async (req, res) => {
+  if (res.locals.loggedIn) {
+    let review = undefined;
+
+    try {
+      review = await ReviewModel.findById(req.params.id).lean();
+    } catch {
+      res.sendStatus(404);
+    }
+
+    if (res.locals.id == review.userId) {
+      await ReviewModel.findByIdAndDelete(req.params.id);
+      res.redirect("/");
+    } else {
+      res.sendStatus(401);
+    }
+  } else {
+    res.redirect("/login");
+  }
 });
 
 module.exports = router;

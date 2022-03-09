@@ -2,10 +2,12 @@
 
   <h2 class="review-page__section review-page__section--heading">Write new review</h2>
 
-<form class="review-page__section review-page__section--form" action="/reviews/write-new/{{id}}" method="post">
+<form class="review-page__section review-page__section--form" action="/reviews/write-new" method="post">
   <div class="form__input"> 
   <select class="form__input--select" name="restaurantId" id="restaurant">
+  
     <option value="" disabled selected>Choose restaurant</option>
+   
     {{#each restaurants}}
     <option value="{{_id}}">{{name}}</option>
     {{/each}}
@@ -39,6 +41,6 @@
     <input class="form__input--btn" type="submit" value="Publish" />
   </div>
 </form>
-
+{{error}}
 {{>navbar}}
 </main>
