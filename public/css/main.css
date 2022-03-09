@@ -451,6 +451,7 @@ body::-webkit-scrollbar {
 }
 .explore-page .wrapper--reviews {
   gap: 1rem;
+  padding-bottom: 135px;
 }
 .explore-page .container {
   width: clamp(270px, 90%, 450px);
@@ -465,7 +466,8 @@ body::-webkit-scrollbar {
   border-radius: 999px;
 }
 .explore-page .container .restaurant-icon::after {
-  content: url(../assets/svg/american.svg);
+  content: attr("data-restaurant-icon");
+  content: url(../assets/svg/italian.svg);
 }
 .explore-page .container .restaurant-icon--restaurant {
   margin-top: -3.5rem;
@@ -560,6 +562,7 @@ body::-webkit-scrollbar {
   border: 1px solid #d9d4d4;
   border-radius: 10px;
   transition: all 0.2s ease-out;
+  cursor: pointer;
 }
 @media screen and (max-width: 450px) {
   .explore-page .container--restaurant .card:first-child {

@@ -11,6 +11,10 @@ const cookieParser = require("cookie-parser");
 const loginRouter = require("./routes/login-router");
 const profileRouter = require("./routes/profile-router");
 const session = require("express-session");
+const ReviewModel = require("./models/review");
+const RestaurantModel = require("./models/restaurant");
+const { UsersModel } = require("./models/UsersModel");
+const helpers = require("./helpers");
 ////////////////
 // APP SETUP //
 //////////////
@@ -52,6 +56,53 @@ app.use((req, res, next) => {
     res.locals.loggedIn = false;
   }
   next();
+});
+/*
+ * Hämtar lokala variabler man kan använda över hela "domänen".
+ */
+app.use(async (req, res, next) => {
+  if (res.locals.loggedIn) {
+    const reviews = await ReviewModel.find(
+      {},
+      {},
+      { sort: { date: -1 }, limit: 10 }
+    ).lean();
+    const restaurants = await RestaurantModel.find().lean();
+
+    for (let i = 0; i < reviews.length; i++) {
+      const user = await UsersModel.findById(reviews[i].userId);
+      const restaurant = await RestaurantModel.findById(
+        reviews[i].restaurantId
+      );
+      reviews[i].displayName = user.displayName;
+      reviews[i].restaurantName = restaurant.name;
+    }
+
+    for (let i = 0; i < restaurants.length; i++) {
+      const user = await UsersModel.findById(restaurants[i].userId);
+      const reviews = await ReviewModel.find({
+        restaurantId: restaurants[i]._id,
+      });
+
+      restaurants[i].displayName = user.displayName;
+      for (let j = 0; j < reviews.length; j++) {
+        restaurants[i].rating += reviews[j].rating;
+      }
+
+      restaurants[i].rating = restaurants[i].rating / reviews.length;
+    }
+
+    restaurants.sort((a, b) => {
+      return b.rating - a.rating;
+    });
+
+    res.locals.reviews = reviews;
+    res.locals.restaurants = restaurants;
+
+    next();
+  } else {
+    next();
+  }
 });
 /////////////
 // ROUTES //

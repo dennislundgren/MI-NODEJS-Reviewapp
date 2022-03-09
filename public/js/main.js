@@ -1,11 +1,20 @@
 let restaurantRating = document.querySelectorAll("[data-restaurant-rating]");
 let reviewRating = document.querySelectorAll("[data-review-rating]");
+let restaurantIds = document.querySelectorAll("[data-restaurant-id]");
+
+for (let i = 0; i < restaurantIds.length; i++) {
+  const element = restaurantIds[i];
+  const value = element.getAttribute("data-restaurant-id");
+  element.addEventListener("click", () => {
+    window.location = `http://localhost:8080/restaurants/${value}`;
+  });
+}
 
 function getRating(entity, type) {
   for (let i = 0; i < entity.length; i++) {
     let element = entity[i];
     let rating = entity[i].getAttribute(`data-${type}-rating`);
-    let wholeStars = Math.round(rating);
+    let wholeStars = Math.floor(rating);
     let halfStars = getHalfStars(Math.round(rating * 2));
     let emptyStars = 5 - (wholeStars + halfStars);
 

@@ -53,6 +53,7 @@ $transition: all 0.2s ease-out;
     // Wrapper modifiers
     &--reviews {
       gap: 1rem;
+      padding-bottom: 135px;
     }
   }
 
@@ -63,7 +64,8 @@ $transition: all 0.2s ease-out;
       background-color: #ecab6f;
       border-radius: $border-radius-round;
       &::after {
-        content: url(../assets/svg/american.svg);
+        content: attr("data-restaurant-icon");
+        content: url(../assets/svg/italian.svg);
       }
       // Restaurant-icon modifiers
       &--restaurant {
@@ -147,6 +149,7 @@ $transition: all 0.2s ease-out;
         border: $border;
         border-radius: $border-radius;
         transition: $transition;
+        cursor: pointer;
         &:first-child {
           @media screen and (max-width: 450px) {
             margin-left: 5%;

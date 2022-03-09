@@ -19,7 +19,7 @@ router.get("/:id", async (req, res) => {
     if (user && res.locals.loggedIn) res.render("profile");
   });
 });
-router.get("/log-out", async (req, res) => {
+router.post("/log-out", (req, res) => {
   res.cookie("token", "", { maxAge: 0 });
   res.redirect("/");
 }); // Log out

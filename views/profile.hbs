@@ -89,14 +89,11 @@
 
   <section class="wrapper wrapper--settings">
     <div class="container container--settings">
-      <a
-        href="/profile/log-out"
+      <form action="/profile/log-out" method="post">
+      <input type="submit"
         class="account-button account-button--log-out"
-      ></a>
-      <a
-        href="/profile/delete"
-        class="account-button account-button--delete"
-      ></a>
+     value="Log Out">
+     </form>
     </div>
     <div class="container">
       <span class="faded-text"></span>
@@ -106,3 +103,5 @@
   </section>
 
 </main>
+
+{{>navbar}}

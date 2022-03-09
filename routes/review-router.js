@@ -8,7 +8,6 @@ const router = express.Router();
 router.get("/write-new", async (req, res) => {
   if (res.locals.loggedIn) {
     const restaurants = await RestaurantModel.find().lean();
-    console.log(restaurants);
     res.render("review/write-new", { restaurants });
   } else {
     res.redirect("/login");
@@ -27,7 +26,7 @@ router.post("/write-new/:id", async (req, res) => {
   });
 
   await newReview.save();
-  res.redirect("/reviews"); //Välj rätt senare
+  res.redirect("/"); //Välj rätt senare
 });
 
 router.get("/edit/:id", async (req, res, next) => {
@@ -36,16 +35,16 @@ router.get("/edit/:id", async (req, res, next) => {
   try {
     //Kollar om det finns en review med det id:t
     review = await ReviewModel.findById(req.params.id).lean();
-  } catch{
-    res.sendStatus(404)
+  } catch {
+    res.sendStatus(404);
     //Skriva in ett errormeddelande istället
   }
-  
+
   if (res.locals.id == review.userId) {
     let restaurant = await RestaurantModel.findById(review.restaurantId).lean();
     res.render("review/review-edit", { review, restaurant });
-  }else{
-    res.sendStatus(401)
+  } else {
+    res.sendStatus(401);
   }
 });
 
