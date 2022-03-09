@@ -30,18 +30,11 @@ router.post("/write-new/:id", async (req, res) => {
 });
 
 router.get("/edit/:id", async (req, res, next) => {
-  //Kan jag göra populate om det finns flera reviews med samma restaurant id??
-  //Borde vara så??
-  //Hitta genom review id?
   let review = undefined;
   let restaurant = undefined;
   try {
     review = await ReviewModel.findById(req.params.id).lean();
     restaurant = await RestaurantModel.findById(review.restaurantId).lean();
-    // Jag har råkat skapa dummy-data som inte är riktiga object-id:n
-
-    console.log(review.restaurantId);
-    console.log(restaurant);
   } catch (error) {
     console.log(error.message);
     next(); //Fixa allmän error sida
@@ -51,13 +44,14 @@ router.get("/edit/:id", async (req, res, next) => {
 });
 
 router.post("/edit/:id", async (req, res, next) => {
-  review = await ReviewModel.findById(req.params.id).lean();
+  const review = await ReviewModel.findById(req.params.id);
 
   review.title = req.body.title;
   review.description = req.body.description;
   review.rating = req.body.rating;
 
   await review.save();
+  res.redirect("/")
 });
 
 module.exports = router;

@@ -12,6 +12,7 @@
       <input
       name="rating"
       class="rating"
+      min="1"
       max="5"
       oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
       style="--value:{{review.rating}}"
@@ -39,8 +40,10 @@
     </div>
     <div class="form__input">
       <input class="form__input--btn" type="submit" value="Save" />
+
+      <a class="form__input--btn delete-btn" href="/reviews/delete/{{_id}}">Delete</a>
     </div>
-    <a class="form__input--btn" href="/reviews/delete/{{_id}}">Delete</a>
+    
   </form>
 
 {{>navbar}}

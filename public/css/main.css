@@ -416,6 +416,10 @@ body {
   -webkit-margin-after: 1rem;
           margin-block-end: 1rem;
 }
+.review-page__section--form .delete-btn {
+  background-color: gray;
+  text-decoration: none;
+}
 
 .explore-page {
   font-family: "noto-sans", sans-serif;
