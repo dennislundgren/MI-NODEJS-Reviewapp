@@ -50,7 +50,7 @@ router.get("/edit/:id", async (req, res, next) => {
   res.render("review/review-edit", { review, restaurant });
 });
 
-router.post("/edit/:id", async (rew, res, next) => {
+router.post("/edit/:id", async (req, res, next) => {
   review = await ReviewModel.findById(req.params.id).lean();
 
   review.title = req.body.title;
