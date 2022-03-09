@@ -1,7 +1,7 @@
 .restaurant-info-box {
     min-height: 200px;
     background-color: rgb(241, 241, 241);
-    border: 1px solid rgb(199, 199, 199) ;
+    border: 1px solid rgb(199, 199, 199);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -15,7 +15,6 @@
         gap: 20px;
         
         .sphere {
-            margin: 0 0 0 20px;
             display: flex;
             justify-content: center;
             align-items: center;

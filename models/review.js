@@ -12,6 +12,7 @@ const reviewsSchema = new Schema({
   description: String,
 });
 
+
 const ReviewModel = model("Review", reviewsSchema);
 
 module.exports = ReviewModel;
