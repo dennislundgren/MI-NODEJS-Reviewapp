@@ -5,12 +5,7 @@ require("../passport");
 const express = require("express");
 const router = express.Router();
 const cookieParser = require("cookie-parser");
-const {
-  UsersModel,
-  GooglesModel,
-  FacebooksModel,
-  TwittersModel,
-} = require(".././models/UsersModel");
+const { UsersModel } = require(".././models/UsersModel");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const { hashPassword, comparePassword } = require(".././utils");
