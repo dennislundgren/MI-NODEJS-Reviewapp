@@ -1,5 +1,6 @@
 @import url("https://use.typekit.net/zeg4rhy.css");
 @import url("https://use.typekit.net/zeg4rhy.css");
+@import url("https://use.typekit.net/zeg4rhy.css");
 *,
 *::before,
 *::after {
@@ -296,6 +297,9 @@ body::-webkit-scrollbar {
   align-items: center;
   gap: 2rem;
   height: 100vh;
+}
+.review-page__section--restaurant {
+  width: 90%;
 }
 .review-page__section--form {
   display: flex;
@@ -644,6 +648,9 @@ body::-webkit-scrollbar {
 }
 
 .restaurant-info-box {
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   min-height: 200px;
   background-color: #f1f1f1;
   border: 1px solid #c7c7c7;
@@ -651,7 +658,6 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
   padding: 10px 0;
 }
 .restaurant-info-box .name-type-container {
@@ -665,22 +671,31 @@ body::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   background-color: #ECAB6F;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 }
 .restaurant-info-box .name-type-container span {
-  font-size: 35pt;
+  font-family: "lust", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.7em;
 }
-.restaurant-info-box .star-container {
-  font-size: 2em;
+.restaurant-info-box .stars-reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.restaurant-info-box .reviews-container {
-  font-size: 1.5em;
+.restaurant-info-box .stars-reviews .star-container {
+  font-size: 1.8em;
+}
+.restaurant-info-box .stars-reviews .reviews-container {
+  font-size: 0.8em;
+  color: gray;
 }
 .restaurant-info-box .address-container {
   margin: 10px 0 0;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .restaurants-view {

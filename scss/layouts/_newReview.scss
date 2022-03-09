@@ -35,6 +35,13 @@ $transition: all 0.2s ease-out;
   // SECTIONS //
   /////////////
   &__section {
+    ///////////////////////
+    //RESTAURANT SECTION//
+    /////////////////////
+    &--restaurant{
+      width: 90%
+    }
+
     ////////////////////
     //HEADING SECTION//
     //////////////////
