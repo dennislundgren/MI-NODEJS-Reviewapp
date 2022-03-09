@@ -41,8 +41,6 @@ $transition: all 0.2s ease-out;
 
   height: 100vh;
 
-  overflow: hidden;
-
   .wrapper {
     @include mixins.flex(column, unset, center, 3rem);
     width: 100%;
@@ -54,6 +52,7 @@ $transition: all 0.2s ease-out;
     }
     // Wrapper modifiers
     &--reviews {
+      gap: 1rem;
     }
   }
 
@@ -87,6 +86,8 @@ $transition: all 0.2s ease-out;
       }
       // Rating modifiers
       &--review {
+        font-size: 0.8rem;
+        letter-spacing: 0.2rem;
       }
     }
 
@@ -139,7 +140,7 @@ $transition: all 0.2s ease-out;
       }
 
       .card {
-        @include mixins.flex(column, center, center, 0.75rem);
+        @include mixins.flex(column, center, center, 0.25rem);
         padding: 1rem;
         width: fit-content;
         flex-wrap: wrap;

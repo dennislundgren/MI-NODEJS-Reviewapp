@@ -47,16 +47,36 @@
 <section class="wrapper wrapper--reviews">
 <h2 class="heading">Recent reviews</h2>
 
-{{!-- {{#each <variabel>}} Ta bort kommentar när recensioner kan hämtas --}}
+{{!-- {{#each review}} Ta bort kommentar när recensioner kan hämtas --}}
 
 <div class="container container--review">
-<span class="restaurant-icon restaurant-icon--review" data-restaurant-icon="{{!-- {{<variabel> för restaurang ikon}} --}}"></span>
+<span class="restaurant-icon restaurant-icon--review" data-restaurant-icon="{{!-- {{<variabel>}} för restaurang ikon --}}"></span>
 <div class="block">
-<h5 class="title">{{!-- {{<variable> för restaurang titel}} --}}Bastard Burgers</h5>
-<span class="rating rating--review" data-review-rating="{{!-- {{<variabel> för review rating}} --}}4"></span>
-<span class="faded-text">User</span>
+<h5 class="title">{{!-- {{review.restaurantId}} --}}Bastard Burgers</h5>
+<span class="rating rating--review" data-review-rating="{{!-- {{review.rating}} --}}4"></span>
+<span class="faded-text">{{!-- {{review.userId}} --}}{{displayName}}</span>
 </div>
-<a href="/reviews/{{!-- {{<variabel> för id till review}} --}}" class="faded-text" title="Review Link">Read review &rt;</a>
+<a href="/reviews/{{!-- {{review._id}} --}}" class="faded-text" title="Review Link">Read review &gt;</a>
+</div>
+
+<div class="container container--review">
+<span class="restaurant-icon restaurant-icon--review" data-restaurant-icon="{{!-- {{<variabel>}} för restaurang ikon --}}"></span>
+<div class="block">
+<h5 class="title">{{!-- {{review.restaurantId}} --}}Bastard Burgers</h5>
+<span class="rating rating--review" data-review-rating="{{!-- {{review.rating}} --}}4"></span>
+<span class="faded-text">{{!-- {{review.userId}} --}}{{displayName}}</span>
+</div>
+<a href="/reviews/{{!-- {{review._id}} --}}" class="faded-text" title="Review Link">Read review &gt;</a>
+</div>
+
+<div class="container container--review">
+<span class="restaurant-icon restaurant-icon--review" data-restaurant-icon="{{!-- {{<variabel>}} för restaurang ikon --}}"></span>
+<div class="block">
+<h5 class="title">{{!-- {{review.restaurantId}} --}}Bastard Burgers</h5>
+<span class="rating rating--review" data-review-rating="{{!-- {{review.rating}} --}}4"></span>
+<span class="faded-text">{{!-- {{review.userId}} --}}{{displayName}}</span>
+</div>
+<a href="/reviews/{{!-- {{review._id}} --}}" class="faded-text" title="Review Link">Read review &gt;</a>
 </div>
 
 {{!-- {{/each}} Ta bort kommentar när recensioner kan hämtas --}}
@@ -67,4 +87,3 @@
 <form action="/login/log-out" method="post">
 <input type="submit" value="Log Out - temporärt här" style="position:fixed;top:0;right:0;"/>
 </form>
-{{>navbar}}
