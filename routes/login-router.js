@@ -87,13 +87,13 @@ router.get(
     failureRedirect: "/",
   }),
   async (req, res) => {
-    GooglesModel.findOne({ googleId: req.user.id }, async (err, user) => {
+    UsersModel.findOne({ googleId: req.user.id }, async (err, user) => {
       const userData = { displayName: req.user.displayName };
 
       if (user) {
         userData.id = user._id;
       } else {
-        const newUser = new GooglesModel({
+        const newUser = new UsersModel({
           googleId: req.user.id,
           displayName: req.user.displayName,
         });
@@ -116,13 +116,13 @@ router.get(
   "/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/" }),
   async (req, res) => {
-    FacebooksModel.findOne({ facebookId: req.user.id }, async (err, user) => {
+    UsersModel.findOne({ facebookId: req.user.id }, async (err, user) => {
       const userData = { displayName: req.user.displayName };
 
       if (user) {
         userData.id = user._id;
       } else {
-        const newUser = new FacebooksModel({
+        const newUser = new UsersModel({
           facebookId: req.user.id,
           displayName: req.user.displayName,
         });
@@ -142,13 +142,13 @@ router.get(
   "/twitter/callback",
   passport.authenticate("twitter", { failureRedirect: "/" }),
   async (req, res) => {
-    TwittersModel.findOne({ twitterId: req.user.id }, async (err, user) => {
+    UsersModel.findOne({ twitterId: req.user.id }, async (err, user) => {
       const userData = { displayName: req.user.displayName };
 
       if (user) {
         userData.id = user._id;
       } else {
-        const newUser = new TwittersModel({
+        const newUser = new UsersModel({
           twitterId: req.user.id,
           displayName: req.user.displayName,
         });
