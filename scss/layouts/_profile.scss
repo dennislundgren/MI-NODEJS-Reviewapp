@@ -13,24 +13,19 @@ $border-radius-round: 999px;
 $color-text-dim-1: #838383;
 $color-text-dim-2: #9f9f9f;
 $color-background-bright: #fbfbfb;
+$font-size-sm: 12px;
+$font-size-md: 14px;
+$font-size-bg: 18px;
 $transition: all 0.2s ease-out;
 /////////////////////
 // PROFILE MIXINS //
 ///////////////////
 @mixin icon-small {
-  width: 3.75rem;
-  height: 3.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
   &::after {
-    height: 2.5rem;
-    width: 2.5rem;
-  }
-}
-@mixin icon-big {
-  width: 8rem;
-  height: 8rem;
-  &::after {
-    height: 5.5rem;
-    width: 5.5rem;
+    height: 1.125rem;
+    width: 1.125rem;
   }
 }
 ///////////////////////
@@ -55,10 +50,13 @@ $transition: all 0.2s ease-out;
       @include mixins.flex(row, space-evenly, center);
       border-bottom: $border;
       height: 80px;
+      font-size: $font-size-md;
     }
     // Wrapper modifier
     &--reviews {
       @include mixins.flex(column, center, center, 1rem);
+      padding: 1rem;
+      padding-bottom: 135px;
     }
     // Wrapper modifier
     &--restaurants {
@@ -69,15 +67,57 @@ $transition: all 0.2s ease-out;
     }
 
     .container {
+      @include typography.noto();
+      position: relative;
+      width: 100%;
+      padding: 1rem;
+      @include mixins.flex(column, initial, initial, 0.25rem);
+
+      // Block element
+      &__review-header {
+        @include mixins.flex(row, flex-start, center, 0.25rem);
+        background-color: white;
+        width: fit-content;
+        padding: 0 0.25rem;
+        position: absolute;
+        top: 0;
+        transform: translateY(-50%);
+        font-size: $font-size-sm;
+        color: $color-text-dim-1;
+      }
+      // Block element
+      &__review-title {
+        @include mixins.flex(row, space-between, center);
+        font-size: $font-size-md;
+        font-weight: 600;
+      }
+      // Block element
+      &__header {
+        & > * {
+          display: block;
+        }
+      }
+      // Block element
+      &__review-description {
+        // max-height: 35px;
+        // overflow: hidden;
+        // text-overflow: fade(10px);
+      }
       // Container modifier
       &--header {
-        @include mixins.flex(column, flex-start, center);
+        @include mixins.flex(column, space-between, space-between);
+        height: 100%;
+        &:first-child {
+          width: fit-content;
+        }
       }
       // Container modifier
       &--menu {
       }
       // Container modifier
       &--review {
+        border: $border;
+        border-radius: $border-radius;
       }
       // Container modifier
       &--restaurant {
@@ -87,9 +127,16 @@ $transition: all 0.2s ease-out;
       }
 
       .profile-picture {
+        height: 120px;
+        width: 120px;
+        background-color: white;
+        border: $border;
+        border-radius: $border-radius-round;
       }
 
       .username {
+        font-size: $font-size-bg;
+        font-weight: 700;
       }
 
       .reviews-amount {
@@ -109,9 +156,12 @@ $transition: all 0.2s ease-out;
       }
 
       .restaurant-icon {
+        @include mixins.flex(row, center, center);
+        background-color: #ecab6f;
+        border-radius: $border-radius-round;
+        // Restaurant-icon modifiers
         &--review {
-        }
-        &--restaurant {
+          @include icon-small();
         }
       }
 
@@ -123,6 +173,12 @@ $transition: all 0.2s ease-out;
       }
 
       .edit {
+        position: absolute;
+        top: -0.75rem;
+        right: 1rem;
+        height: 1.5rem;
+        content: url(../assets/svg/edit.svg);
+        background-color: white;
         &--review {
         }
         &--restaurant {
@@ -133,9 +189,12 @@ $transition: all 0.2s ease-out;
       }
 
       .description {
+        font-size: $font-size-md;
       }
 
       .date {
+        font-size: $font-size-md;
+        color: $color-text-dim-2;
       }
 
       .dropdown {
@@ -153,6 +212,12 @@ $transition: all 0.2s ease-out;
     }
 
     .faded-text {
+      color: $color-text-dim-2;
+      text-decoration: none;
+    }
+
+    .active {
+      color: black;
     }
   }
 }

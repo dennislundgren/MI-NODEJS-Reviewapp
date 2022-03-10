@@ -5,10 +5,18 @@ const { validateReview } = require(".././utils");
 
 const router = express.Router();
 
+router.use(async (req, res, next) => {
+  if (!res.locals.loggedIn) {
+    res.redirect("/");
+  }
+
+  next();
+});
+
 router.get("/write-new", async (req, res) => {
   if (res.locals.loggedIn) {
     const restaurants = await RestaurantModel.find().lean();
-    res.render("review/write-new", { restaurants });
+    res.render("review/write-new", { restaurants, writeNewPage: true });
   } else {
     res.redirect("/login");
   }

@@ -1,5 +1,6 @@
 @use "./base/root";
 @use "./base/typography";
+@use "./components/restaurant-icons";
 @use "./layouts/login";
 @use "./layouts/newReview";
 @use "./layouts/explore";
@@ -11,7 +12,3 @@
 
 @import "./restaurants/view";
 @import "./restaurants/register";
-// Kolla i typography för en font mixin
-// body {
-//    font-family: "Pt Sans", sans-serif;
-// }

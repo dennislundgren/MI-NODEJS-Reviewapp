@@ -4,63 +4,64 @@
 
   <section class="wrapper wrapper--header">
     <div class="container container--header">
-      <img src="" alt="Glad gubbe" class="profile-picture" />
+      <span class="profile-picture" ></span>
     </div>
     <div class="container container--header">
       <span class="username">{{displayName}}</span>
-      <span class="reviews-amount reviews-amount--header">1239 reviews</span>
-      <span class="rating rating--header">Average rating: 2.6
-        {{!-- {{<variabel>}} för average rating, matten görs i route --}}</span>
+      <div class="container__header">
+        <span class="reviews-amount reviews-amount--header">{{totalReviews}} reviews</span>
+        <span class="rating rating--header">Average rating: {{totalRating}}
+          {{!-- {{<variabel>}} för average rating, matten görs i route --}}</span>
+      </div>
     </div>
   </section>
 
   {{! MENYBAR FÖR PROFILLAYOUT, SETTINGS VISAS ENDAST IFALL INLOGGAD }}
 
   <section class="wrapper wrapper--menu">
-    <a href="/profile/{{id}}/reviews" title="Reviews" class="faded-text">My
+    <a href="/profile/{{id}}" title="Reviews" class="faded-text{{#if myReviews}} active{{/if}}">My
       Reviews</a>
     <a
       href="/profile/{{id}}/restaurants"
       title="Restaurants"
-      class="faded-text"
+      class="faded-text{{#if myRestaurants}} active{{/if}}"
     >My Restaurants</a>
-    <a href="/profile/settings" title="Settings" class="faded-text">Settings</a>
+    <a href="/profile/{{id}}/settings" title="Settings" class="faded-text{{#if mySettings}} active{{/if}}">Settings</a>
   </section>
 
   {{! REVIEWS }}
 
+  {{#if myReviews}}
+
   <section class="wrapper wrapper--reviews">
+    {{#each reviews}}
     <div class="container container--review">
-      <span class="restaurant-icon restaurant-icon--review">ICON</span>
-      <span class="restaurant-title restaurant-title--review">Bastard burgers</span>
-      <span class="edit edit--review">PENNA</span>
-      <span class="review-title">Supergoda hamburgare!</span>
-      <span class="rating rating--review" data-review-rating="4"></span>
-      <span class="description">
-        Detta var dom bästa hamburgarna jag någonsin ätit. Ska äta här varje
-        dag!
-      </span>
-      <span class="date">9 mars 2022</span>
-      <span class="dropdown">PIL</span>
+      <div class="container__review-header">
+        <span class="restaurant-icon restaurant-icon--review restaurant-icon--{{kitchenType}}"></span>
+        <span class="restaurant-title restaurant-title--review">{{name}}</span>
+      </div>
+      <a href="/reviews/edit/{{_id}}" class="edit edit--review">PENNA</a>
+      <div class="container__review-title">
+        <span class="review-title">{{title}}</span>
+        <span class="rating rating--review" data-review-rating="{{rating}}"></span>
+      </div>
+      <div class="container__review-description">
+        <span class="description">
+          {{description}}
+        </span>
+      </div>
+      <div class="container__review-date">
+        <span class="date">{{date}}</span>
+      </div>
     </div>
-    <div class="container container--review">
-      <span class="restaurant-icon restaurant-icon--review">ICON</span>
-      <span class="restaurant-title restaurant-title--review">Bastard burgers</span>
-      <span class="edit edit--review">PENNA</span>
-      <span class="review-title">Supergoda hamburgare!</span>
-      <span class="rating rating--review" data-review-rating="4"></span>
-      <span class="description">
-        Detta var dom bästa hamburgarna jag någonsin ätit. Ska äta här varje
-        dag!
-      </span>
-      <span class="date">9 mars 2022</span>
-      <span class="dropdown">PIL</span>
-    </div>
+    {{/each}}
   </section>
+
+{{/if}}
 
   {{! RESTAURANTS }}
 
-  <section class="wrapper wrapper--restaurants">
+  {{!-- <section class="wrapper wrapper--restaurants">
     <div class="container container--restaurant">
       <span class="restaurant-icon restaurant-icon--restaurant"></span>
       <span class="edit edit--restaurant"></span>
@@ -83,9 +84,11 @@
       <span class="reviews-amount reviews-amount--restaurant"></span>
       <span class="address"></span>
     </div>
-  </section>
+  </section> --}}
 
   {{! SETTINGS }}
+
+  {{#if mySettings}}
 
   <section class="wrapper wrapper--settings">
     <div class="container container--settings">
@@ -101,6 +104,8 @@
       <span class="faded-text"></span>
     </div>
   </section>
+
+{{/if}}
 
 </main>
 

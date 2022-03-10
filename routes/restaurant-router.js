@@ -7,6 +7,14 @@ const ReviewModel = require("../models/review");
 
 const router = express.Router();
 
+router.use(async (req, res, next) => {
+  if (!res.locals.loggedIn) {
+    res.redirect("/");
+  }
+
+  next();
+});
+
 router.get("/register", async (req, res) => {
   if (!res.locals.loggedIn) res.redirect("/login");
   res.render("restaurants/register");
@@ -48,7 +56,7 @@ router.get("/", async (req, res) => {
     .sort(sort)
     .limit(100)
     .lean();
-  res.render("restaurants/view");
+  res.render("restaurants/view", { restaurantsPage: true });
 });
 
 router.post("/register", async (req, res) => {

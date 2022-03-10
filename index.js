@@ -76,6 +76,7 @@ app.use(async (req, res, next) => {
       );
       reviews[i].displayName = user.displayName;
       reviews[i].restaurantName = restaurant.name;
+      reviews[i].kitchenType = restaurant.kitchenType;
     }
 
     for (let i = 0; i < restaurants.length; i++) {
@@ -113,7 +114,7 @@ app.use("/reviews", require("./routes/review-router"));
 app.use("/restaurants", require("./routes/restaurant-router.js"));
 app.get("/", (req, res) => {
   if (res.locals.loggedIn) {
-    res.render("explore");
+    res.render("explore", { explorePage: true });
   } else {
     res.redirect("/login");
   }

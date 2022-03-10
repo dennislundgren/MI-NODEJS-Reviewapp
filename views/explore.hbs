@@ -7,6 +7,7 @@
         name="searchText"
         id="searchText"
         class="form__input"
+        placeholder=" "
       />
       <label for="searchText" class="form__lable">Search for restaurants</label>
       <label for="submitBtn" class="form__searchBtn"><i
@@ -29,8 +30,7 @@
       {{#each restaurants}}
         <div class="card" data-restaurant-id="{{_id}}">
           <span
-            class="restaurant-icon restaurant-icon--restaurant"
-            data-restaurant-icon="assets/svg/{{kitchenType}}.svg"
+            class="restaurant-icon restaurant-icon--restaurant restaurant-icon--{{kitchenType}}"
           ></span>
           <h5 class="title">{{name}}</h5>
           <span
@@ -50,8 +50,7 @@
 
       <div class="container container--review">
         <span
-          class="restaurant-icon restaurant-icon--review"
-          data-restaurant-icon="{{rating}}"
+          class="restaurant-icon restaurant-icon--review restaurant-icon--{{kitchenType}}"
         ></span>
         <div class="block">
           <h5 class="title">{{restaurantName}}</h5>
