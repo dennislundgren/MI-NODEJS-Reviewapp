@@ -77,6 +77,9 @@ app.use(async (req, res, next) => {
       reviews[i].displayName = user.displayName;
       reviews[i].restaurantName = restaurant.name;
       reviews[i].kitchenType = restaurant.kitchenType;
+      if (res.locals.id == reviews[i].userId) {
+        reviews[i].myReview = true;
+      }
     }
 
     for (let i = 0; i < restaurants.length; i++) {

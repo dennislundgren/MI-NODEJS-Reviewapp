@@ -6,7 +6,7 @@
 ////////////////////////
 // PROFILE VARIABLES //
 //////////////////////
-$width: clamp(270px, 90%, 400px);
+$width: clamp(270px, 100%, 550px);
 $border: 1px solid #d9d4d4;
 $border-radius: 10px;
 $border-radius-round: 999px;
@@ -118,6 +118,7 @@ $transition: all 0.2s ease-out;
       &--review {
         border: $border;
         border-radius: $border-radius;
+        width: $width;
       }
       // Container modifier
       &--restaurant {
@@ -204,7 +205,9 @@ $transition: all 0.2s ease-out;
       }
 
       .account-button {
+        width: $width;
         &--log-out {
+          background-color: #d96422;
         }
         &--delete {
         }

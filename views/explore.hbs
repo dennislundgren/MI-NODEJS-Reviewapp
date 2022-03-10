@@ -28,7 +28,7 @@
 
     <div class="container container--restaurant">
       {{#each restaurants}}
-        <div class="card" data-restaurant-id="{{_id}}">
+        <div class="card" data-restaurant-id="{{_id}}" aria-label="Restaurant Link">
           <span
             class="restaurant-icon restaurant-icon--restaurant restaurant-icon--{{kitchenType}}"
           ></span>
@@ -49,6 +49,7 @@
     {{#each reviews}}
 
       <div class="container container--review">
+        {{#if myReview}} <a href="/reviews/edit/{{_id}}" class="edit edit--review"></a> {{/if}}
         <span
           class="restaurant-icon restaurant-icon--review restaurant-icon--{{kitchenType}}"
         ></span>

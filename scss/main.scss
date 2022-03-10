@@ -1,6 +1,7 @@
 @use "./base/root";
 @use "./base/typography";
 @use "./components/restaurant-icons";
+@use "./components/edit-icon";
 @use "./layouts/login";
 @use "./layouts/newReview";
 @use "./layouts/explore";
@@ -10,5 +11,6 @@
 @import "partials/navbar";
 @import "partials/restaurant-info-box";
 
+@import "./restaurants/list";
 @import "./restaurants/view";
 @import "./restaurants/register";

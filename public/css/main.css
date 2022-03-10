@@ -1,6 +1,7 @@
 @import url("https://use.typekit.net/zeg4rhy.css");
 @import url("https://use.typekit.net/zeg4rhy.css");
 @import url("https://use.typekit.net/zeg4rhy.css");
+@import url("https://use.typekit.net/zeg4rhy.css");
 *,
 *::before,
 *::after {
@@ -35,6 +36,15 @@ body::-webkit-scrollbar {
 }
 .restaurant-icon--other::after {
   content: url(../assets/svg/french.svg);
+}
+
+.edit {
+  position: absolute;
+  top: -0.75rem;
+  right: 1rem;
+  height: 1.5rem;
+  content: url(../assets/svg/edit.svg);
+  background-color: white;
 }
 
 .login-page {
@@ -474,7 +484,7 @@ body::-webkit-scrollbar {
   padding-bottom: 135px;
 }
 .explore-page .container {
-  width: clamp(270px, 90%, 450px);
+  width: clamp(270px, 90%, 550px);
 }
 .explore-page .container .restaurant-icon {
   display: flex;
@@ -568,7 +578,7 @@ body::-webkit-scrollbar {
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
-  width: min(100%, 450px);
+  width: min(100%, 550px);
   padding-top: 3.5rem;
   margin-top: -3.5rem;
   overflow-x: scroll;
@@ -609,6 +619,7 @@ body::-webkit-scrollbar {
   align-items: center;
   gap: 0.75rem;
   padding: 1rem;
+  position: relative;
   border: 1px solid #d9d4d4;
   border-radius: 10px;
 }
@@ -732,6 +743,7 @@ body::-webkit-scrollbar {
 .profile-page .wrapper .container--review {
   border: 1px solid #d9d4d4;
   border-radius: 10px;
+  width: clamp(270px, 100%, 550px);
 }
 .profile-page .wrapper .container .profile-picture {
   height: 120px;
@@ -775,6 +787,12 @@ body::-webkit-scrollbar {
 .profile-page .wrapper .container .date {
   font-size: 14px;
   color: #9f9f9f;
+}
+.profile-page .wrapper .container .account-button {
+  width: clamp(270px, 100%, 550px);
+}
+.profile-page .wrapper .container .account-button--log-out {
+  background-color: #d96422;
 }
 .profile-page .wrapper .faded-text {
   color: #9f9f9f;
@@ -897,6 +915,86 @@ body::-webkit-scrollbar {
   font-size: 1em;
 }
 
+.restaurants-list {
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.restaurants-list .content-container {
+  align-self: center;
+}
+.restaurants-list .search-form {
+  padding: 10px;
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+  gap: 10px;
+  margin: 20px 0;
+}
+.restaurants-list .search-form input {
+  border: none;
+  background-color: none;
+  outline: none;
+}
+.restaurants-list .search-form input:focus ~ .search-form {
+  border: 1px solid black;
+}
+.restaurants-list .kitchen-filter {
+  display: flex;
+  gap: 5px;
+}
+.restaurants-list .kitchen-filter a {
+  border-radius: 50px;
+  color: white;
+  text-decoration: none;
+  background-color: #ECAB6F;
+  padding: 5px 10px;
+  transition: all 0.2s;
+}
+.restaurants-list .kitchen-filter a:hover {
+  transform: scale(1.05);
+  background-color: #D96422;
+}
+.restaurants-list .sort-container {
+  margin: 20px 0 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.restaurants-list .sort-container a {
+  color: black;
+  text-decoration: none;
+}
+.restaurants-list .restaurants-container {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.restaurants-list .restaurant {
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  color: black;
+  text-decoration: none;
+}
+.restaurants-list .restaurant .sphere {
+  height: 50px;
+  width: 50px;
+  background-color: #ECAB6F;
+  border-radius: 50%;
+}
+.restaurants-list .restaurant .text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .restaurants-view {
   display: flex;
   flex-direction: column;
@@ -1010,42 +1108,4 @@ body::-webkit-scrollbar {
 }
 .register-restaurant .title {
   font-size: 2em;
-}
-
-.restaurants-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.restaurants-list .search-form {
-  padding: 10px;
-  display: flex;
-  border-radius: 10px;
-  border: 1px solid #c8c8c8;
-  gap: 10px;
-  margin: 20px 0;
-}
-.restaurants-list .search-form input {
-  border: none;
-  background-color: none;
-  outline: none;
-}
-.restaurants-list .search-form input:focus ~ .search-form {
-  border: 1px solid black;
-}
-.restaurants-list .kitchen-filter {
-  display: flex;
-  gap: 5px;
-}
-.restaurants-list .kitchen-filter a {
-  border-radius: 50px;
-  color: white;
-  text-decoration: none;
-  background-color: #ECAB6F;
-  padding: 5px 10px;
-  transition: all 0.2s;
-}
-.restaurants-list .kitchen-filter a:hover {
-  transform: scale(1.05);
-  background-color: #D96422;
 }

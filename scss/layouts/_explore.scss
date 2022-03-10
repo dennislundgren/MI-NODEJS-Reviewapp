@@ -7,7 +7,7 @@
 ///////////////////////
 // EXPLORE VARIABLE //
 /////////////////////
-$width: clamp(270px, 90%, 450px);
+$width: clamp(270px, 90%, 550px);
 $border: 1px solid #d9d4d4;
 $border-radius: 10px;
 $border-radius-round: 999px;
@@ -136,7 +136,7 @@ $transition: all 0.2s ease-out;
     // Container modifiers
     &--restaurant {
       @include mixins.flex(row, flex-start, center, 1rem);
-      width: min(100%, 450px);
+      width: min(100%, 550px);
       padding-top: 3.5rem;
       margin-top: -3.5rem;
 
@@ -172,6 +172,7 @@ $transition: all 0.2s ease-out;
     &--review {
       @include mixins.flex(row, space-between, center, 0.75rem);
       padding: 1rem;
+      position: relative;
 
       border: $border;
       border-radius: $border-radius;

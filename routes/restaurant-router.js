@@ -18,14 +18,16 @@ router.use(async (req, res, next) => {
 
 router.get("/register", async (req, res) => {
   if (!res.locals.loggedIn) res.redirect("/login");
-  res.render("restaurants/register");
+  res.render("restaurants/register", { writeNewPage: true });
 });
 router.get("/:id", async (req, res) => {
   if (!res.locals.loggedIn) res.redirect("/login");
   const restaurant = await RestaurantModel.findOne({
     _id: req.params.id,
   }).lean();
-  const reviews = await ReviewModel.find({ restaurantId: req.params.id });
+  const reviews = await ReviewModel.find({
+    restaurantId: req.params.id,
+  }).lean();
   console.log(restaurant);
   console.log(res.locals);
 
@@ -37,6 +39,7 @@ router.get("/:id", async (req, res) => {
       isMine,
       restaurant,
       reviews,
+      restaurantsPage: true,
     });
 });
 router.get("/:id/edit", async (req, res) => {
@@ -48,6 +51,7 @@ router.get("/:id/edit", async (req, res) => {
   res.render("edit-restaurant", {
     title: "Edit",
     restaurant,
+    restaurantsPage: true,
   });
 });
 router.get("/", async (req, res) => {
@@ -64,6 +68,7 @@ router.get("/", async (req, res) => {
   // console.log(restaurants)
   res.render("restaurants/list", {
     restaurants,
+    restaurantsPage: true,
   });
 });
 
