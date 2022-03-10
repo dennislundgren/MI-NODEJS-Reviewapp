@@ -1,0 +1,32 @@
+.restaurant-icon {
+  &--american {
+    &::after {
+      content: url(../assets/svg/american.svg);
+    }
+  }
+  &--chinese {
+    &::after {
+      content: url(../assets/svg/chinese.svg);
+    }
+  }
+  &--french {
+    &::after {
+      content: url(../assets/svg/french.svg);
+    }
+  }
+  &--italian {
+    &::after {
+      content: url(../assets/svg/italian.svg);
+    }
+  }
+  &--japanese {
+    &::after {
+      content: url(../assets/svg/japanese.svg);
+    }
+  }
+  &--other {
+    &::after {
+      content: url(../assets/svg/french.svg);
+    }
+  }
+}

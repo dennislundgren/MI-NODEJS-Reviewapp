@@ -5,18 +5,24 @@ const { validateReview } = require(".././utils");
 
 const router = express.Router();
 
+router.use(async (req, res, next) => {
+  if (!res.locals.loggedIn) {
+    res.redirect("/");
+  }
+
+  next();
+});
+
 router.get("/write-new", async (req, res) => {
   if (res.locals.loggedIn) {
     const restaurants = await RestaurantModel.find().lean();
-
-    res.render("review/write-new", { restaurants });
+    res.render("review/write-new", { restaurants, writeNewPage: true });
   } else {
     res.redirect("/login");
   }
 });
 
 router.post("/write-new", async (req, res) => {
-  
   const newReview = new ReviewModel({
     restaurantId: req.body.restaurantId,
     userId: res.locals.id,
@@ -27,8 +33,8 @@ router.post("/write-new", async (req, res) => {
   });
 
   // if(validateReview(newReview)){
-    await newReview.save();
-    res.redirect("/"); //Välj rätt senare
+  await newReview.save();
+  res.redirect("/"); //Välj rätt senare
   // }else{
   //   const restaurants = await RestaurantModel.find().lean();
   //   res.render("review/write-new", {
@@ -46,7 +52,7 @@ router.get("/edit/:id", async (req, res) => {
     } catch {
       res.sendStatus(404);
     }
-  
+
     if (res.locals.id == review.userId) {
       let restaurant = await RestaurantModel.findById(
         review.restaurantId
@@ -71,8 +77,8 @@ router.post("/edit/:id", async (req, res) => {
   res.redirect("/");
 });
 
-router.get("/edit/:id/remove", async (req,res) => {
-  if (res.locals.loggedIn){
+router.get("/edit/:id/remove", async (req, res) => {
+  if (res.locals.loggedIn) {
     let review = undefined;
 
     try {
@@ -81,16 +87,15 @@ router.get("/edit/:id/remove", async (req,res) => {
       res.sendStatus(404);
     }
 
-    if(res.locals.id == review.userId){
+    if (res.locals.id == review.userId) {
       await ReviewModel.findByIdAndDelete(req.params.id);
-      res.redirect("/")
-    }else {
+      res.redirect("/");
+    } else {
       res.sendStatus(401);
     }
-    
-  }else{
-    res.redirect("/login")
+  } else {
+    res.redirect("/login");
   }
-})
+});
 
 module.exports = router;

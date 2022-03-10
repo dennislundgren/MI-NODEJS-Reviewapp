@@ -1,43 +1,98 @@
 @use "../base/typography";
+@use "../mixins";
+
+// .navbar {
+//   @include typography.noto();
+//   height: 80px;
+//   position: fixed;
+//   &__button {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     height: 100%;
+//     width: 25%;
+//     color: darkgrey;
+//     box-sizing: border-box;
+//     border: solid lightgray;
+//     border-width: 2px 0 0;
+//     text-decoration: none;
+//     flex-direction: column;
+//     transition: all 0.2s;
+//     gap: 10px;
+//     &--target {
+//       border-color: black;
+//       color: black;
+//     }
+//     &:hover {
+//       border-color: black;
+//       color: black;
+//     }
+//     i {
+//       font-size: 1.3em;
+//     }
+//     span {
+//       font-size: 0.9em;
+//     }
+//   }
+// }
 
 .navbar {
-    @include typography.noto();
-    height: 80px;
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: white;
-    &__button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        width: 25%;
-        color: darkgrey;
-        box-sizing: border-box;
-        border: solid lightgray;
-        border-width: 2px 0 0;
-        text-decoration: none;
-        flex-direction: column;
-        transition: all 0.2s;
-        gap: 10px;
+  @include mixins.flex(row, space-evenly, center);
+  @include typography.noto();
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  &__button {
+    @include mixins.flex(column, center, center, 0.25rem);
+    text-decoration: none;
+    font-size: clamp(12px, 2vw, 18px);
+    color: #b5b5b5;
+    height: 96px;
+    width: 25%;
+    border-top: 1px solid #d9d4d4;
 
-        &--target {
-            border-color: black;
-            color: black;
-        }
-        &:hover {
-            border-color: black;
-            color: black;
-        }
+    .icon {
+      width: clamp(35px, 3vw, 50px);
+      height: clamp(35px, 3vw, 50px);
+      border: 1px solid rgba($color: #000000, $alpha: 0);
 
-        i {
-            font-size: 1.3em;
-        }
-
-        span{
-            font-size: 0.9em;
-        }
+      &--explore {
+        content: url(../assets/svg/navbar-explore.svg);
+      }
+      &--restaurants {
+        content: url(../assets/svg/navbar-restaurants.svg);
+      }
+      &--new-review {
+        content: url(../assets/svg/navbar-new-review.svg);
+      }
+      &--profile {
+        content: url(../assets/svg/navbar-profile.svg);
+      }
     }
+
+    .text {
+    }
+
+    &.active {
+      color: black;
+      position: relative;
+      border-top: 1px solid black;
+
+      .icon {
+        &--explore {
+          content: url(../assets/svg/navbar-explore-active.svg);
+        }
+        &--restaurants {
+          content: url(../assets/svg/navbar-restaurants-active.svg);
+        }
+        &--new-review {
+          content: url(../assets/svg/navbar-new-review-active.svg);
+        }
+        &--profile {
+          content: url(../assets/svg/navbar-profile-active.svg);
+        }
+      }
+    }
+  }
 }

@@ -1,18 +1,18 @@
 <nav class="navbar">
-    <a href="/" class="navbar__button">
-        <i class="fa-solid fa-house"></i>
-        <span>Explore</span>
-    </a>
-    <a href="/restaurants" class="navbar__button" >
-        <i class="fa-solid fa-utensils"></i>
-        <span>Restaurants</span>
-    </a>
-    <a href="/reviews/write-new" class="navbar__button" >
-        <i class="fa-solid fa-pen"></i>
-        <span>Write Review</span>
-    </a>
-    <a href="/profile/{{id}}" class="navbar__button" >
-        <i class="fa-solid fa-user"></i>
-        <span>Profile</span>
-    </a>
+  <a href="/" class="navbar__button {{#if explorePage}}active{{/if}}">
+    <span class="icon icon--explore"></span>
+    <span class="text">Explore</span>
+  </a>
+  <a href="/restaurants " class="navbar__button {{#if restaurantsPage}}active{{/if}}">
+    <span class="icon icon--restaurants"></span>
+    <span class="text">Restaurants</span>
+  </a>
+  <a href="/reviews/write-new" class="navbar__button {{#if writeNewPage}}active{{/if}}">
+    <span class="icon icon--new-review"></span>
+    <span class="text">New Review</span>
+  </a>
+  <a href="/profile/{{id}}" class="navbar__button {{#if profilePage}}active{{/if}}">
+    <span class="icon icon--profile"></span>
+    <span class="text">Profile</span>
+  </a>
 </nav>
