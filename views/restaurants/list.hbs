@@ -1,0 +1,33 @@
+<main class="restaurants-list">
+    <form class="search-form" action="/restaurants" method="get" autocomplete="off">
+        <i class="fa fa-search"></i>
+        <input type="text">
+    </form>
+    <div class="kitchen-filter">
+        <a href="/restaurants?filter=american">American</a>
+        <a href="/restaurants?filter=chinese">Chinese</a>
+        <a href="/restaurants?filter=italian">Italian</a>
+        <a href="/restaurants?filter=japanese">Japanese</a>
+        <a href="/restaurants?filter=other">Other</a>
+    </div>
+    <div class="restaurants-container">
+        {{#each restaurants}}
+            <div class="restaurant">
+                <div class="sphere">
+                    
+                </div>
+                <div class="text-wrapper">
+                    <span>{{name}}</span>
+                    <div>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+</main>
