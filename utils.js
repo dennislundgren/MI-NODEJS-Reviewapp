@@ -22,6 +22,23 @@ const comparePassword = (password, hash) => {
 const generateAuthToken = () => {
   return crypto.randomBytes(30).toString("hex");
 };
+////////////////
+//VALIDATION///
+//////////////
+function validateReview(review){
+  let valid = true
+
+  valid = valid && (review.title.length > 0)
+  console.log(valid);
+  valid = valid && (review.description > 0)
+  console.log(valid);
+  valid = valid && (review.rating > 0)
+  console.log(valid);
+  valid = valid && (!isNaN(review.rating))
+
+  return valid
+}
+
 ///////////////////
 // GENERATE KEY //
 /////////////////
@@ -34,4 +51,5 @@ module.exports = {
   generateAuthToken,
   hashPassword,
   comparePassword,
+  validateReview,
 };

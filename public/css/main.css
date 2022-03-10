@@ -1,4 +1,6 @@
 @import url("https://use.typekit.net/zeg4rhy.css");
+@import url("https://use.typekit.net/zeg4rhy.css");
+@import url("https://use.typekit.net/zeg4rhy.css");
 *,
 *::before,
 *::after {
@@ -293,8 +295,12 @@ body::-webkit-scrollbar {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  height: 100vh;
+  gap: 1rem;
+  height: 90vh;
+}
+.review-page__section--restaurant {
+  margin: 15px;
+  width: 90%;
 }
 .review-page__section--form {
   display: flex;
@@ -327,12 +333,13 @@ body::-webkit-scrollbar {
 }
 .review-page__section--form .form__input--textarea {
   width: min(64vw, 350px);
-  height: 145px;
+  height: 125px;
   border-radius: 8px;
   border: none;
   font-family: "noto-sans", sans-serif;
   font-weight: 400;
   font-style: normal;
+  resize: none;
 }
 .review-page__section--form .form__input--text, .review-page__section--form .form__input--textarea {
   font-size: 1rem;
@@ -360,13 +367,8 @@ body::-webkit-scrollbar {
   background-color: #d96422;
   color: white;
   font-size: 1.125rem;
+  width: min(34vw, 250px);
   cursor: pointer;
-}
-.review-page__section--form .form__input a {
-  text-decoration: none;
-}
-.review-page__section--form .form__input a:hover, .review-page__section--form .form__input a:focus {
-  text-decoration: underline;
 }
 .review-page__section--form .form__input .rating {
   --dir: right;
@@ -418,6 +420,10 @@ body::-webkit-scrollbar {
 .review-page__section--form .form__input .rating-label {
   -webkit-margin-after: 1rem;
           margin-block-end: 1rem;
+}
+.review-page__section--form .delete-btn {
+  background-color: gray;
+  text-decoration: none;
 }
 
 .explore-page {
@@ -597,7 +603,10 @@ body::-webkit-scrollbar {
 }
 
 .navbar {
-  height: 100px;
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  height: 80px;
   display: flex;
   position: fixed;
   bottom: 0;
@@ -628,10 +637,16 @@ body::-webkit-scrollbar {
   color: black;
 }
 .navbar__button i {
-  font-size: 2em;
+  font-size: 1.3em;
+}
+.navbar__button span {
+  font-size: 0.9em;
 }
 
 .restaurant-info-box {
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   min-height: 200px;
   background-color: #f1f1f1;
   border: 1px solid #c7c7c7;
@@ -639,7 +654,6 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
   padding: 10px 0;
 }
 .restaurant-info-box .name-type-container {
@@ -653,22 +667,31 @@ body::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   background-color: #ECAB6F;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 }
 .restaurant-info-box .name-type-container span {
-  font-size: 35pt;
+  font-family: "lust", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.7em;
 }
-.restaurant-info-box .star-container {
-  font-size: 2em;
+.restaurant-info-box .stars-reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.restaurant-info-box .reviews-container {
-  font-size: 1.5em;
+.restaurant-info-box .stars-reviews .star-container {
+  font-size: 1.8em;
+}
+.restaurant-info-box .stars-reviews .reviews-container {
+  font-size: 0.8em;
+  color: gray;
 }
 .restaurant-info-box .address-container {
   margin: 10px 0 0;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .restaurants-view {
