@@ -53,8 +53,10 @@ router.get("/", async (req, res) => {
     let sort = [["rating", "desc"]]
     if (req.query.s == "greatest") sort = [["rating", "desc"]] 
     const restaurants = await RestaurantModel.find(filter).sort(sort).limit(100).lean()
-    console.log(restaurants)
-    res.render("restaurants/view")
+    // console.log(restaurants)
+    res.render("restaurants/list", {
+        restaurants
+    })
 })
 
 router.post("/register", async (req,res) => {

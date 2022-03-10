@@ -785,3 +785,41 @@ body::-webkit-scrollbar {
 .register-restaurant .title {
   font-size: 2em;
 }
+
+.restaurants-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.restaurants-list .search-form {
+  padding: 10px;
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid #c8c8c8;
+  gap: 10px;
+  margin: 20px 0;
+}
+.restaurants-list .search-form input {
+  border: none;
+  background-color: none;
+  outline: none;
+}
+.restaurants-list .search-form input:focus ~ .search-form {
+  border: 1px solid black;
+}
+.restaurants-list .kitchen-filter {
+  display: flex;
+  gap: 5px;
+}
+.restaurants-list .kitchen-filter a {
+  border-radius: 50px;
+  color: white;
+  text-decoration: none;
+  background-color: #ECAB6F;
+  padding: 5px 10px;
+  transition: all 0.2s;
+}
+.restaurants-list .kitchen-filter a:hover {
+  transform: scale(1.05);
+  background-color: #D96422;
+}
