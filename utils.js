@@ -43,6 +43,16 @@ function validateReview(review){
 // GENERATE KEY //
 /////////////////
 const key = crypto.randomBytes(32).toString("hex");
+
+//////////////////////
+// RATING-TO-STARS //
+////////////////////
+
+const ratingToStars = (rating) => {
+  
+}
+
+
 //////////////
 // EXPORTS //
 ////////////
