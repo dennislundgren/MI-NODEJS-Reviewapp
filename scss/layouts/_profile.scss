@@ -3,6 +3,7 @@
 //////////////////
 @use "../mixins";
 @use "../base/typography";
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300&display=swap");
 ////////////////////////
 // PROFILE VARIABLES //
 //////////////////////
@@ -16,6 +17,7 @@ $color-background-bright: #fbfbfb;
 $font-size-sm: 12px;
 $font-size-md: 14px;
 $font-size-bg: 18px;
+$font-size-xl: 24px;
 $transition: all 0.2s ease-out;
 /////////////////////
 // PROFILE MIXINS //
@@ -61,9 +63,12 @@ $transition: all 0.2s ease-out;
     // Wrapper modifier
     &--restaurants {
       @include mixins.flex(column, center, center, 1rem);
+      padding: 1rem;
+      padding-bottom: 135px;
     }
     // Wrapper modifier
     &--settings {
+      // @include mixins.flex(column, center, center, 0.3rem);
     }
 
     .container {
@@ -99,9 +104,6 @@ $transition: all 0.2s ease-out;
       }
       // Block element
       &__review-description {
-        // max-height: 35px;
-        // overflow: hidden;
-        // text-overflow: fade(10px);
       }
       // Container modifier
       &--header {
@@ -125,6 +127,25 @@ $transition: all 0.2s ease-out;
       }
       // Container modifier
       &--settings {
+      }
+
+      // Container modifier
+      &--terms {
+        @include mixins.flex(row, center, center);
+        & :not(:first-child) {
+          position: relative;
+          margin-left: 0.5rem;
+          &::before {
+            content: "";
+            position: absolute;
+            height: 70%;
+            width: 1px;
+            background-color: $color-text-dim-2;
+            left: -0.25rem;
+            top: 0;
+            transform: translateY(30%);
+          }
+        }
       }
 
       .profile-picture {
@@ -205,7 +226,14 @@ $transition: all 0.2s ease-out;
       }
 
       .account-button {
+        font-family: "Assistant", sans-serif;
+        color: white;
+        padding: 0.5rem;
         width: $width;
+        border: $border;
+        border-radius: $border-radius;
+        font-size: $font-size-xl;
+        font-weight: 100;
         &--log-out {
           background-color: #d96422;
         }

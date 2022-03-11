@@ -59,32 +59,28 @@
 
 {{/if}}
 
+{{#if myRestaurants}}
+
   {{! RESTAURANTS }}
 
-  {{!-- <section class="wrapper wrapper--restaurants">
+  <section class="wrapper wrapper--restaurants">
+    {{#each restaurants}}
     <div class="container container--restaurant">
-      <span class="restaurant-icon restaurant-icon--restaurant"></span>
+      <span class="restaurant-icon restaurant-icon--restaurant restaurant-icon--{{kitchenType}}"></span>
       <span class="edit edit--restaurant"></span>
-      <span class="restaurant-title restaurant-title--restaurant"></span>
+      <span class="restaurant-title restaurant-title--restaurant">{{name}}</span>
       <span
         class="rating rating--restaurant"
-        data-restaurant-rating="2.3"
+        data-restaurant-rating="{{rating}}"
       ></span>
       <span class="reviews-amount reviews-amount--restaurant"></span>
-      <span class="address"></span>
+      <span class="address">{{address}}</span>
     </div>
-    <div class="container container--restaurant">
-      <span class="restaurant-icon restaurant-icon--restaurant"></span>
-      <span class="edit edit--restaurant"></span>
-      <span class="restaurant-title restaurant-title--restaurant"></span>
-      <span
-        class="rating rating--restaurant"
-        data-restaurant-rating="2.3"
-      ></span>
-      <span class="reviews-amount reviews-amount--restaurant"></span>
-      <span class="address"></span>
-    </div>
-  </section> --}}
+    {{/each}}
+  </section>
+
+  {{/if}}
+
 
   {{! SETTINGS }}
 
@@ -98,10 +94,10 @@
      value="Log Out">
      </form>
     </div>
-    <div class="container">
-      <span class="faded-text"></span>
-      <span class="faded-text"></span>
-      <span class="faded-text"></span>
+    <div class="container container--terms">
+      <span class="faded-text">Terms of Service</span>
+      <span class="faded-text">Privacy Policy</span>
+      <span class="faded-text">Support</span>
     </div>
   </section>
 

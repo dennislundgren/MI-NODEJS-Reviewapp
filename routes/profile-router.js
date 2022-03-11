@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const { UsersModel } = require("../models/UsersModel");
 const ReviewModel = require("../models/review");
 const RestaurantsModel = require("../models/restaurant");
+const RestaurantModel = require("../models/restaurant");
 ///////////////////
 // ROUTER SETUP //
 /////////////////
@@ -39,6 +40,24 @@ router.use(async (req, res, next) => {
     totalRating += reviews[i].rating;
   }
 
+  const restaurants = await RestaurantModel.find({
+    userId: res.locals.id,
+  }).lean();
+
+  for (let i = 0; i < restaurants.length; i++) {
+    const user = await UsersModel.findById(restaurants[i].userId);
+    const reviews = await ReviewModel.find({
+      restaurantId: restaurants[i]._id,
+    });
+
+    restaurants[i].displayName = user.displayName;
+    for (let j = 0; j < reviews.length; j++) {
+      restaurants[i].rating += reviews[j].rating;
+    }
+
+    restaurants[i].rating = restaurants[i].rating / reviews.length;
+  }
+
   totalRating = totalRating / reviews.length;
 
   function getMonth(x) {
@@ -61,6 +80,8 @@ router.use(async (req, res, next) => {
   res.locals.totalReviews = reviews.length;
   res.locals.reviews = reviews;
   res.locals.totalRating = totalRating;
+
+  res.locals.restaurants = restaurants;
 
   next();
 });
