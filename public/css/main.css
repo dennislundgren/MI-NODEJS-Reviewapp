@@ -454,6 +454,17 @@ body::-webkit-scrollbar {
   background-color: gray;
   text-decoration: none;
 }
+.review-page__section--form .error {
+  position: relative;
+  width: 100%;
+}
+.review-page__section--form .error__text {
+  color: #d92e22;
+  position: absolute;
+  top: -1.2rem;
+  font-size: 8pt;
+  padding: 0.2rem 0.5rem;
+}
 
 .explore-page {
   font-family: "noto-sans", sans-serif;

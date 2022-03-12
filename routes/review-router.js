@@ -27,21 +27,25 @@ router.post("/write-new", async (req, res) => {
     restaurantId: req.body.restaurantId,
     userId: res.locals.id,
     title: req.body.title,
-    rating: req.body.rating,
     description: req.body.description,
+    rating: req.body.rating,
     date: Date.now(),
   });
 
-  // if(validateReview(newReview)){
-  await newReview.save();
-  res.redirect("/"); //Välj rätt senare
-  // }else{
-  //   const restaurants = await RestaurantModel.find().lean();
-  //   res.render("review/write-new", {
-  //     error: "Make sure to enter valid data!",
-  //     restaurants
-  //   })
-  // }
+  if (validateReview(newReview)) {
+    await newReview.save();
+    res.redirect("/");
+  } else {
+    const restaurants = await RestaurantModel.find().lean();
+    res.render("review/write-new", {
+      textError: "You need to write something",
+      restError: "You need to choose a restaurant",
+      title: newReview.title,
+      description: newReview.description,
+      restaurantId: newReview.restaurantId,
+      restaurants,
+    });
+  }
 });
 
 router.get("/edit/:id", async (req, res) => {
@@ -66,12 +70,26 @@ router.get("/edit/:id", async (req, res) => {
   }
 });
 
-router.post("/edit/:id", async (req, res) => {
+router.post("/edit/:id", async (req, res, next) => {
   const review = await ReviewModel.findById(req.params.id);
 
   review.title = req.body.title;
   review.description = req.body.description;
   review.rating = req.body.rating;
+  console.log(review);
+
+  if (validateReview(review)) {
+    await review.save();
+    res.redirect("/");
+  } else {
+    const restaurant = await RestaurantModel.findById(review.restaurantId).lean();
+
+    res.render("review/review-edit", {
+      review,
+      restaurant,
+      textError: "You need to write something",
+    });
+  }
 
   await review.save();
   res.redirect("/");
