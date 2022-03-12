@@ -123,7 +123,10 @@ $transition: all 0.2s ease-out;
 
         &__submit {
           position: absolute;
-          left: 0;
+          opacity: 0;
+          right: 1rem;
+          height: 2rem;
+          width: 2rem;
         }
         &__searchBtn {
           position: absolute;
@@ -164,6 +167,11 @@ $transition: all 0.2s ease-out;
           @media screen and (max-width: 450px) {
             margin-right: 5%;
           }
+        }
+        .title {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
       }
     }

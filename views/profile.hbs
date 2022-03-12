@@ -1,7 +1,5 @@
 <main class="profile-page">
 
-  {{! HEADER FÖR PROFILLAYOUT }}
-
   <section class="wrapper wrapper--header">
     <div class="container container--header">
       <span class="profile-picture" ></span>
@@ -10,13 +8,10 @@
       <span class="username">{{displayName}}</span>
       <div class="container__header">
         <span class="reviews-amount reviews-amount--header">{{totalReviews}} reviews</span>
-        <span class="rating rating--header">Average rating: {{totalRating}}
-          {{!-- {{<variabel>}} för average rating, matten görs i route --}}</span>
+        <span class="rating rating--header">Average rating:{{#if noReviews}}'({{else}} {{totalRating}}{{/if}}</span>
       </div>
     </div>
   </section>
-
-  {{! MENYBAR FÖR PROFILLAYOUT, SETTINGS VISAS ENDAST IFALL INLOGGAD }}
 
   <section class="wrapper wrapper--menu">
     <a href="/profile/{{id}}" title="Reviews" class="faded-text{{#if myReviews}} active{{/if}}">My
@@ -29,11 +24,13 @@
     <a href="/profile/{{id}}/settings" title="Settings" class="faded-text{{#if mySettings}} active{{/if}}">Settings</a>
   </section>
 
-  {{! REVIEWS }}
-
   {{#if myReviews}}
+  
 
   <section class="wrapper wrapper--reviews">
+    {{#if noReviews}}
+      <p>You haven't written any reviews yet :(</p>
+      {{/if}}
     {{#each reviews}}
     <div class="container container--review">
       <div class="container__review-header">
@@ -61,28 +58,28 @@
 
 {{#if myRestaurants}}
 
-  {{! RESTAURANTS }}
-
   <section class="wrapper wrapper--restaurants">
+    {{#if noReviews}}
+      <p>You haven't created any restaurants yet :(</p>
+      {{/if}}
     {{#each restaurants}}
     <div class="container container--restaurant">
       <span class="restaurant-icon restaurant-icon--restaurant restaurant-icon--{{kitchenType}}"></span>
-      <span class="edit edit--restaurant"></span>
-      <span class="restaurant-title restaurant-title--restaurant">{{name}}</span>
-      <span
-        class="rating rating--restaurant"
-        data-restaurant-rating="{{rating}}"
-      ></span>
-      <span class="reviews-amount reviews-amount--restaurant"></span>
-      <span class="address">{{address}}</span>
+      <a href="/restaurants/{{_id}}/edit" class="edit edit--restaurant"></a>
+      <div class="container__restaurant-content">
+        <span class="restaurant-title restaurant-title--restaurant">{{name}}</span>
+        <span
+          class="rating rating--restaurant"
+          data-restaurant-rating="{{rating}}"
+        ></span>
+        <span class="reviews-amount reviews-amount--restaurant">{{totalRating}} Reviews</span>
+        <span class="address">{{address}}</span>
+      </div>
     </div>
     {{/each}}
   </section>
 
   {{/if}}
-
-
-  {{! SETTINGS }}
 
   {{#if mySettings}}
 
@@ -100,7 +97,6 @@
       <span class="faded-text">Support</span>
     </div>
   </section>
-
 {{/if}}
 
 </main>

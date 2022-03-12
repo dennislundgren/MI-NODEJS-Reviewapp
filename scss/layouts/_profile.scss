@@ -30,6 +30,14 @@ $transition: all 0.2s ease-out;
     width: 1.125rem;
   }
 }
+@mixin icon-big {
+  width: 4.5rem;
+  height: 4.5rem;
+  &::after {
+    height: 3rem;
+    width: 3rem;
+  }
+}
 ///////////////////////
 // PROFILE STYLING  //
 /////////////////////
@@ -68,7 +76,7 @@ $transition: all 0.2s ease-out;
     }
     // Wrapper modifier
     &--settings {
-      // @include mixins.flex(column, center, center, 0.3rem);
+      @include mixins.flex(column, center, center);
     }
 
     .container {
@@ -105,9 +113,14 @@ $transition: all 0.2s ease-out;
       // Block element
       &__review-description {
       }
+      // Block element
+      &__restaurant-content {
+        @include mixins.flex(column, center, center, 0.25rem);
+        width: 70%;
+      }
       // Container modifier
       &--header {
-        @include mixins.flex(column, space-between, space-between);
+        @include mixins.flex(column, space-evenly, flex-start);
         height: 100%;
         &:first-child {
           width: fit-content;
@@ -117,16 +130,19 @@ $transition: all 0.2s ease-out;
       &--menu {
       }
       // Container modifier
-      &--review {
+      &--review,
+      &--restaurant {
         border: $border;
         border-radius: $border-radius;
         width: $width;
       }
       // Container modifier
       &--restaurant {
+        @include mixins.flex(row, space-evenly, center);
       }
       // Container modifier
       &--settings {
+        width: $width;
       }
 
       // Container modifier
@@ -165,6 +181,8 @@ $transition: all 0.2s ease-out;
         &--header {
         }
         &--restaurant {
+          font-size: $font-size-sm;
+          color: $color-text-dim-1;
         }
       }
 
@@ -172,6 +190,7 @@ $transition: all 0.2s ease-out;
         &--header {
         }
         &--review {
+          min-width: 80px;
         }
         &--restaurant {
         }
@@ -185,12 +204,16 @@ $transition: all 0.2s ease-out;
         &--review {
           @include icon-small();
         }
+        &--restaurant {
+          @include icon-big();
+        }
       }
 
       .restaurant-title {
         &--review {
         }
         &--restaurant {
+          @include typography.lust();
         }
       }
 
@@ -223,6 +246,7 @@ $transition: all 0.2s ease-out;
       }
 
       .address {
+        font-size: $font-size-md;
       }
 
       .account-button {

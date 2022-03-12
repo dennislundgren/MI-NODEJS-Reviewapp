@@ -54,11 +54,12 @@ router.use(async (req, res, next) => {
     for (let j = 0; j < reviews.length; j++) {
       restaurants[i].rating += reviews[j].rating;
     }
+    restaurants[i].totalRating = reviews.length;
 
     restaurants[i].rating = restaurants[i].rating / reviews.length;
   }
 
-  totalRating = totalRating / reviews.length;
+  totalRating = (totalRating / reviews.length).toFixed(2);
 
   function getMonth(x) {
     const month = [
@@ -76,6 +77,8 @@ router.use(async (req, res, next) => {
     ];
     return month[x - 1];
   }
+
+  if (reviews.length <= 0) res.locals.noReviews = true;
 
   res.locals.totalReviews = reviews.length;
   res.locals.reviews = reviews;
