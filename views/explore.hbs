@@ -27,7 +27,9 @@
     {{#if noReviews}}
       <p>You haven't opened any restaurants yet :(</p>
       {{/if}}
-
+{{#if noSearchRestaurants}}
+      <p>Couldn't find any restaurants :(</p>
+      {{/if}}
     <div class="container container--restaurant">
       {{#each restaurants}}
         <div class="card" data-restaurant-id="{{_id}}" aria-label="Restaurant Link">
@@ -51,7 +53,9 @@
     {{#if noReviews}}
       <p>You haven't written any reviews yet :(</p>
       {{/if}}
-
+{{#if noSearchReviews}}
+      <p>Couldn't find any reviews :(</p>
+      {{/if}}
     {{#each reviews}}
 
       <div class="container container--review">

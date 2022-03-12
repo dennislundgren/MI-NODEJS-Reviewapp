@@ -79,6 +79,7 @@ router.use(async (req, res, next) => {
   }
 
   if (reviews.length <= 0) res.locals.noReviews = true;
+  if (restaurants.length <= 0) res.locals.noRestaurants = true;
 
   res.locals.totalReviews = reviews.length;
   res.locals.reviews = reviews;

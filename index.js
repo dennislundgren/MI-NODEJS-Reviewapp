@@ -129,6 +129,8 @@ app.use(async (req, res, next) => {
      * och restauranger.
      */
     if (reviews.length <= 0) res.locals.noReviews = true;
+    if (restaurants.length <= 0) res.locals.noRestaurants = true;
+
     res.locals.reviews = reviews.slice(0, 10);
     res.locals.restaurants = restaurants.slice(0, 5);
 
@@ -209,6 +211,9 @@ app.get("/search/:q?", async (req, res) => {
   restaurants.sort((a, b) => {
     return b.rating - a.rating;
   });
+
+  if (reviews.length <= 0) res.locals.noSearchReviews = true;
+  if (restaurants.length <= 0) res.locals.noSearchRestaurants = true;
 
   res.locals.reviews = reviews.slice(0, 10);
   res.locals.restaurants = restaurants.slice(0, 5);
