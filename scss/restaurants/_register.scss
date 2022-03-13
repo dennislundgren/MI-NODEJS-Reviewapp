@@ -1,18 +1,7 @@
-@use "../base/typography";
-
 .register-restaurant {
-  @include typography.noto();
-
-  margin: 30px 0 0;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  .register-form {
-    align-self: center;
-    justify-self: center;
+    margin: 30px 0 0;
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
     height: 100%;
     .register-form {
         align-self: center;
@@ -71,60 +60,7 @@
             }
         }
     }
-=======
-    gap: 30px;
->>>>>>> development
     .title {
-      align-self: center;
+        font-size: 2em;
     }
-    div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    .radio-container {
-      display: flex;
-      flex-direction: row;
-    }
-    input[type="text"] {
-      padding: 10px;
-      border-radius: 10px;
-      background-color: rgb(241, 241, 241);
-      border: 1px solid rgb(199, 199, 199);
-    }
-    input[type="submit"] {
-      background-color: $primary-color-dark;
-      padding: 10px;
-      border: none;
-      color: white;
-      border-radius: 10px;
-      width: 50%;
-      align-self: center;
-    }
-    .radio-container {
-      input[type="radio"] {
-        display: none;
-      }
-      input[type="radio"]:checked + label {
-        background-color: $primary-color-dark;
-        transform: scale(1.1);
-      }
-      label {
-        cursor: pointer;
-        padding: 5px 10px;
-        border-radius: 50px;
-        color: white;
-        font-weight: bold;
-        background-color: $primary-color;
-        transition: all 0.2s;
-        &:hover {
-          background-color: $primary-color-dark;
-        }
-      }
-    }
-  }
-  .title {
-    font-size: 2em;
-  }
 }
