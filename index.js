@@ -21,6 +21,7 @@ const ReviewModel = require("./models/review");
 const RestaurantModel = require("./models/restaurant");
 const { UsersModel } = require("./models/UsersModel");
 const helpers = require("./helpers");
+const { ObjectId } = require("mongodb");
 ////////////////
 // APP SETUP //
 //////////////
@@ -266,7 +267,7 @@ app.get("/:id", async (req, res) => {
 });
 
 // Error page
-app.use("/:id", (req, res) => {
+app.use("/", (req, res) => {
   res.render("error-page");
 });
 

@@ -2,6 +2,7 @@ const express = require("express");
 const ReviewModel = require("../models/review.js");
 const RestaurantModel = require("../models/restaurant.js");
 const { validateReview } = require(".././utils");
+const { ObjectId } = require("mongodb");
 
 const router = express.Router();
 
@@ -13,12 +14,8 @@ router.use(async (req, res, next) => {
 });
 
 router.get("/write-new", async (req, res) => {
-  if (res.locals.loggedIn) {
-    const restaurants = await RestaurantModel.find().lean();
-    res.render("review/write-new", { restaurants, writeNewPage: true });
-  } else {
-    res.redirect("/login");
-  }
+  const restaurants = await RestaurantModel.find().lean();
+  res.render("review/write-new", { restaurants, writeNewPage: true });
 });
 
 router.post("/write-new", async (req, res) => {
@@ -48,34 +45,19 @@ router.post("/write-new", async (req, res) => {
 });
 
 router.get("/edit/:id", async (req, res, next) => {
-  if (res.locals.loggedIn) {
-    // let review = undefined;
-    // try {
-    //   review = await ReviewModel.findById(req.params.id).lean();
-    // } catch {
-    //   res.sendStatus(404);
-    // }
+  let id = undefined;
+  try {
+    id = ObjectId(req.params.id);
+  } catch {
+    next();
+  }
+  const review = await ReviewModel.findById(id).lean();
 
-    let id = undefined
-
-    try{
-      id = mongoose.Types.ObjectId(req.params.id)
-      console.log(id);
-    }catch{
-      next()
-    }
-    const review = await ReviewModel.findById(id).lean();
-    
-    if (res.locals.id == review.userId) {
-      let restaurant = await RestaurantModel.findById(
-        review.restaurantId
-      ).lean();
-      res.render("review/review-edit", { review, restaurant });
-    } else {
-      res.sendStatus(401);
-    }
+  if (res.locals.id == review.userId) {
+    let restaurant = await RestaurantModel.findById(review.restaurantId).lean();
+    res.render("review/review-edit", { review, restaurant });
   } else {
-    res.redirect("/login");
+    res.sendStatus(401);
   }
 });
 
@@ -111,23 +93,20 @@ router.post("/edit/:id", async (req, res) => {
 });
 
 router.get("/edit/:id/remove", async (req, res) => {
-  if (res.locals.loggedIn) {
-    let review = undefined;
+  let id = undefined;
+  try {
+    id = ObjectId(req.params.id);
+  } catch {
+    next();
+  }
 
-    try {
-      review = await ReviewModel.findById(req.params.id).lean();
-    } catch {
-      res.sendStatus(404);
-    }
+  const review = await ReviewModel.findById(id).lean();
 
-    if (res.locals.id == review.userId) {
-      await ReviewModel.findByIdAndDelete(req.params.id);
-      res.redirect("/");
-    } else {
-      res.sendStatus(401);
-    }
+  if (res.locals.id == review.userId) {
+    await ReviewModel.findByIdAndDelete(id);
+    res.redirect("/");
   } else {
-    res.redirect("/login");
+    res.sendStatus(401);
   }
 });
 
