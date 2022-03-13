@@ -21,6 +21,7 @@ const ReviewModel = require("./models/review");
 const RestaurantModel = require("./models/restaurant");
 const { UsersModel } = require("./models/UsersModel");
 const helpers = require("./helpers");
+const { ObjectId } = require("mongodb");
 ////////////////
 // APP SETUP //
 //////////////
@@ -120,6 +121,14 @@ app.get("/", (req, res) => {
     res.redirect("/login");
   }
 });
+
+///////////////////
+//ERROR PAGE 404//
+/////////////////
+app.use("/", (req, res) => {
+  res.status(404).render("error-page");
+});
+
 /*
  * En search-query för explore-sidan.
  * Hämtar för närvarande inte information som

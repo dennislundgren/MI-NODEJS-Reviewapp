@@ -20,6 +20,7 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-sass": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.4.1",
     "mongoose": "^6.2.3",
     "passport": "^0.5.2",
     "passport-facebook": "^3.0.0",

@@ -21,6 +21,13 @@
     </div>
 
     <div class="form__input">
+      {{#unless review.title}}
+    <div class="error">
+      <span class="error__text">
+          {{textError}}
+      </span>
+    </div>
+    {{/unless}}
       <input
         class="form__input--text"
         type="text"
@@ -30,6 +37,13 @@
       />
     </div>
     <div class="form__input">
+      {{#unless review.description}}
+    <div class="error">
+      <span class="error__text">
+          {{textError}}
+      </span>
+    </div>
+    {{/unless}}
       <textarea
         class="form__input--textarea"
         type="text"
