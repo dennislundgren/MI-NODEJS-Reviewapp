@@ -50,10 +50,12 @@ router.get("/:id", async (req, res) => {
     });
 });
 router.get("/:id/edit", async (req, res) => {
+  console.log(res.locals.id)
   if (!res.locals.loggedIn) res.redirect("/login");
   const restaurant = await RestaurantModel.findOne({
     id: req.params.id,
   }).lean();
+  console.log(res.locals.id, restaurant.userId)
   if(res.locals.id != restaurant.userId) res.redirect("/")
 
   res.render("restaurants/edit", {
@@ -61,6 +63,11 @@ router.get("/:id/edit", async (req, res) => {
     restaurantsPage: true,
   });
 });
+router.get("/:id/remove", async (req,res) => {
+  if (!res.locals.loggedIn) res.redirect("/login")
+  await RestaurantModel.findOneAndRemove({_id: req.params.id});
+  res.redirect(`/restaurants`);
+}) 
 router.get("/", async (req, res) => {
   if (!res.locals.loggedIn) res.redirect("/login");
   let filter = {};
