@@ -63,6 +63,7 @@ router.post("/sign-up", async (req, res) => {
         password: hashPassword(password),
         displayName: username,
       });
+      newUser.validateSync();
       await newUser.save();
       res.redirect("/login");
     }
@@ -88,6 +89,7 @@ router.get(
           googleId: req.user.id,
           displayName: req.user.displayName,
         });
+        newUser.validateSync();
         const result = await newUser.save();
         userData.id = result._id;
       }
@@ -117,6 +119,7 @@ router.get(
           facebookId: req.user.id,
           displayName: req.user.displayName,
         });
+        newUser.validateSync();
         const result = await newUser.save();
         userData.id = result._id;
       }
@@ -143,6 +146,7 @@ router.get(
           twitterId: req.user.id,
           displayName: req.user.displayName,
         });
+        newUser.validateSync();
         const result = await newUser.save();
         userData.id = result._id;
       }

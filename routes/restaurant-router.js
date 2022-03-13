@@ -94,6 +94,7 @@ router.post("/register", async (req, res) => {
   };
   newRestaurant = new RestaurantModel(newRestaurant);
   try {
+    newRestaurant.validateSync();
     await newRestaurant.save();
   } catch (err) {
     console.log(err.code, err.message);
@@ -108,6 +109,7 @@ router.post("/:id/edit", async (req, res) => {
   restaurant.name = req.body.name;
   restaurant.address = req.body.address;
 
+  restaurant.validateSync();
   await restaurant.save();
   res.redirect(`/restaurants/${restaurant._id}`);
 });

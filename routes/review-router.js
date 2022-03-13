@@ -4,6 +4,7 @@ const RestaurantModel = require("../models/restaurant.js");
 const { UsersModel } = require("../models/UsersModel");
 const { validateReview } = require(".././utils");
 const { ObjectId } = require("mongodb");
+const { getRestaurantsRating } = require("../helpers.js");
 
 const router = express.Router();
 
@@ -56,6 +57,7 @@ router.get("/edit/:id", async (req, res, next) => {
 
   if (res.locals.id == review.userId) {
     let restaurant = await RestaurantModel.findById(review.restaurantId).lean();
+    restaurant = await getRestaurantsRating(restaurant);
     res.render("review/review-edit", { review, restaurant });
   } else {
     res.sendStatus(401);

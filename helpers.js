@@ -54,11 +54,12 @@ const helpers = {
       restaurants[i].rating = restaurants[i].rating / reviews.length;
     }
 
-    restaurants.sort((a, b) => {
-      return b.rating - a.rating;
-    });
+    if (restaurants > 1)
+      restaurants.sort((a, b) => {
+        return b.rating - a.rating;
+      });
 
-    restaurants.slice(0, 5);
+    if (restaurants > 1) restaurants.slice(0, 5);
     return restaurants;
   },
   /*
