@@ -1,24 +1,22 @@
 <main class="explore-page">
 
   <section class="container container--search">
-    <form action="/search" method="POST" class="form">
+    <form action="/search" method="GET" class="form">
       <input
         type="text"
-        name="searchText"
-        id="searchText"
+        name="q"
+        id="q"
         class="form__input"
         placeholder=" "
       />
-      <label for="searchText" class="form__lable">Search for restaurants</label>
+      <label for="q" class="form__lable">Search for restaurants</label>
       <label for="submitBtn" class="form__searchBtn"><i
           class="fa-solid fa-magnifying-glass"
         ></i></label>
       <input
         type="submit"
         class="form__submit"
-        value="Search"
         id="searchBtn"
-        hidden
       />
     </form>
   </section>
@@ -26,6 +24,12 @@
   <section class="wrapper wrapper--restaurants">
     <h2 class="heading">Top 5 restaurants</h2>
 
+    {{#if noReviews}}
+      <p>You haven't opened any restaurants yet :(</p>
+      {{/if}}
+{{#if noSearchRestaurants}}
+      <p>Couldn't find any restaurants :(</p>
+      {{/if}}
     <div class="container container--restaurant">
       {{#each restaurants}}
         <div class="card" data-restaurant-id="{{_id}}" aria-label="Restaurant Link">
@@ -46,6 +50,12 @@
   <section class="wrapper wrapper--reviews">
     <h2 class="heading">Recent reviews</h2>
 
+    {{#if noReviews}}
+      <p>You haven't written any reviews yet :(</p>
+      {{/if}}
+{{#if noSearchReviews}}
+      <p>Couldn't find any reviews :(</p>
+      {{/if}}
     {{#each reviews}}
 
       <div class="container container--review">
@@ -59,10 +69,11 @@
             class="rating rating--review"
             data-review-rating="{{rating}}"
           ></span>
-          <span class="faded-text">{{displayName}}</span>
+          
+          <span class="faded-text">By {{displayName}}</span>
         </div>
-        <a href="/restaurants" class="faded-text" title="Review Link">Read
-          more &gt;</a>
+        <a href="/reviews/{{_id}}" class="faded-text" title="Review Link">Read
+          review &gt;</a>
       </div>
 
     {{/each}}
