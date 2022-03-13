@@ -5,14 +5,10 @@
     <span>{{restaurant.name}}</span>
   </div>
   <div class="stars-reviews">
-    <div class="star-container">
-      <i class="fa fa-star"></i>
-      <i class="fa fa-star"></i>
-      <i class="fa fa-star"></i>
-      <i class="fa fa-star-half-full"></i>
-      <i class="fa fa-star-o"></i>
+    <div class="star-container" data-review-rating="{{restaurantRating}}">
     </div>
-    <span class="reviews-container">12 Reviews</span>
+    <span class="reviews-container">{{reviews.length}} Reviews</span>
   </div>
   <span class="address-container">{{restaurant.address}}</span>
+  <a href="{{restaurant._id}}/edit" class="edit-button"><i class="fa fa-pencil"></i></a>
 </div>
