@@ -219,7 +219,8 @@ app.get("/search/:q?", async (req, res) => {
   res.locals.restaurants = restaurants.slice(0, 5);
   res.render("explore", { explorePage: true });
 });
-app.get("/:id", async (req, res) => {
+
+app.get("/:reviewId", async (req, res) => {
   const review = await ReviewModel.findById(req.params.id).lean();
   const restaurant = await RestaurantModel.findById(review.restaurantId).lean();
   const user = await UsersModel.findById(review.userId).lean();
@@ -266,9 +267,11 @@ app.get("/:id", async (req, res) => {
   res.render("read-review", { review, explorePage: true });
 });
 
-// Error page
+///////////////////
+//ERROR PAGE 404//
+/////////////////
 app.use("/", (req, res) => {
-  res.render("error-page");
+  res.status(404).render("error-page");
 });
 
 /////////////

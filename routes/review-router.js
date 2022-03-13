@@ -92,7 +92,7 @@ router.post("/edit/:id", async (req, res) => {
   }
 });
 
-router.get("/edit/:id/remove", async (req, res) => {
+router.get("/edit/:id/remove", async (req, res, next) => {
   let id = undefined;
   try {
     id = ObjectId(req.params.id);
