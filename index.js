@@ -83,56 +83,19 @@ app.use(async (req, res, next) => {
 
     const restaurants = await RestaurantModel.find().lean();
 
-    /*
-     * Behövde knyta ihop några fler parametrar för att
-     * i appen kunna visa informationen korrekt.
-     * displayName, restaurantName och kitchenType
-     * används för att i hbs-en sen visa informationen på rätt
-     * ställen mot reviews i explore-page.
-     */
-    for (let i = 0; i < reviews.length; i++) {
-      const user = await UsersModel.findById(reviews[i].userId);
-      const restaurant = await RestaurantModel.findById(
-        reviews[i].restaurantId
+    if (reviews) {
+      res.locals.reviews = await helpers.getReviewParams(
+        reviews,
+        res.locals.id
       );
-      reviews[i].displayName = user.displayName;
-      reviews[i].restaurantName = restaurant.name;
-      reviews[i].kitchenType = restaurant.kitchenType;
-      if (res.locals.id == reviews[i].userId) {
-        reviews[i].myReview = true;
-      }
+    } else {
+      res.locals.noReviews = true;
     }
-
-    /*
-     * Liksom reviews behövdes fler parametrar för front-end
-     * att kunna visa information på korrekt sätt.
-     */
-    for (let i = 0; i < restaurants.length; i++) {
-      const user = await UsersModel.findById(restaurants[i].userId);
-      const reviews = await ReviewModel.find({
-        restaurantId: restaurants[i]._id,
-      });
-
-      for (let j = 0; j < reviews.length; j++) {
-        restaurants[i].rating += reviews[j].rating;
-      }
-
-      restaurants[i].rating = restaurants[i].rating / reviews.length;
+    if (restaurants) {
+      res.locals.restaurants = await helpers.getRestaurantsRating(restaurants);
+    } else {
+      res.locals.noRestaurants = true;
     }
-
-    restaurants.sort((a, b) => {
-      return b.rating - a.rating;
-    });
-
-    /*
-     * Visa endast senaste 10 respektive top 5 reviews
-     * och restauranger.
-     */
-    if (reviews.length <= 0) res.locals.noReviews = true;
-    if (restaurants.length <= 0) res.locals.noRestaurants = true;
-
-    res.locals.reviews = reviews.slice(0, 10);
-    res.locals.restaurants = restaurants.slice(0, 5);
 
     next();
   } else {
@@ -165,104 +128,14 @@ app.get("/", (req, res) => {
  * Användare, reviews desc och titel hos restaurants.
  */
 app.get("/search/:q?", async (req, res) => {
-  const reviews = await ReviewModel.find({
-    $or: [
-      { description: { $regex: req.query.q, $options: "i" } },
-      { title: { $regex: req.query.q, $options: "i" } },
-    ],
-  }).lean();
-  const restaurants = await RestaurantModel.find({
-    $or: [
-      { name: { $regex: req.query.q, $options: "i" } },
-      { address: { $regex: req.query.q, $options: "i" } },
-      { kitchenType: { $regex: req.query.q, $options: "i" } },
-    ],
-  }).lean();
+  const { reviews, restaurants } = await helpers.getSearchResults(
+    req.query.q,
+    res.locals.id
+  );
 
-  /*
-   * Nedan är i princip samma kod som i middleware
-   * för komplement i front-end parametrar.
-   * Bör läggas i helpers.js ifall tid finns.
-   */
-  for (let i = 0; i < reviews.length; i++) {
-    const user = await UsersModel.findById(reviews[i].userId);
-    const restaurant = await RestaurantModel.findById(reviews[i].restaurantId);
-    reviews[i].displayName = user.displayName;
-    reviews[i].restaurantName = restaurant.name;
-    reviews[i].kitchenType = restaurant.kitchenType;
-    if (res.locals.id == reviews[i].userId) {
-      reviews[i].myReview = true;
-    }
-  }
-
-  for (let i = 0; i < restaurants.length; i++) {
-    const reviews = await ReviewModel.find({
-      restaurantId: restaurants[i]._id,
-    });
-
-    for (let j = 0; j < reviews.length; j++) {
-      restaurants[i].rating += reviews[j].rating;
-    }
-
-    restaurants[i].rating = restaurants[i].rating / reviews.length;
-  }
-
-  restaurants.sort((a, b) => {
-    return b.rating - a.rating;
-  });
-
-  if (reviews.length <= 0) res.locals.noSearchReviews = true;
-  if (restaurants.length <= 0) res.locals.noSearchRestaurants = true;
-
-  res.locals.reviews = reviews.slice(0, 10);
-  res.locals.restaurants = restaurants.slice(0, 5);
+  res.locals.reviews = reviews;
+  res.locals.restaurants = restaurants;
   res.render("explore", { explorePage: true });
-});
-app.get("/:id", async (req, res) => {
-  const review = await ReviewModel.findById(req.params.id).lean();
-  const restaurant = await RestaurantModel.findById(review.restaurantId).lean();
-  const user = await UsersModel.findById(review.userId).lean();
-  review.displayName = user.displayName;
-  review.kitchenType = restaurant.kitchenType;
-  review.name = restaurant.name;
-  let dateObject = new Date(review.date);
-  let date = ("0" + dateObject.getDate()).slice(-2);
-  let year = dateObject.getFullYear().toString();
-  let month = ("0" + (dateObject.getMonth() + 1)).slice(-2);
-  let monthString = getMonth(parseInt(month));
-  let dateString = date + " " + monthString + " " + year;
-  review.date = dateString;
-
-  const reviews = await ReviewModel.find({ userId: review.userId }).lean();
-  let totalRating = 0;
-  for (let i = 0; i < reviews.length; i++) {
-    totalRating += reviews[i].rating;
-  }
-
-  res.locals.totalRating = (totalRating / reviews.length).toFixed(2);
-  res.locals.totalReviews = reviews.length;
-
-  if (res.locals.id == review.userId) {
-    review.myReview = true;
-  }
-
-  function getMonth(x) {
-    const month = [
-      "January",
-      "February",
-      "Mars",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "November",
-      "December",
-    ];
-    return month[x - 1];
-  }
-  res.render("read-review", { review, explorePage: true });
 });
 /////////////
 // LISTEN //
