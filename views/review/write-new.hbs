@@ -56,7 +56,7 @@
       </span>
     </div>
     {{/unless}}
-    <textarea class="form__input--textarea" type="text" name="description" {{#if description}}value="{{description}}"{{/if}} placeholder="Write review"/></textarea>
+    <textarea class="form__input--textarea" type="text" name="description" placeholder="Write review"/>{{#if description}}{{description}}{{/if}}</textarea>
   </div>
   <div class="form__input">
     <input class="form__input--btn" type="submit" value="Publish" />
