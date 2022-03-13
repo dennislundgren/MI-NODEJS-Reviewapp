@@ -158,6 +158,14 @@ app.get("/", (req, res) => {
     res.redirect("/login");
   }
 });
+
+///////////////////
+//ERROR PAGE 404//
+/////////////////
+app.use("/", (req, res) => {
+  res.status(404).render("error-page");
+});
+
 /*
  * En search-query för explore-sidan.
  * Hämtar för närvarande inte information som
@@ -218,60 +226,6 @@ app.get("/search/:q?", async (req, res) => {
   res.locals.reviews = reviews.slice(0, 10);
   res.locals.restaurants = restaurants.slice(0, 5);
   res.render("explore", { explorePage: true });
-});
-
-app.get("/:reviewId", async (req, res) => {
-  const review = await ReviewModel.findById(req.params.id).lean();
-  const restaurant = await RestaurantModel.findById(review.restaurantId).lean();
-  const user = await UsersModel.findById(review.userId).lean();
-  review.displayName = user.displayName;
-  review.kitchenType = restaurant.kitchenType;
-  review.name = restaurant.name;
-  let dateObject = new Date(review.date);
-  let date = ("0" + dateObject.getDate()).slice(-2);
-  let year = dateObject.getFullYear().toString();
-  let month = ("0" + (dateObject.getMonth() + 1)).slice(-2);
-  let monthString = getMonth(parseInt(month));
-  let dateString = date + " " + monthString + " " + year;
-  review.date = dateString;
-
-  const reviews = await ReviewModel.find({ userId: review.userId }).lean();
-  let totalRating = 0;
-  for (let i = 0; i < reviews.length; i++) {
-    totalRating += reviews[i].rating;
-  }
-
-  res.locals.totalRating = (totalRating / reviews.length).toFixed(2);
-  res.locals.totalReviews = reviews.length;
-
-  if (res.locals.id == review.userId) {
-    review.myReview = true;
-  }
-
-  function getMonth(x) {
-    const month = [
-      "January",
-      "February",
-      "Mars",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "November",
-      "December",
-    ];
-    return month[x - 1];
-  }
-  res.render("read-review", { review, explorePage: true });
-});
-
-///////////////////
-//ERROR PAGE 404//
-/////////////////
-app.use("/", (req, res) => {
-  res.status(404).render("error-page");
 });
 
 /////////////
