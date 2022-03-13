@@ -122,6 +122,12 @@ app.get("/", (req, res) => {
     res.redirect("/login");
   }
 });
+
+// Error page for page not found.
+app.use("/", (req, res) => {
+  res.render("error-page");
+});
+
 /////////////
 // LISTEN //
 ///////////

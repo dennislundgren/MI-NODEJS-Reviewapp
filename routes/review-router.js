@@ -9,7 +9,6 @@ router.use(async (req, res, next) => {
   if (!res.locals.loggedIn) {
     res.redirect("/");
   }
-
   next();
 });
 
@@ -48,15 +47,25 @@ router.post("/write-new", async (req, res) => {
   }
 });
 
-router.get("/edit/:id", async (req, res) => {
+router.get("/edit/:id", async (req, res, next) => {
   if (res.locals.loggedIn) {
-    let review = undefined;
-    try {
-      review = await ReviewModel.findById(req.params.id).lean();
-    } catch {
-      res.sendStatus(404);
-    }
+    // let review = undefined;
+    // try {
+    //   review = await ReviewModel.findById(req.params.id).lean();
+    // } catch {
+    //   res.sendStatus(404);
+    // }
 
+    let id = undefined
+
+    try{
+      id = mongoose.Types.ObjectId(req.params.id)
+      console.log(id);
+    }catch{
+      next()
+    }
+    const review = await ReviewModel.findById(id).lean();
+    
     if (res.locals.id == review.userId) {
       let restaurant = await RestaurantModel.findById(
         review.restaurantId

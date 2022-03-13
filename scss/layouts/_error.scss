@@ -1,0 +1,18 @@
+////////////////////
+// IMPORTS & USE //
+//////////////////
+@use "../mixins";
+@use "../base/typography";
+
+///////////////////////
+//ERROR PAGE STYLING//
+/////////////////////
+.error-page{
+    --font-size: clamp(1.125rem, 2.25vw, 1.75rem);
+
+  @include typography.noto();
+  @include mixins.flex(column, center, center, 2rem);
+
+  background-image: linear-gradient(25deg, #fcdece, #f4a172 55%, #f65c05 110%);
+  height: 100vh;
+}
