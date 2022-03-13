@@ -264,6 +264,12 @@ app.get("/:id", async (req, res) => {
   }
   res.render("read-review", { review, explorePage: true });
 });
+
+// Error page
+app.use("/:id", (req, res) => {
+  res.render("error-page");
+});
+
 /////////////
 // LISTEN //
 ///////////
