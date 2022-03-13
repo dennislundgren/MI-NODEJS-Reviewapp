@@ -1,0 +1,282 @@
+////////////////////
+// IMPORTS & USE //
+//////////////////
+@use "../mixins";
+@use "../base/typography";
+//////////////////////
+// LOGIN VARIABLES //
+////////////////////
+$border-radius: 8px;
+$width: clamp(270px, 64vw, 350px);
+$transition: all 0.2s ease-out;
+///////////////////
+// LOGIN MIXINS //
+/////////////////
+@mixin field-layout($height: auto, $border-radius: initial) {
+  width: $width;
+  height: $height;
+  border-radius: $border-radius;
+  border: none;
+}
+/////////////////////////
+// LOGIN PAGE STYLING //
+///////////////////////
+.login-page {
+  --font-size: clamp(1.125rem, 2.25vw, 1.75rem);
+
+  @include typography.noto();
+  @include mixins.flex(column, center, center, 2rem);
+
+  background-image: linear-gradient(25deg, #fcdece, #f4a172 55%, #f65c05 110%);
+  height: 100vh;
+  ///////////////
+  // SECTIONS //
+  /////////////
+  &__section {
+    ///////////////////
+    // LOGO SECTION //
+    /////////////////
+    &--logo {
+      user-select: none;
+      width: clamp(130px, 20vw, 180px);
+      .critic-logo {
+        content: url("../assets/svg/Logo.svg");
+        width: 100%;
+        height: fit-content;
+      }
+    }
+    ///////////////////
+    // FORM SECTION //
+    /////////////////
+    &--form {
+      @include mixins.flex(column, center, center, 1.125rem);
+      .form__input {
+        position: relative;
+        &--title {
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          color: rgba($color: #000000, $alpha: 0.5);
+          transition: $transition;
+          width: 100%;
+          cursor: text;
+          user-select: none;
+        }
+        &--text,
+        &--btn {
+          @include field-layout(45px, $border-radius);
+        }
+        &--text {
+          font-size: 1rem;
+          padding: 0.75rem 0.75rem 0rem 0.75rem;
+          font-weight: 300;
+        }
+        &--btn {
+          @include mixins.flex(column, center, center, 1rem);
+          transition: $transition;
+          padding: calc(var(--font-size) * 0.5);
+          margin-top: 1.25rem;
+          background-color: #d96422;
+          color: white;
+          font-size: 1.125rem;
+          cursor: pointer;
+        }
+        &--text:focus ~ .form__input--title,
+        &--text:not(:placeholder-shown) ~ .form__input--title {
+          left: clamp(-2.5rem, min(-3vw, -6vw), -0.5rem);
+          top: 0;
+          transform: scale(0.7);
+        }
+        &--text:focus {
+          outline: none;
+        }
+        &--btn:focus,
+        &--btn:hover {
+          transform: scale(1.05);
+          outline: none;
+        }
+        &--checkbox {
+          margin-top: -0.5rem;
+          justify-self: flex-start;
+          width: 100%;
+          > * {
+            cursor: pointer;
+          }
+        }
+        #rememberMe {
+          width: 25px;
+          height: 25px;
+          opacity: 0;
+        }
+        @supports not selector(:focus-visible) {
+          #rememberMe {
+            outline: none;
+            width: 40px;
+            height: 40px;
+            margin-top: -15px;
+            margin-right: -8px;
+            appearance: none;
+            opacity: 1;
+            border-radius: 8px;
+            content: url(../assets/svg/checkbox.svg);
+            &:focus,
+            &:hover {
+              content: url(../assets/svg/checkbox-focus.svg);
+              ~ .checkbox-text {
+                color: #d96422;
+              }
+            }
+            &:checked {
+              content: url(../assets/svg/checkbox-checked.svg);
+            }
+          }
+          .checkbox-icon {
+            display: none;
+          }
+        }
+        #rememberMe:focus-visible ~ .checkbox-icon,
+        #rememberMe:hover ~ .checkbox-icon {
+          #ellipse--orange {
+            r: 40;
+            stroke-width: 15;
+            stroke: #f4a172;
+            fill: none;
+          }
+        }
+        #rememberMe:checked:focus-visible {
+          ~ .checkbox-icon #Unchecked {
+            stroke: #d96422;
+          }
+        }
+        #rememberMe:checked ~ .checkbox-icon #ellipse--orange {
+          r: 50;
+          fill: #f4a172;
+          stroke-width: 0;
+        }
+        #rememberMe:checked ~ .checkbox-icon #ellipse--white {
+          r: 125.5;
+        }
+        #rememberMe:hover,
+        #rememberMe:focus-visible {
+          ~ #ellipse--orange {
+            r: 40;
+            stroke-width: 15;
+            stroke: #f4a172;
+            fill: none;
+          }
+          ~ .checkbox-text {
+            color: #d96422;
+          }
+        }
+        .checkbox-text {
+          font-size: 14px;
+          vertical-align: super;
+          margin-left: -6px;
+          padding-left: 9px;
+        }
+        .checkbox-icon {
+          pointer-events: none;
+          position: absolute;
+          top: -11px;
+          left: 0px;
+          width: 30px;
+          height: auto;
+          transition: $transition;
+          * {
+            transition: $transition;
+          }
+        }
+      }
+      a {
+        text-decoration: none;
+      }
+      a:hover,
+      a:focus {
+        text-decoration: underline;
+      }
+      .error {
+        position: relative;
+        width: 100%;
+        &__text {
+          background-color: #d92e22;
+          color: white;
+          position: absolute;
+          right: 0;
+          top: -0.5rem;
+          font-size: 8pt;
+          padding: 0.1rem 0.5rem;
+          border-radius: $border-radius * 0.66;
+        }
+      }
+    }
+    //////////////////////////
+    // THIRD PARTY SECTION //
+    ////////////////////////
+    &--third-party {
+      @include mixins.flex(column, center, center, 2rem);
+      margin-top: 1.25rem;
+      width: min(64vw, 270px);
+
+      span {
+        position: relative;
+        &::before,
+        &::after {
+          top: 50%;
+          transform: translateY(-50%);
+          position: absolute;
+          content: "";
+          width: min(calc(32vw * 0.5), 90px);
+          height: 1px;
+        }
+        &::before {
+          background-image: linear-gradient(
+            to left,
+            black 20%,
+            rgba(0, 0, 0, 0)
+          );
+          transform: translateX(-130%);
+        }
+        &::after {
+          background-image: linear-gradient(
+            to right,
+            black 20%,
+            rgba(0, 0, 0, 0)
+          );
+          transform: translateX(30%);
+        }
+      }
+
+      ////////////////////////
+      // THIRD PARTY ICONS //
+      //////////////////////
+      .third-party {
+        @include mixins.flex(row, space-between, center);
+        width: 100%;
+        &__logo {
+          font-size: 20pt;
+          &--facebook {
+            content: url(../assets/svg/facebook.svg);
+          }
+          &--google {
+            content: url(../assets/svg/Google.svg);
+          }
+          &--twitter {
+            content: url(../assets/svg/Twitter.svg);
+          }
+        }
+      }
+    }
+  }
+  *::selection {
+    background-color: #504f4f;
+    color: white;
+  }
+}
+////////////////////
+// EXTRA CLASSES //
+//////////////////
+.font-size--small {
+  font-size: 14px;
+  color: #504f4f;
+}

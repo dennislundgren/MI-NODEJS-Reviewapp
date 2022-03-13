@@ -1,0 +1,40 @@
+////////////////////
+// IMPORTS & USE //
+//////////////////
+@use "../mixins";
+@use "../base/typography";
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300&display=swap");
+////////////////////////
+// PROFILE VARIABLES //
+//////////////////////
+$width: clamp(270px, 100%, 550px);
+$border: 1px solid #d9d4d4;
+$border-radius: 10px;
+$border-radius-round: 999px;
+$color-text-dim-1: #838383;
+$color-text-dim-2: #9f9f9f;
+$color-background-bright: #fbfbfb;
+$font-size-sm: 12px;
+$font-size-md: 14px;
+$font-size-bg: 18px;
+$font-size-xl: 24px;
+$transition: all 0.2s ease-out;
+/////////////////////
+// PROFILE MIXINS //
+///////////////////
+@mixin icon-small {
+  width: 1.5rem;
+  height: 1.5rem;
+  &::after {
+    height: 1.125rem;
+    width: 1.125rem;
+  }
+}
+@mixin icon-big {
+  width: 4.5rem;
+  height: 4.5rem;
+  &::after {
+    height: 3rem;
+    width: 3rem;
+  }
+}

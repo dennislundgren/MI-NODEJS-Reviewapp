@@ -1,0 +1,67 @@
+<main class="review-page">
+
+  <h2 class="review-page__section review-page__section--heading">Write new review</h2>
+
+<form class="review-page__section review-page__section--form" action="/reviews/write-new" method="post">
+  <div class="form__input"> 
+    {{#unless restaurantId}}
+    <div class="error">
+      <span class="error__text">
+          {{restError}}
+      </span>
+    </div>
+    {{/unless}}
+  <select class="form__input--select" name="restaurantId" id="restaurant">
+  
+    <option value="" disabled selected>Choose restaurant</option>
+   
+    {{#each restaurants}}
+    <option value="{{_id}}">{{name}}</option>
+    {{/each}}
+  </select>
+  </div>
+
+  <div class="form__link">
+    <a href="/restaurants/register">Add new restaurant <span class="form__link--add">+</span></a>
+  </div>
+
+  {{!-- https://dev.to/madsstoumann/star-rating-using-a-single-input-i0l --}}
+  <div class="form__input">
+    <input
+    name="rating"
+    class="rating"
+    min="1"
+    max="5"
+    oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
+    style="--value:1"
+    type="range"
+    value="1">
+  </div>
+  
+  <div class="form__input">
+    {{#unless title}}
+    <div class="error">
+      <span class="error__text">
+          {{textError}}
+      </span>
+    </div>
+    {{/unless}}
+    <input class="form__input--text" type="text" name="title"{{#if title}}value="{{title}}"{{/if}} placeholder="Add title"/>
+  </div>
+  <div class="form__input">
+    {{#unless description}}
+    <div class="error">
+      <span class="error__text">
+          {{textError}}
+      </span>
+    </div>
+    {{/unless}}
+    <textarea class="form__input--textarea" type="text" name="description" placeholder="Write review"/>{{#if description}}{{description}}{{/if}}</textarea>
+  </div>
+  <div class="form__input">
+    <input class="form__input--btn" type="submit" value="Publish" />
+  </div>
+</form>
+
+{{>navbar}}
+</main>

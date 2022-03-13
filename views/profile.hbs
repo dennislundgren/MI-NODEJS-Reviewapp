@@ -1,0 +1,104 @@
+<main class="profile-page">
+
+  <section class="wrapper wrapper--header">
+    <div class="container container--header">
+      <span class="profile-picture" ></span>
+    </div>
+    <div class="container container--header">
+      <span class="username">{{displayName}}</span>
+      <div class="container__header">
+        <span class="reviews-amount reviews-amount--header">{{totalReviews}} reviews</span>
+        <span class="rating rating--header">Average rating:{{#if noReviews}}'({{else}} {{totalRating}}{{/if}}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrapper wrapper--menu">
+    <a href="/profile/{{id}}" title="Reviews" class="faded-text{{#if myReviews}} active{{/if}}">My
+      Reviews</a>
+    <a
+      href="/profile/{{id}}/restaurants"
+      title="Restaurants"
+      class="faded-text{{#if myRestaurants}} active{{/if}}"
+    >My Restaurants</a>
+    <a href="/profile/{{id}}/settings" title="Settings" class="faded-text{{#if mySettings}} active{{/if}}">Settings</a>
+  </section>
+
+  {{#if myReviews}}
+  
+
+  <section class="wrapper wrapper--reviews">
+    {{#if noReviews}}
+      <p>You haven't written any reviews yet :(</p>
+      {{/if}}
+    {{#each reviews}}
+    <div class="container container--review">
+      <div class="container__review-header">
+        <span class="restaurant-icon restaurant-icon--review restaurant-icon--{{kitchenType}}"></span>
+        <span class="restaurant-title restaurant-title--review">{{name}}</span>
+      </div>
+      <a href="/reviews/edit/{{_id}}" class="edit edit--review"></a>
+      <div class="container__review-title">
+        <span class="review-title">{{title}}</span>
+        <span class="rating rating--review" data-review-rating="{{rating}}"></span>
+      </div>
+      <div class="container__review-description">
+        <span class="description">
+          {{description}}
+        </span>
+      </div>
+      <div class="container__review-date">
+        <span class="date">{{date}}</span>
+      </div>
+    </div>
+    {{/each}}
+  </section>
+
+{{/if}}
+
+{{#if myRestaurants}}
+
+  <section class="wrapper wrapper--restaurants">
+    {{#if noRestaurants}}
+      <p>You haven't created any restaurants yet :(</p>
+      {{/if}}
+    {{#each restaurants}}
+    <div class="container container--restaurant">
+      <span class="restaurant-icon restaurant-icon--restaurant restaurant-icon--{{kitchenType}}"></span>
+      <a href="/restaurants/{{_id}}/edit" class="edit edit--restaurant"></a>
+      <div class="container__restaurant-content">
+        <span class="restaurant-title restaurant-title--restaurant">{{name}}</span>
+        <span
+          class="rating rating--restaurant"
+          data-restaurant-rating="{{rating}}"
+        ></span>
+        <span class="reviews-amount reviews-amount--restaurant">{{totalRating}} Reviews</span>
+        <span class="address">{{address}}</span>
+      </div>
+    </div>
+    {{/each}}
+  </section>
+
+  {{/if}}
+
+  {{#if mySettings}}
+
+  <section class="wrapper wrapper--settings">
+    <div class="container container--settings">
+      <form action="/profile/log-out" method="post">
+      <input type="submit"
+        class="account-button account-button--log-out"
+     value="Log Out">
+     </form>
+    </div>
+    <div class="container container--terms">
+      <span class="faded-text">Terms of Service</span>
+      <span class="faded-text">Privacy Policy</span>
+      <span class="faded-text">Support</span>
+    </div>
+  </section>
+{{/if}}
+
+</main>
+
+{{>navbar}}

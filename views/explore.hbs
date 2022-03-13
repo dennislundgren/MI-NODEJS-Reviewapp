@@ -1,0 +1,83 @@
+<main class="explore-page">
+
+  <section class="container container--search">
+    <form action="/search" method="GET" class="form">
+      <input
+        type="text"
+        name="q"
+        id="q"
+        class="form__input"
+        placeholder=" "
+      />
+      <label for="q" class="form__lable">Search for restaurants</label>
+      <label for="submitBtn" class="form__searchBtn"><i
+          class="fa-solid fa-magnifying-glass"
+        ></i></label>
+      <input
+        type="submit"
+        class="form__submit"
+        id="searchBtn"
+      />
+    </form>
+  </section>
+
+  <section class="wrapper wrapper--restaurants">
+    <h2 class="heading">Top 5 restaurants</h2>
+
+    {{#if noRestaurants}}
+      <p>You haven't opened any restaurants yet :(</p>
+      {{/if}}
+{{#if noSearchRestaurants}}
+      <p>Couldn't find any restaurants :(</p>
+      {{/if}}
+    <div class="container container--restaurant">
+      {{#each restaurants}}
+        <div class="card" data-restaurant-id="{{_id}}" aria-label="Restaurant Link">
+          <span
+            class="restaurant-icon restaurant-icon--restaurant restaurant-icon--{{kitchenType}}"
+          ></span>
+          <h5 class="title">{{name}}</h5>
+          <span
+            class="rating rating--restaurant"
+            data-restaurant-rating="{{rating}}"
+          ></span>
+        </div>
+      {{/each}}
+    </div>
+
+  </section>
+
+  <section class="wrapper wrapper--reviews">
+    <h2 class="heading">Recent reviews</h2>
+
+    {{#if noReviews}}
+      <p>You haven't written any reviews yet :(</p>
+      {{/if}}
+{{#if noSearchReviews}}
+      <p>Couldn't find any reviews :(</p>
+      {{/if}}
+    {{#each reviews}}
+
+      <div class="container container--review">
+        {{#if myReview}} <a href="/reviews/edit/{{_id}}" class="edit edit--review"></a> {{/if}}
+        <span
+          class="restaurant-icon restaurant-icon--review restaurant-icon--{{kitchenType}}"
+        ></span>
+        <div class="block">
+          <h5 class="title">{{restaurantName}}</h5>
+          <span
+            class="rating rating--review"
+            data-review-rating="{{rating}}"
+          ></span>
+          
+          <span class="faded-text">By {{displayName}}</span>
+        </div>
+        <a href="/reviews/{{_id}}" class="faded-text" title="Review Link">Read
+          review &gt;</a>
+      </div>
+
+    {{/each}}
+
+  </section>
+</main>
+{{>navbar}}

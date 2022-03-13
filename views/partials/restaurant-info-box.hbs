@@ -1,0 +1,16 @@
+<div class="restaurant-info-box">
+  <div class="name-type-container">
+    <div class="sphere">
+    </div>
+    <span>{{restaurant.name}}</span>
+  </div>
+  <div class="stars-reviews">
+    <div class="star-container" data-review-rating="{{restaurantRating}}">
+    </div>
+    <span class="reviews-container">{{reviews.length}} Reviews</span>
+  </div>
+  <span class="address-container">{{restaurant.address}}</span>
+  <a href="{{restaurant._id}}/edit" class="edit-button"><i
+      class="fa fa-pencil"
+    ></i></a>
+</div>

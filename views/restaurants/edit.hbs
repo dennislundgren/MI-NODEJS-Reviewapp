@@ -1,0 +1,55 @@
+<main class="restaurant-edit">
+    <span class="error">{{error}}</span>
+  <form
+    class="review-page__section review-page__section--form"
+    action="/restaurants/{{restaurant._id}}/edit"
+    method="post"
+    >
+
+    <div class="form__input">
+      <input
+        class="form__input--text"
+        type="text"
+        name="name"
+        id="title"
+        placeholder="Name"
+        value="{{restaurant.name}}"
+      />
+    </div>
+    <div class="form__input">
+      <input
+        class="form__input--text"
+        type="text"
+        name="address"
+        id="title"
+        placeholder="Address"
+        value="{{restaurant.address}}"
+      />
+    </div>
+        <div>
+            <div class="radio-container">
+                <input type="radio" name="kitchenType" id="rAmerican" value="american" required>
+                <label for="rAmerican" class="type-icon">American</label>
+
+                <input type="radio" name="kitchenType" id="rChinese" value="chinese" required>
+                <label for="rChinese" class="type-icon">Chinese</label>
+
+                <input type="radio" name="kitchenType" id="rJapanese" value="japanese" required>
+                <label for="rJapanese" class="type-icon">Japanese</label>
+
+                <input type="radio" name="kitchenType" id="rItalian" value="italian" required>
+                <label for="rItalian" class="type-icon">Italian</label>
+
+                <input type="radio" name="kitchenType" id="rOther" value="other" required>
+                <label for="rOther" class="type-icon">Other</label>
+            </div>
+        </div>
+    <div class="form__input">
+      <input class="form__input--btn" type="submit" value="Save" />
+
+      <a class="form__input--btn delete-btn" href="/restaurants/{{restaurant._id}}/remove">Delete</a>
+    </div>
+    
+  </form>
+</main>
+{{>navbar}}

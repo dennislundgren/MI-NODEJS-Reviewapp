@@ -1,0 +1,64 @@
+<main class="review-page">
+  <div class="review-page__section review-page__section--restaurant">
+{{>restaurant-info-box}}
+  </div>
+
+  <form
+    class="review-page__section review-page__section--form"
+    action="/reviews/edit/{{review._id}}"
+    method="post"
+  >
+    <div class="form__input">
+      <input
+      name="rating"
+      class="rating"
+      min="1"
+      max="5"
+      oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
+      style="--value:{{review.rating}}"
+      type="range"
+      value="{{review.rating}}">
+    </div>
+
+    <div class="form__input">
+      {{#unless review.title}}
+    <div class="error">
+      <span class="error__text">
+          {{textError}}
+      </span>
+    </div>
+    {{/unless}}
+      <input
+        class="form__input--text"
+        type="text"
+        name="title"
+        id="title"
+        value="{{review.title}}"
+      />
+    </div>
+    <div class="form__input">
+      {{#unless review.description}}
+    <div class="error">
+      <span class="error__text">
+          {{textError}}
+      </span>
+    </div>
+    {{/unless}}
+      <textarea
+        class="form__input--textarea"
+        type="text"
+        name="description"
+        id="description"
+        value="{{review.description}}"
+      >{{review.description}}</textarea>
+    </div>
+    <div class="form__input">
+      <input class="form__input--btn" type="submit" value="Save" />
+
+      <a class="form__input--btn delete-btn" href="/reviews/edit/{{review._id}}/remove">Delete</a>
+    </div>
+    
+  </form>
+
+{{>navbar}}
+</main>

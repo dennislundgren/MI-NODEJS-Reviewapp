@@ -1,0 +1,58 @@
+@use "../base/typography";
+.restaurant-info-box {
+    @include typography.noto();
+    min-height: 200px;
+    background-color: rgb(241, 241, 241);
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    position: relative;
+    
+    .name-type-container {
+        display: flex;
+        align-items: center;
+        justify-content: space;
+        gap: 20px;
+        
+        .sphere {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $primary-color;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        span {
+            @include typography.lust();
+            font-size: 1.7em;
+        }
+    }
+    .stars-reviews{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .star-container {
+            font-size: 1.8em;
+        }
+        .reviews-container {
+            font-size: 0.8em;
+            color: gray;
+        }
+    }
+    .address-container {
+        margin: 10px 0 0;
+        font-size: 1em;
+    }
+
+    .edit-button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        color: black;
+        text-decoration: none;
+    }
+}
