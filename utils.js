@@ -28,12 +28,15 @@ const generateAuthToken = () => {
 function validateReview(review){
   let valid = true
 
+  valid = valid && (review.restaurantId)
+
+  valid = valid && (review.title)
   valid = valid && (review.title.length > 0)
-  console.log(valid);
-  valid = valid && (review.description > 0)
-  console.log(valid);
+
+  valid = valid && (review.description)
+  valid = valid && (review.description.length > 0)
+
   valid = valid && (review.rating > 0)
-  console.log(valid);
   valid = valid && (!isNaN(review.rating))
 
   return valid
