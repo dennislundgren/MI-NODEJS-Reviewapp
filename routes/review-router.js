@@ -70,19 +70,18 @@ router.get("/edit/:id", async (req, res) => {
   }
 });
 
-router.post("/edit/:id", async (req, res, next) => {
-  const review = await ReviewModel.findById(req.params.id);
+router.post("/edit/:id", async (req, res) => {
+  const review = await ReviewModel.findById(req.params.id).lean();
 
   review.title = req.body.title;
   review.description = req.body.description;
   review.rating = req.body.rating;
-  console.log(review);
 
   if (validateReview(review)) {
     await review.save();
     res.redirect("/");
   } else {
-    const restaurant = await RestaurantModel.findById(review.restaurantId).lean();
+    let restaurant = await RestaurantModel.findById(review.restaurantId).lean();
 
     res.render("review/review-edit", {
       review,
@@ -90,9 +89,6 @@ router.post("/edit/:id", async (req, res, next) => {
       textError: "You need to write something",
     });
   }
-
-  await review.save();
-  res.redirect("/");
 });
 
 router.get("/edit/:id/remove", async (req, res) => {
