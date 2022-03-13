@@ -4,7 +4,6 @@ const RestaurantModel = require("../models/restaurant.js");
 const { UsersModel } = require("../models/UsersModel");
 const { validateReview } = require(".././utils");
 const { ObjectId } = require("mongodb");
-const { UsersModel } = require("../models/UsersModel");
 
 const router = express.Router();
 
