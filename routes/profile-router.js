@@ -9,6 +9,7 @@ const { UsersModel } = require("../models/UsersModel");
 const ReviewModel = require("../models/review");
 const RestaurantsModel = require("../models/restaurant");
 const RestaurantModel = require("../models/restaurant");
+const helpers = require("../helpers");
 ///////////////////
 // ROUTER SETUP //
 /////////////////
@@ -22,6 +23,7 @@ router.use(async (req, res, next) => {
   }
 
   const reviews = await ReviewModel.find({ userId: res.locals.id }).lean();
+
   let totalRating = 0;
   for (let i = 0; i < reviews.length; i++) {
     const restaurant = await RestaurantsModel.findById(
