@@ -84,7 +84,7 @@ app.use(async (req, res, next) => {
 
     const restaurants = await RestaurantModel.find().lean();
 
-    if (reviews) {
+    if (reviews.length > 0) {
       res.locals.reviews = await helpers.getReviewParams(
         reviews,
         res.locals.id
@@ -92,7 +92,7 @@ app.use(async (req, res, next) => {
     } else {
       res.locals.noReviews = true;
     }
-    if (restaurants) {
+    if (restaurants.length > 0) {
       res.locals.restaurants = await helpers.getRestaurantsRating(restaurants);
     } else {
       res.locals.noRestaurants = true;
@@ -122,13 +122,6 @@ app.get("/", (req, res) => {
   }
 });
 
-///////////////////
-//ERROR PAGE 404//
-/////////////////
-app.use("/", (req, res) => {
-  res.status(404).render("error-page");
-});
-
 /*
  * En search-query för explore-sidan.
  * Hämtar för närvarande inte information som
@@ -142,9 +135,27 @@ app.get("/search/:q?", async (req, res) => {
     res.locals.id
   );
 
-  res.locals.reviews = reviews;
-  res.locals.restaurants = restaurants;
+  console.log(reviews, restaurants);
+
+  if (reviews.length > 0) {
+    res.locals.reviews = reviews;
+  } else {
+    res.locals.reviews = reviews;
+    res.locals.noSearchReviews = true;
+  }
+  if (restaurants.length > 0) {
+    res.locals.restaurants = restaurants;
+  } else {
+    res.locals.restaurants = restaurants;
+    res.locals.noSearchRestaurants = true;
+  }
   res.render("explore", { explorePage: true });
+});
+///////////////////
+//ERROR PAGE 404//
+/////////////////
+app.use("/", (req, res) => {
+  res.status(404).render("error-page");
 });
 /////////////
 // LISTEN //

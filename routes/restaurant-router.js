@@ -32,7 +32,6 @@ router.get("/:id", async (req, res) => {
   let isMine = false;
   if (res.locals.id == restaurant.userId) isMine = true;
 
-
   let restaurantReviewsAmount = reviews.length;
 
   let restaurantRating = 0;
@@ -50,24 +49,24 @@ router.get("/:id", async (req, res) => {
     });
 });
 router.get("/:id/edit", async (req, res) => {
-  console.log(res.locals.id)
   if (!res.locals.loggedIn) res.redirect("/login");
   const restaurant = await RestaurantModel.findOne({
-    id: req.params.id,
+    _id: req.params.id,
   }).lean();
-  console.log(res.locals.id, restaurant.userId)
-  if(res.locals.id != restaurant.userId) res.redirect("/")
+  if (res.locals.id != restaurant.userId) res.redirect("/");
 
   res.render("restaurants/edit", {
     restaurant,
     restaurantsPage: true,
   });
 });
-router.get("/:id/remove", async (req,res) => {
-  if (!res.locals.loggedIn) res.redirect("/login")
-  await RestaurantModel.findOneAndRemove({_id: req.params.id});
+router.get("/:id/remove", async (req, res) => {
+  if (!res.locals.loggedIn) res.redirect("/login");
+  await RestaurantModel.findOneAndRemove({ _id: req.params.id });
+  await ReviewModel.deleteMany({ restaurantId: req.params.id });
+
   res.redirect(`/restaurants`);
-}) 
+});
 router.get("/", async (req, res) => {
   if (!res.locals.loggedIn) res.redirect("/login");
   let filter = {};
@@ -102,8 +101,8 @@ router.post("/register", async (req, res) => {
   res.redirect(`/reviews/write-new?restaurant=${newRestaurant._id}`);
 });
 
-router.post("/:id/edit", async (req,res) => {
-  if (!res.locals.loggedIn) res.redirect("/login")
+router.post("/:id/edit", async (req, res) => {
+  if (!res.locals.loggedIn) res.redirect("/login");
   const restaurant = await RestaurantModel.findById(req.params.id);
 
   restaurant.name = req.body.name;
@@ -111,6 +110,6 @@ router.post("/:id/edit", async (req,res) => {
 
   await restaurant.save();
   res.redirect(`/restaurants/${restaurant._id}`);
-}) 
+});
 
 module.exports = router;
