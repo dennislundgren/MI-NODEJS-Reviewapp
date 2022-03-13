@@ -28,14 +28,21 @@ router.get("/:id", async (req, res) => {
   const reviews = await ReviewModel.find({
     restaurantId: req.params.id,
   }).lean();
-  console.log(restaurant);
-  console.log(res.locals);
 
   let isMine = false;
   if (res.locals.id == restaurant.userId) isMine = true;
 
+
+  let restaurantReviewsAmount = reviews.length;
+
+  let restaurantRating = 0;
+  for (let review of reviews) {
+    restaurantRating += review.rating;
+  }
+  restaurantRating = restaurantRating / reviews.length;
   if (res.locals.id)
     res.render("restaurants/view", {
+      restaurantRating,
       isMine,
       restaurant,
       reviews,
@@ -43,17 +50,24 @@ router.get("/:id", async (req, res) => {
     });
 });
 router.get("/:id/edit", async (req, res) => {
+  console.log(res.locals.id)
   if (!res.locals.loggedIn) res.redirect("/login");
   const restaurant = await RestaurantModel.findOne({
     id: req.params.id,
   }).lean();
+  console.log(res.locals.id, restaurant.userId)
+  if(res.locals.id != restaurant.userId) res.redirect("/")
 
-  res.render("edit-restaurant", {
-    title: "Edit",
+  res.render("restaurants/edit", {
     restaurant,
     restaurantsPage: true,
   });
 });
+router.get("/:id/remove", async (req,res) => {
+  if (!res.locals.loggedIn) res.redirect("/login")
+  await RestaurantModel.findOneAndRemove({_id: req.params.id});
+  res.redirect(`/restaurants`);
+}) 
 router.get("/", async (req, res) => {
   if (!res.locals.loggedIn) res.redirect("/login");
   let filter = {};
@@ -65,7 +79,6 @@ router.get("/", async (req, res) => {
     .sort(sort)
     .limit(100)
     .lean();
-  // console.log(restaurants)
   res.render("restaurants/list", {
     restaurants,
     restaurantsPage: true,
@@ -88,5 +101,16 @@ router.post("/register", async (req, res) => {
   }
   res.redirect(`/reviews/write-new?restaurant=${newRestaurant._id}`);
 });
+
+router.post("/:id/edit", async (req,res) => {
+  if (!res.locals.loggedIn) res.redirect("/login")
+  const restaurant = await RestaurantModel.findById(req.params.id);
+
+  restaurant.name = req.body.name;
+  restaurant.address = req.body.address;
+
+  await restaurant.save();
+  res.redirect(`/restaurants/${restaurant._id}`);
+}) 
 
 module.exports = router;

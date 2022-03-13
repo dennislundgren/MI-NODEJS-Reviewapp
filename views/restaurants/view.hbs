@@ -21,23 +21,19 @@
         <div class="review">
             <div class="top-bottom-container">
                 <span>{{title}}</span>
-                <div>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                <div data-review-rating="{{rating}}">
                 </div>
             </div>
             <div class="text-container">
-                <span>TEXT</span>
+                <span>{{description}}</span>
             </div>
             <div class="top-bottom-container">
                 <span class="timestamp">09 March 2022</span>
                 <i class="fa fa-chevron-down"></i>
             </div>
             <span class="username">{{userId.username}}</span>
-            <a href="/reviews/edit"><i class="fa fa-pencil pen"></i></a>
+            
+            <a href="/reviews/edit/{{_id}}"><i class="fa fa-pencil pen"></i></a>
         </div>
         {{/each}}
         
