@@ -3,6 +3,7 @@
 //////////////////
 @use "../mixins";
 @use "../base/typography";
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300&display=swap");
 ////////////////////////
 // PROFILE VARIABLES //
 //////////////////////
@@ -16,6 +17,7 @@ $color-background-bright: #fbfbfb;
 $font-size-sm: 12px;
 $font-size-md: 14px;
 $font-size-bg: 18px;
+$font-size-xl: 24px;
 $transition: all 0.2s ease-out;
 /////////////////////
 // PROFILE MIXINS //
@@ -26,6 +28,14 @@ $transition: all 0.2s ease-out;
   &::after {
     height: 1.125rem;
     width: 1.125rem;
+  }
+}
+@mixin icon-big {
+  width: 4.5rem;
+  height: 4.5rem;
+  &::after {
+    height: 3rem;
+    width: 3rem;
   }
 }
 ///////////////////////
@@ -61,9 +71,12 @@ $transition: all 0.2s ease-out;
     // Wrapper modifier
     &--restaurants {
       @include mixins.flex(column, center, center, 1rem);
+      padding: 1rem;
+      padding-bottom: 135px;
     }
     // Wrapper modifier
     &--settings {
+      @include mixins.flex(column, center, center);
     }
 
     .container {
@@ -99,13 +112,15 @@ $transition: all 0.2s ease-out;
       }
       // Block element
       &__review-description {
-        // max-height: 35px;
-        // overflow: hidden;
-        // text-overflow: fade(10px);
+      }
+      // Block element
+      &__restaurant-content {
+        @include mixins.flex(column, center, center, 0.25rem);
+        width: 70%;
       }
       // Container modifier
       &--header {
-        @include mixins.flex(column, space-between, space-between);
+        @include mixins.flex(column, space-evenly, flex-start);
         height: 100%;
         &:first-child {
           width: fit-content;
@@ -115,16 +130,38 @@ $transition: all 0.2s ease-out;
       &--menu {
       }
       // Container modifier
-      &--review {
+      &--review,
+      &--restaurant {
         border: $border;
         border-radius: $border-radius;
         width: $width;
       }
       // Container modifier
       &--restaurant {
+        @include mixins.flex(row, space-evenly, center);
       }
       // Container modifier
       &--settings {
+        width: $width;
+      }
+
+      // Container modifier
+      &--terms {
+        @include mixins.flex(row, center, center);
+        & :not(:first-child) {
+          position: relative;
+          margin-left: 0.5rem;
+          &::before {
+            content: "";
+            position: absolute;
+            height: 70%;
+            width: 1px;
+            background-color: $color-text-dim-2;
+            left: -0.25rem;
+            top: 0;
+            transform: translateY(30%);
+          }
+        }
       }
 
       .profile-picture {
@@ -144,6 +181,8 @@ $transition: all 0.2s ease-out;
         &--header {
         }
         &--restaurant {
+          font-size: $font-size-sm;
+          color: $color-text-dim-1;
         }
       }
 
@@ -151,6 +190,7 @@ $transition: all 0.2s ease-out;
         &--header {
         }
         &--review {
+          min-width: 80px;
         }
         &--restaurant {
         }
@@ -164,12 +204,16 @@ $transition: all 0.2s ease-out;
         &--review {
           @include icon-small();
         }
+        &--restaurant {
+          @include icon-big();
+        }
       }
 
       .restaurant-title {
         &--review {
         }
         &--restaurant {
+          @include typography.lust();
         }
       }
 
@@ -202,10 +246,18 @@ $transition: all 0.2s ease-out;
       }
 
       .address {
+        font-size: $font-size-md;
       }
 
       .account-button {
+        font-family: "Assistant", sans-serif;
+        color: white;
+        padding: 0.5rem;
         width: $width;
+        border: $border;
+        border-radius: $border-radius;
+        font-size: $font-size-xl;
+        font-weight: 100;
         &--log-out {
           background-color: #d96422;
         }

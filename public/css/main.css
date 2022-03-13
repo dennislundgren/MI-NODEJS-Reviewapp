@@ -1,4 +1,6 @@
 @import url("https://use.typekit.net/zeg4rhy.css");
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300&display=swap");
+@import url("https://use.typekit.net/zeg4rhy.css");
 @import url("https://use.typekit.net/zeg4rhy.css");
 @import url("https://use.typekit.net/zeg4rhy.css");
 @import url("https://use.typekit.net/zeg4rhy.css");
@@ -576,7 +578,10 @@ body::-webkit-scrollbar {
 }
 .explore-page .container--search .form__submit {
   position: absolute;
-  left: 0;
+  opacity: 0;
+  right: 1rem;
+  height: 2rem;
+  width: 2rem;
 }
 .explore-page .container--search .form__searchBtn {
   position: absolute;
@@ -622,6 +627,11 @@ body::-webkit-scrollbar {
   .explore-page .container--restaurant .card:last-child {
     margin-right: 5%;
   }
+}
+.explore-page .container--restaurant .card .title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .explore-page .container--review {
   display: flex;
@@ -695,6 +705,15 @@ body::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  padding: 1rem;
+  padding-bottom: 135px;
+}
+.profile-page .wrapper--settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
 }
 .profile-page .wrapper .container {
   font-family: "noto-sans", sans-serif;
@@ -738,11 +757,19 @@ body::-webkit-scrollbar {
 .profile-page .wrapper .container__header > * {
   display: block;
 }
+.profile-page .wrapper .container__restaurant-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  width: 70%;
+}
 .profile-page .wrapper .container--header {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: space-between;
+  justify-content: space-evenly;
+  align-items: flex-start;
   gap: 0;
   height: 100%;
 }
@@ -751,10 +778,41 @@ body::-webkit-scrollbar {
   width: -moz-fit-content;
   width: fit-content;
 }
-.profile-page .wrapper .container--review {
+.profile-page .wrapper .container--review, .profile-page .wrapper .container--restaurant {
   border: 1px solid #d9d4d4;
   border-radius: 10px;
   width: clamp(270px, 100%, 550px);
+}
+.profile-page .wrapper .container--restaurant {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0;
+}
+.profile-page .wrapper .container--settings {
+  width: clamp(270px, 100%, 550px);
+}
+.profile-page .wrapper .container--terms {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.profile-page .wrapper .container--terms :not(:first-child) {
+  position: relative;
+  margin-left: 0.5rem;
+}
+.profile-page .wrapper .container--terms :not(:first-child)::before {
+  content: "";
+  position: absolute;
+  height: 70%;
+  width: 1px;
+  background-color: #9f9f9f;
+  left: -0.25rem;
+  top: 0;
+  transform: translateY(30%);
 }
 .profile-page .wrapper .container .profile-picture {
   height: 120px;
@@ -766,6 +824,13 @@ body::-webkit-scrollbar {
 .profile-page .wrapper .container .username {
   font-size: 18px;
   font-weight: 700;
+}
+.profile-page .wrapper .container .reviews-amount--restaurant {
+  font-size: 12px;
+  color: #838383;
+}
+.profile-page .wrapper .container .rating--review {
+  min-width: 80px;
 }
 .profile-page .wrapper .container .restaurant-icon {
   display: flex;
@@ -784,6 +849,19 @@ body::-webkit-scrollbar {
   height: 1.125rem;
   width: 1.125rem;
 }
+.profile-page .wrapper .container .restaurant-icon--restaurant {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+.profile-page .wrapper .container .restaurant-icon--restaurant::after {
+  height: 3rem;
+  width: 3rem;
+}
+.profile-page .wrapper .container .restaurant-title--restaurant {
+  font-family: "lust", serif;
+  font-weight: 700;
+  font-style: normal;
+}
 .profile-page .wrapper .container .edit {
   position: absolute;
   top: -0.75rem;
@@ -799,8 +877,18 @@ body::-webkit-scrollbar {
   font-size: 14px;
   color: #9f9f9f;
 }
+.profile-page .wrapper .container .address {
+  font-size: 14px;
+}
 .profile-page .wrapper .container .account-button {
+  font-family: "Assistant", sans-serif;
+  color: white;
+  padding: 0.5rem;
   width: clamp(270px, 100%, 550px);
+  border: 1px solid #d9d4d4;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: 100;
 }
 .profile-page .wrapper .container .account-button--log-out {
   background-color: #d96422;
@@ -1072,6 +1160,9 @@ body::-webkit-scrollbar {
 }
 
 .register-restaurant {
+  font-family: "noto-sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   margin: 30px 0 0;
   display: flex;
   flex-direction: column;
